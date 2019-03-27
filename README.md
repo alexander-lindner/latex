@@ -55,7 +55,6 @@ and the run.sh too:
 ```bash
 #!/usr/bin/env sh
 
-export DATE=`date '+%Y-%m-%d_%H:%M:%S'`
 export CURRENT_UID=$(id -u):$(id -g)
 docker-compose up build
 docker-compose down

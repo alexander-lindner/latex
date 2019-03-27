@@ -3,7 +3,7 @@ MAINTAINER Alexander Lindner <25225552+alexander-lindner@users.noreply.github.co
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update -q \
-    && apt-get install -qy build-essential wget libfontconfig1 curl \
+    && apt-get install -qy build-essential wget libfontconfig1 curl git \
     && rm -rf /var/lib/apt/lists/*
 
 # Install TexLive with scheme-basic
