@@ -3,7 +3,7 @@ MAINTAINER Alexander Lindner <25225552+alexander-lindner@users.noreply.github.co
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update -q \
-    && apt-get install -qy build-essential wget libfontconfig1 curl git \
+    && apt-get install -qy build-essential wget libfontconfig1 curl git inotify-tools \
     && rm -rf /var/lib/apt/lists/*
 
 # Install TexLive with scheme-basic
@@ -15,7 +15,7 @@ RUN wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz; \
     rm -r /install-tl-unx; \
 	rm install-tl-unx.tar.gz
 
-ENV PATH="/usr/local/texlive/2018/bin/x86_64-linux:${PATH}"
+ENV PATH="/usr/local/texlive/2019/bin/x86_64-linux:${PATH}"
 
 ENV HOME /data
 WORKDIR /data
@@ -23,4 +23,3 @@ WORKDIR /data
 # Install latex packages
 RUN tlmgr install latexmk
 RUN tlmgr install scheme-full
-
