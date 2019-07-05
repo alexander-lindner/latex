@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-mkdir -p {out,src,.run}
+mkdir -p {out,src}
 
 curl https://raw.githubusercontent.com/alexander-lindner/latex/master/installer/run.sh > run.sh
 chmod +x run.sh
@@ -21,6 +21,8 @@ cat > src/main.tex <<EOF
 \makeglossaries
 
 \begin{document}
-    %your latex file
+    %your latex content
 \end{document}
 EOF
+
+echo "use ./run.sh to start generation"
