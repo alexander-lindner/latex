@@ -2,8 +2,7 @@ FROM ubuntu:latest
 MAINTAINER Alexander Lindner <25225552+alexander-lindner@users.noreply.github.com>
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update -q \
-    && apt-get install -qy build-essential wget libfontconfig1 curl git inotify-tools \
+RUN apt-get update -q && apt-get install -qy build-essential wget libfontconfig1 curl git inotify-tools python3-pygments \
     && rm -rf /var/lib/apt/lists/*
 
 # Install TexLive with scheme-basic
@@ -23,3 +22,5 @@ WORKDIR /data
 # Install latex packages
 RUN tlmgr install latexmk
 RUN tlmgr install scheme-full
+
+ADD run_in_docker.sh /

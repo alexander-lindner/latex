@@ -7,8 +7,50 @@
 
 This repo contains a basic dockerfile for a full latext environment and some examples how to use it.
 
+Features:
+* all dependencies
+* biber / biblatex
+* minted
+* pdflatex / xalatex
+* makeglossaries
 
-## local
+## Installation
+You need docker installed.
+
+### Use it (automatic)
+Install curl and execute:
+```bash
+bash <(curl -s https://raw.githubusercontent.com/alexander-lindner/latex/master/installer/installer.sh)
+```
+Using `./run.sh` you will trigger the generation.
+
+You will find the generated `main.pdf` in the `out` directory
+
+### Use it (manual): docker
+
+Assuming you've got the following structure:
+```
+. 
+├── out
+├── src
+│    ├── main.tex
+│    └── main.bib
+├── run.sh
+└── run_in_docker.sh (optional)
+```
+add the `run.sh` and make it executable:
+```bash
+#!/usr/bin/env bash
+
+#run.sh 
+
+docker run --rm -dti --volume $(pwd):/data --user $(id -u):$(id -g) -w="/data/src" alexanderlindner/latex:latest bash -c '/run_in_docker.sh'
+```
+Using `./run.sh` you will trigger the generation.
+
+You will find the generated `main.pdf` in the `out` directory
+
+### Use it (manual): docker-compose
 
 Assuming you've got the following structure:
 ```
@@ -19,7 +61,7 @@ Assuming you've got the following structure:
 │    └── main.bib
 ├── docker-compose.yml
 ├── run.sh
-└── run_in_docker.sh
+└── run_in_docker.sh (optional)
 ```
 You can use *docker-compose* for less configure work:
 ```yaml
@@ -30,28 +72,13 @@ services:
     volumes:
       - ./:/data
     working_dir: /data/src
-    command: "bash -c './run_in_docker.sh'"
+    command: "bash -c '/run_in_docker.sh'"
     user: ${CURRENT_UID}
 
 ```
 
-Place the `run_in_docker.sh` next to the compose file:
-```bash
-#!/usr/bin/env bash
+Place the `run.sh` next to the compose file:
 
-
-for OUTPUT in $(find . -type d)
-do
-  mkdir -p ../out/${OUTPUT}
-done
-
-
-latex -output-directory=../out/ -shell-escape -interaction=nonstopmode main.tex
-biber --output-directory=../out/ main
-latex -output-directory=../out/ -shell-escape -interaction=nonstopmode main.tex
-pdflatex -output-directory=../out/ -shell-escape -interaction=nonstopmode main.tex
-```
-and the run.sh too:
 ```bash
 #!/usr/bin/env sh
 
@@ -62,3 +89,29 @@ docker-compose down
 Using `./run.sh` you will trigger the generation.
 
 You will find the generated `main.pdf` in the `out` directory
+
+### Use it (manual): additional stuff
+
+If you want to use `minted`, add the following line to your `main.tex`:
+```latex
+\usepackage[outputdir=../out]{minted}
+```
+
+If you want to override the generation bash file (`run_in_docker.sh`), add this file to your root path:
+```bash
+#!/usr/bin/env bash
+
+
+for OUTPUT in $(find . -type d)
+do
+  mkdir -p ../out/${OUTPUT}
+done
+
+
+pdflatex -output-directory=../out/ -shell-escape -interaction=nonstopmode main.tex
+biber --output-directory=../out/ main
+makeglossaries -d ../out/ main
+pdflatex -output-directory=../out/ -shell-escape -interaction=nonstopmode main.tex
+pdflatex -output-directory=../out/ -shell-escape -interaction=nonstopmode main.tex
+```
+and change the compose path from ` "bash -c '/run_in_docker.sh'"` to ` "bash -c '../run_in_docker.sh'"`.
