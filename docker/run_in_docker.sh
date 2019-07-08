@@ -10,4 +10,4 @@ pdflatex -output-directory=../out/ -shell-escape -interaction=nonstopmode main.t
 biber --output-directory=../out/ main
 makeglossaries -d ../out/ main
 pdflatex -output-directory=../out/ -shell-escape -interaction=nonstopmode main.tex
-pdflatex -output-directory=../out/ -shell-e
+pdflatex -output-directory=../out/ -shell-escape -interaction=nonstopmode main.tex
