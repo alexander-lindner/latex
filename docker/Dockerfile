@@ -23,4 +23,4 @@ WORKDIR /data
 RUN tlmgr install latexmk
 RUN tlmgr install scheme-full
 RUN pip3 install pygments
-ADD run_in_docker.sh /
+ADD ./docker/run_in_docker.sh /
