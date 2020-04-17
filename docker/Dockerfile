@@ -2,7 +2,7 @@ FROM ubuntu:latest
 MAINTAINER Alexander Lindner <25225552+alexander-lindner@users.noreply.github.com>
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update -q && apt-get install -qy build-essential wget libfontconfig1 curl git inotify-tools python3-pip \
+RUN apt-get update -q && apt-get install -qy build-essential wget libfontconfig1 curl git inotify-tools python3-pip imagemagick inkscape \
     && rm -rf /var/lib/apt/lists/*
 
 # Install TexLive with scheme-basic
@@ -14,7 +14,7 @@ RUN wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz; \
     rm -r /install-tl-unx; \
 	rm install-tl-unx.tar.gz
 
-ENV PATH="/usr/local/texlive/2019/bin/x86_64-linux:${PATH}"
+ENV PATH="/usr/local/texlive/2020/bin/x86_64-linux:${PATH}"
 
 ENV HOME /data
 WORKDIR /data

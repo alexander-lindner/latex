@@ -13,6 +13,7 @@ Features:
 * minted
 * pdflatex / xalatex
 * makeglossaries
+* svg support
 
 ## Installation
 You need docker installed.
