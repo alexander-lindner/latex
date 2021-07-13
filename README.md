@@ -1,11 +1,8 @@
 # Latex docker image
-[![MicroBadger Size](https://img.shields.io/microbadger/image-size/alexanderlindner/latex.svg?style=for-the-badge)](https://hub.docker.com/r/alexanderlindner/latex/)
-[![Docker Build Status](https://img.shields.io/docker/build/alexanderlindner/latex.svg?style=for-the-badge)](https://hub.docker.com/r/alexanderlindner/latex/) 
-[![MicroBadger Layers](https://img.shields.io/microbadger/layers/alexanderlindner/latex.svg?style=for-the-badge)](https://hub.docker.com/r/alexanderlindner/latex/) 
+[![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/alexanderlindner/latex?style=for-the-badge)](https://hub.docker.com/r/alexanderlindner/latex/) 
 [![Docker Pulls](https://img.shields.io/docker/pulls/alexanderlindner/latex.svg?style=for-the-badge)](https://hub.docker.com/r/alexanderlindner/latex/)
 
-
-This repo contains a basic dockerfile for a full latext environment and some examples how to use it.
+This repo contains a basic dockerfile for a full latex environment, and some examples how to use it.
 
 Features:
 * all dependencies
