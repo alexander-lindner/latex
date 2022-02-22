@@ -97,4 +97,12 @@ const mintedTex = `%------------------------------------------------------------
 `
 const exampleContentDefault = ``
 
-const biberTex = ``
+const biberTex = `@software{Lindner_alindner_s_latex_collection_2019,
+author = {Lindner, Alexander},
+license = {GPL-3.0-or-later},
+month = {3},
+title = {{alindner's latex collection}},
+url = {https://github.com/alexander-lindner/latex},
+version = {1.0},
+year = {2019}
+}`
