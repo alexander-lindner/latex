@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/alexander-lindner/latex/client/latex/commands"
+	"github.com/alexander-lindner/latex/client/commands"
 )
 
 func main() {

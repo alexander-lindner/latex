@@ -1,4 +1,4 @@
-module github.com/alexander-lindner/latex/client/latex
+module github.com/alexander-lindner/latex/client
 
 go 1.18
 

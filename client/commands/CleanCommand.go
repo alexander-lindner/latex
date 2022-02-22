@@ -1,7 +1,7 @@
 package commands
 
 import (
-	"github.com/alexander-lindner/latex/client/latex/helper"
+	"github.com/alexander-lindner/latex/client/helper"
 	"os"
 )
 

@@ -15,6 +15,6 @@ Features:
 ## Installation
 You need docker installed.
 
-``bash
+```bash
 go get github.com/alexander-lindner/latex/client
 ```

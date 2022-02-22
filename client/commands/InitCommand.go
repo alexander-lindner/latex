@@ -3,7 +3,7 @@ package commands
 import (
 	"fmt"
 	"github.com/AlecAivazis/survey/v2"
-	"github.com/alexander-lindner/latex/client/latex/helper"
+	"github.com/alexander-lindner/latex/client/helper"
 	"github.com/go-akka/configuration"
 	"github.com/valyala/fasttemplate"
 	"os"
