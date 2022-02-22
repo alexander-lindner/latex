@@ -1,10 +1,9 @@
-
 name: ci-release
 
 on:
   push:
     branches:
-      - 'main'
+      - 'master'
 
 jobs:
   docker:
