@@ -13,15 +13,19 @@ jobs:
         uses: docker/setup-qemu-action@v1
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
+      - name: Check out code
+        uses: actions/checkout@v2
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
           push: true
           tags: ghcr.io/alexander-lindner/latex:base
           context: ./docker
+          file: ./docker/Dockerfile
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
           push: true
           tags: ghcr.io/alexander-lindner/latex:full
           context: ./docker
+          file: ./docker/Dockerfile.full
