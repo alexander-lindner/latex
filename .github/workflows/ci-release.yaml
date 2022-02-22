@@ -4,9 +4,6 @@ on:
   create:
     tags:
       - v*
-  push:
-    branches:
-      - 'master'
 
 jobs:
   docker:
@@ -47,3 +44,4 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./client/latex
           asset_name: latex
+          asset_content_type: application/octet-stream

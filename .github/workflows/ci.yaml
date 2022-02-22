@@ -18,12 +18,10 @@ jobs:
         with:
           push: true
           tags: ghcr.io/alexander-lindner/latex:base
-          context: docker
-          file: docker/Dockerfile
+          context: ./docker
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
           push: true
           tags: ghcr.io/alexander-lindner/latex:full
-          context: docker
-          file: docker/Dockerfile.full
+          context: ./docker
