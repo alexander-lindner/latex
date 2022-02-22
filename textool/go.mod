@@ -1,4 +1,4 @@
-module github.com/alexander-lindner/latex/client
+module github.com/alexander-lindner/latex/textool
 
 go 1.18
 

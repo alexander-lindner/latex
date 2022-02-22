@@ -1,6 +1,5 @@
 # Latex docker image
-[![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/alexanderlindner/latex?style=for-the-badge)](https://hub.docker.com/r/alexanderlindner/latex/) 
-[![Docker Pulls](https://img.shields.io/docker/pulls/alexanderlindner/latex.svg?style=for-the-badge)](https://hub.docker.com/r/alexanderlindner/latex/)
+![GitHub release (latest by SemVer)](https://img.shields.io/github/downloads/alexander-lindner/latex/latex/total?style=flat-square)
 
 This repo contains a basic dockerfile for a full latex environment, and some examples how to use it.
 
@@ -16,5 +15,5 @@ Features:
 You need docker installed.
 
 ```bash
-go get github.com/alexander-lindner/latex/client
+go get github.com/alexander-lindner/latex/textool
 ```
