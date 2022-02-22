@@ -2,8 +2,10 @@ FROM ubuntu:latest
 MAINTAINER Alexander Lindner <25225552+alexander-lindner@users.noreply.github.com>
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update -q && apt-get install -qy build-essential wget libfontconfig1 curl git inotify-tools python3-pip imagemagick inkscape \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt-get update -q && \
+    apt-get upgrade -y && \
+    apt-get install -qy build-essential wget libfontconfig1 curl git inotify-tools imagemagick inkscape python3-pip && \
+    rm -rf /var/lib/apt/lists/*
 
 # Install TexLive with scheme-basic
 RUN wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz; \
@@ -19,8 +21,9 @@ ENV PATH="/usr/local/texlive/2021/bin/x86_64-linux:${PATH}"
 ENV HOME /data
 WORKDIR /data
 
-# Install latex packages
-RUN tlmgr install latexmk
-RUN tlmgr install scheme-full
 RUN pip3 install pygments
-ADD ./docker/run_in_docker.sh /
+RUN tlmgr install latexmk
+
+ADD entrypoint.sh /
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT /entrypoint.sh

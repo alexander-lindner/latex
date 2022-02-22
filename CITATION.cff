@@ -1,0 +1,25 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: alindner's latex collection
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Alexander
+    family-names: Lindner
+identifiers:
+  - type: url
+    value: 'https://github.com/alexander-lindner/latex'
+    description: Github Repo
+repository-code: 'https://github.com/alexander-lindner/latex'
+url: 'https://github.com/alexander-lindner/latex'
+abstract: A collection of tools to provide easy latex support
+keywords:
+  - latex
+  - tool
+license: GPL-3.0-or-later
+version: '1.0'
+date-released: '2019-03-23'
