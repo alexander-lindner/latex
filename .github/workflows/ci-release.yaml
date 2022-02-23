@@ -28,7 +28,7 @@ jobs:
 
 ---
 
-name: ci-release
+name: ci-release-upload
 
 on:
   create:
