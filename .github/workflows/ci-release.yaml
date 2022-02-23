@@ -7,6 +7,36 @@ on:
 
 jobs:
   docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+
+---
+
+name: ci-release
+
+on:
+  create:
+    tags:
+      - v*
+
+jobs:
+  docker:
     strategy:
       matrix:
         go-version: [ 1.16.x, 1.17.x ]
@@ -26,16 +56,14 @@ jobs:
         working-directory: textool
         run: go build
 
-      - name: Create Release
+      - name: find release
+        uses: cardinalby/git-get-release-action@v1
         id: create_release
-        uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          draft: false
-          prerelease: false
+          tag: ${{ github.ref }}
+
       - name: Upload Release Asset
         id: upload-release-asset
         uses: actions/upload-release-asset@v1
@@ -44,5 +72,5 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./textool/textool
-          asset_name: latex
+          asset_name: textool-${{ matrix.go-version }}
           asset_content_type: application/octet-stream
