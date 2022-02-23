@@ -29,7 +29,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ hashFiles('./docker/Dockerfile') }}-${{ hashFiles('./docker/Dockerfile.full') }}
+          key: ${{ runner.os }}-buildx-${{ hashFiles('**/Dockerfile') }}-${{ hashFiles('**/Dockerfile.full') }}
 
       - name: Check out code
         uses: actions/checkout@v2
