@@ -1,0 +1,46 @@
+name: ci-release-upload
+
+on:
+  create:
+    tags:
+      - v*
+
+jobs:
+  docker:
+    strategy:
+      matrix:
+        go-version: [ 1.16.x, 1.17.x ]
+        os: [ ubuntu-latest,  windows-latest ]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      - name: Install Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: ${{ matrix.go-version }}
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: build
+        working-directory: textool
+        run: go build
+
+      - name: find release
+        uses: cardinalby/git-get-release-action@v1
+        id: create_release
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          tag: ${{ github.ref }}
+
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./textool/textool
+          asset_name: textool-${{ matrix.go-version }}
+          asset_content_type: application/octet-stream
