@@ -8,13 +8,14 @@ RUN apt-get update -q && \
     rm -rf /var/lib/apt/lists/*
 
 # Install TexLive with scheme-basic
-RUN wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz; \
+RUN wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz; \
 	mkdir /install-tl-unx; \
 	tar -xvf install-tl-unx.tar.gz -C /install-tl-unx --strip-components=1; \
     echo "selected_scheme scheme-basic" >> /install-tl-unx/texlive.profile; \
 	/install-tl-unx/install-tl -profile /install-tl-unx/texlive.profile; \
     rm -r /install-tl-unx; \
-	rm install-tl-unx.tar.gz
+	rm install-tl-unx.tar.gz && \
+    rm -rf /usr/local/texlive/2021/texmf-dist/doc
 
 ENV PATH="/usr/local/texlive/2021/bin/x86_64-linux:${PATH}"
 
@@ -22,7 +23,8 @@ ENV HOME /data
 WORKDIR /data
 
 RUN pip3 install pygments
-RUN tlmgr install latexmk
+RUN tlmgr install latexmk && \
+    rm -rf /usr/local/texlive/2021/texmf-dist/doc
 
 ADD entrypoint.sh /
 RUN chmod +x /entrypoint.sh

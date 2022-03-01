@@ -1,10 +1,10 @@
 package commands
 
 import (
-	"fmt"
 	"github.com/AlecAivazis/survey/v2"
 	"github.com/alexander-lindner/latex/textool/helper"
 	"github.com/go-akka/configuration"
+	log "github.com/sirupsen/logrus"
 	"github.com/valyala/fasttemplate"
 	"os"
 	"strconv"
@@ -16,7 +16,6 @@ type AddCommand struct {
 
 var addCommand AddCommand
 
-// the questions to ask
 var qs = []*survey.Question{
 	{
 		Name: "Documentclass",
@@ -142,6 +141,11 @@ var qs = []*survey.Question{
 		Validate: survey.Required,
 	},
 	{
+		Name:     "FileName",
+		Prompt:   &survey.Input{Message: "Basic: How should the file be named after generation? Default: main.pdf"},
+		Validate: survey.Required,
+	},
+	{
 		Name:     "Minted",
 		Prompt:   &survey.Confirm{Message: "Extra: Add a listing engine?", Help: "Minted is a advanced possibility to highlight all kinds of code"},
 		Validate: survey.Required,
@@ -157,125 +161,15 @@ var qs = []*survey.Question{
 		Validate: survey.Required,
 	},
 	{
+		Name:     "Docker",
+		Prompt:   &survey.Confirm{Message: "Extra: use custom docker build image(yes) or use the provided full image(no)?"},
+		Validate: survey.Required,
+	},
+	{
 		Name:     "Example",
 		Prompt:   &survey.Confirm{Message: "Extra: add some demo content?"},
 		Validate: survey.Required,
 	},
-}
-
-func (x *AddCommand) Execute(args []string) error {
-	helper.Exists(options.Path,
-		func() {
-
-		},
-		func() {
-			_ = os.MkdirAll(options.Path, 0700)
-		},
-	)
-
-	mainConfig := options.Path + "/.latex"
-	helper.Exists(mainConfig,
-		func() {
-
-		},
-		func() {
-			answers := struct {
-				Documentclass string
-				Twocolumn     bool
-				Minted        bool
-				Glossary      bool
-				Bibliography  bool
-				Example       bool
-				Lang          []string
-			}{}
-
-			err := survey.Ask(qs, &answers)
-			if err != nil {
-				fmt.Println(err.Error())
-				panic(err)
-			}
-
-			templateEngine := fasttemplate.New(configFile, "{{", "}}")
-			configFileContent := templateEngine.ExecuteString(map[string]interface{}{
-				"minted":        strconv.FormatBool(answers.Minted),
-				"glossary":      strconv.FormatBool(answers.Glossary),
-				"bibliography":  strconv.FormatBool(answers.Bibliography),
-				"lang":          strings.Join(answers.Lang[:], ","),
-				"twocolumn":     strconv.FormatBool(answers.Twocolumn),
-				"documentclass": answers.Documentclass,
-				"tag":           "full",
-			})
-
-			content := []byte(configFileContent)
-			err = os.WriteFile(mainConfig, content, 0644)
-			if err != nil {
-				panic(err)
-			}
-		},
-	)
-
-	latexmkrcFile := options.Path + "/latexmkrc"
-	helper.Exists(latexmkrcFile,
-		func() {
-
-		},
-		func() {
-			content := []byte(latexmkrc)
-			_ = os.WriteFile(latexmkrcFile, content, 0644)
-		},
-	)
-	c, err := os.ReadFile(mainConfig)
-	config := configuration.ParseString(string(c))
-
-	mainTex := options.Path + "/main.tex"
-	helper.Exists(mainTex,
-		func() {
-
-		},
-		func() {
-
-			mapping := map[string]interface{}{}
-			if config.GetBoolean("features.glossary", false) {
-				mapping["glossary"] = glossariesTex
-			}
-			if config.GetBoolean("features.minted", false) {
-				mapping["minted"] = mintedTex
-			}
-			if config.GetBoolean("features.bibliography", false) {
-				mapping["bibliography"] = bibliographyTex
-			}
-
-			mapping["lang"] = strings.Join(config.GetStringList("features.lang"), ",")
-			mapping["documentclass"] = config.GetString("features.documentclass")
-
-			if config.GetBoolean("features.twocolumn", false) {
-				mapping["twocolumn"] = "twocolumn"
-			} else {
-				mapping["twocolumn"] = "onecolumn"
-			}
-			templateEngine := fasttemplate.New(MinimalLatex, "<<", ">>")
-			configFileContent := templateEngine.ExecuteString(mapping)
-
-			content := []byte(configFileContent)
-			err = os.WriteFile(mainTex, content, 0644)
-			if err != nil {
-				panic(err)
-			}
-		},
-	)
-	if config.GetBoolean("features.bibliography", false) {
-		bibliographyFile := options.Path + "/main.bib"
-		helper.Exists(bibliographyFile,
-			func() {
-
-			},
-			func() {
-				content := []byte(biberTex)
-				_ = os.WriteFile(bibliographyFile, content, 0644)
-			},
-		)
-	}
-	return nil
 }
 
 func init() {
@@ -285,6 +179,128 @@ func init() {
 		&addCommand,
 	)
 	if err != nil {
-		return
+		log.Panic("Building the command parameter went wrong.", err)
 	}
+}
+
+func (x *AddCommand) Execute(args []string) error {
+	if !helper.PathExists(options.Path) {
+		err := os.MkdirAll(options.Path, 0700)
+		if err != nil {
+			log.Fatal("Couldn't create a directory")
+		}
+	}
+
+	mainConfig := options.Path + "/.latex"
+	if !helper.PathExists(mainConfig) {
+		log.Println("Creating ./.latex as main config file for this tool.")
+		answers := struct {
+			Documentclass string
+			Twocolumn     bool
+			Minted        bool
+			Glossary      bool
+			Bibliography  bool
+			Example       bool
+			Lang          []string
+			Docker        bool
+			FileName      string
+		}{}
+
+		err := survey.Ask(qs, &answers)
+		if err != nil {
+			log.Fatal("A error occurred during `survey`.", err)
+		}
+		dockerImage := "ghcr.io/alexander-lindner/latex:full"
+		if answers.Docker {
+			dockerImage = "local"
+		}
+		templateEngine := fasttemplate.New(configFile, "<<", ">>")
+		configFileContent := templateEngine.ExecuteString(map[string]interface{}{
+			"minted":        strconv.FormatBool(answers.Minted),
+			"glossary":      strconv.FormatBool(answers.Glossary),
+			"bibliography":  strconv.FormatBool(answers.Bibliography),
+			"lang":          strings.Join(answers.Lang[:], ","),
+			"twocolumn":     strconv.FormatBool(answers.Twocolumn),
+			"documentclass": answers.Documentclass,
+			"dockerImage":   dockerImage,
+			"fileName":      answers.FileName,
+		})
+
+		content := []byte(configFileContent)
+		err = os.WriteFile(mainConfig, content, 0644)
+		if err != nil {
+			log.Fatal("Couldn't write config file.", err)
+		}
+	}
+
+	latexmkrcFile := options.Path + "/latexmkrc"
+	if !helper.PathExists(latexmkrcFile) {
+		log.Println("Creating ./latexmkrc which configures latexmk.")
+		content := []byte(latexmkrc)
+		err := os.WriteFile(latexmkrcFile, content, 0644)
+		if err != nil {
+			log.Fatal("Couldn't write latexmkrc file.", err)
+		}
+	}
+	c, err := os.ReadFile(mainConfig)
+	if err != nil {
+		log.Fatal("Couldn't read config file.", err)
+	}
+	config := configuration.ParseString(string(c))
+
+	mainTex := options.Path + "/main.tex"
+	if !helper.PathExists(mainTex) {
+		log.Println("Creating main tex file main.tex")
+		mapping := map[string]interface{}{}
+		if config.GetBoolean("features.glossary", false) {
+			mapping["glossary"] = glossariesTex
+		}
+		if config.GetBoolean("features.minted", false) {
+			mapping["minted"] = mintedTex
+		}
+		if config.GetBoolean("features.bibliography", false) {
+			mapping["bibliography"] = bibliographyTex
+		}
+
+		mapping["lang"] = strings.Join(config.GetStringList("features.lang"), ",")
+		mapping["documentclass"] = config.GetString("features.documentclass")
+
+		if config.GetBoolean("features.twocolumn", false) {
+			mapping["twocolumn"] = "twocolumn"
+		} else {
+			mapping["twocolumn"] = "onecolumn"
+		}
+		templateEngine := fasttemplate.New(MinimalLatex, "<<", ">>")
+		configFileContent := templateEngine.ExecuteString(mapping)
+
+		content := []byte(configFileContent)
+		err = os.WriteFile(mainTex, content, 0644)
+		if err != nil {
+			log.Fatal("Couldn't write main tex file.", err)
+		}
+	}
+
+	if config.GetBoolean("features.bibliography", false) {
+		log.Println("Creating bibliography file main.bib")
+		bibliographyFile := options.Path + "/main.bib"
+		if !helper.PathExists(bibliographyFile) {
+			content := []byte(biberTex)
+			err := os.WriteFile(bibliographyFile, content, 0644)
+			if err != nil {
+				log.Fatal("Couldn't write main bibliography file.", err)
+			}
+		}
+	}
+	if config.GetString("docker.image") == "local" {
+		log.Println("You've decided to customize the build process. Therefore, a Dockerfile was created.")
+		dockerfile := options.Path + "/Dockerfile"
+		if !helper.PathExists(dockerfile) {
+			content := []byte(MinimalDockerFile)
+			err := os.WriteFile(dockerfile, content, 0644)
+			if err != nil {
+				log.Fatal("Couldn't write Dockerfile file.", err)
+			}
+		}
+	}
+	return nil
 }

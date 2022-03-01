@@ -9,7 +9,7 @@ jobs:
   docker:
     strategy:
       matrix:
-        os: [ ubuntu-latest]
+        os: [ ubuntu-latest ]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Set up QEMU
@@ -25,12 +25,6 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Cache register
-        uses: actions/cache@v2
-        with:
-          path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ hashFiles('**/Dockerfile') }}-${{ hashFiles('**/Dockerfile.full') }}
-
       - name: Check out code
         uses: actions/checkout@v2
 
@@ -42,7 +36,7 @@ jobs:
           context: ./docker
           file: ./docker/Dockerfile
           cache-from: type=gha
-          cache-to: type=gha
+          cache-to: type=gha,mode=max
 
       - name: Build and push
         uses: docker/build-push-action@v2
@@ -52,4 +46,4 @@ jobs:
           context: ./docker
           file: ./docker/Dockerfile.full
           cache-from: type=gha
-          cache-to: type=gha
+          cache-to: type=gha,mode=max

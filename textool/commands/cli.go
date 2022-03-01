@@ -2,6 +2,7 @@ package commands
 
 import (
 	"github.com/jessevdk/go-flags"
+	log "github.com/sirupsen/logrus"
 	"os"
 )
 
@@ -10,14 +11,11 @@ func init() {
 }
 
 type Options struct {
-	// Example of verbosity with level
 	Verbose []bool `short:"v" long:"verbose" description:"Verbose output"`
-
-	Path string `short:"p" long:"path" description:"the name of the directory, which should be created"`
+	Path    string `short:"p" long:"path" description:"the name of the directory, which should be created"`
 }
 
 var options Options
-
 var parser = flags.NewParser(&options, flags.Default)
 
 func EvalCli() {
@@ -27,9 +25,9 @@ func EvalCli() {
 			if flagsErr == flags.ErrHelp {
 				os.Exit(0)
 			}
-			os.Exit(1)
+			log.Fatal("During cli propagating an error raised.", err)
 		default:
-			os.Exit(1)
+			log.Fatal("During cli propagating an unknown error raised.", err)
 		}
 	}
 }

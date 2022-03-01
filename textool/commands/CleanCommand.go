@@ -2,6 +2,7 @@ package commands
 
 import (
 	"github.com/alexander-lindner/latex/textool/helper"
+	log "github.com/sirupsen/logrus"
 	"os"
 )
 
@@ -12,16 +13,15 @@ var cleanCommand CleanCommand
 var toRemove = [...]string{"out", ".texlive2020", ".texlive2021", ".texlive2022"}
 
 func (x *CleanCommand) Execute(args []string) error {
+	log.Println("Cleaning all temporary files...")
 	for _, path := range toRemove {
 		realPath := options.Path + "/" + path
-		helper.Exists(realPath, func() {
+		if helper.PathExists(realPath) {
 			err := os.RemoveAll(realPath)
 			if err != nil {
-				panic(err)
+				log.Panic("Couldn't remove necessary path "+path, err)
 			}
-		}, func() {
-
-		})
+		}
 	}
 	return nil
 }
@@ -33,6 +33,6 @@ func init() {
 		&cleanCommand,
 	)
 	if err != nil {
-		return
+		log.Panic("Building the command parameter went wrong.", err)
 	}
 }

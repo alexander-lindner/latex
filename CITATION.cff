@@ -10,6 +10,7 @@ type: software
 authors:
   - given-names: Alexander
     family-names: Lindner
+    orcid: 'https://orcid.org/0000-0002-1464-3491'
 identifiers:
   - type: url
     value: 'https://github.com/alexander-lindner/latex'

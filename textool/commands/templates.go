@@ -22,8 +22,9 @@ const configFile = `############################################
 # alindner's Latex Tools                   #
 ############################################
 
+fileName: "<<fileName>>"
 docker {
-	image: "ghcr.io/alexander-lindner/latex:<<tag>>"
+	image: "<<dockerImage>>"
 }
 features {
 	documentclass: <<documentclass>>,
@@ -106,3 +107,10 @@ url = {https://github.com/alexander-lindner/latex},
 version = {1.0},
 year = {2019}
 }`
+
+const MinimalDockerFile = `FROM ghcr.io/alexander-lindner/latex:base
+
+RUN tlmgr update --self
+RUN tlmgr install minted
+
+`

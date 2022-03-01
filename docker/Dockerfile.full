@@ -1,4 +1,7 @@
 FROM ghcr.io/alexander-lindner/latex:base
 MAINTAINER Alexander Lindner <25225552+alexander-lindner@users.noreply.github.com>
 
-RUN tlmgr install scheme-full
+RUN tlmgr install scheme-full && \
+    rm -rf /usr/local/texlive/2021/texmf-dist/doc
+
+#RUN du -sch /usr/local/texlive/2021/texmf-dist/* | sort -hr
