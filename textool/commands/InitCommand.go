@@ -1,6 +1,7 @@
 package commands
 
 import (
+	"fmt"
 	"github.com/AlecAivazis/survey/v2"
 	"github.com/alexander-lindner/latex/textool/helper"
 	"github.com/go-akka/configuration"
@@ -270,6 +271,7 @@ func (x *AddCommand) Execute(args []string) error {
 		} else {
 			mapping["twocolumn"] = "onecolumn"
 		}
+		mapping["content"] = `(Type your content here.)`
 		templateEngine := fasttemplate.New(MinimalLatex, "<<", ">>")
 		configFileContent := templateEngine.ExecuteString(mapping)
 
@@ -295,7 +297,38 @@ func (x *AddCommand) Execute(args []string) error {
 		log.Println("You've decided to customize the build process. Therefore, a Dockerfile was created.")
 		dockerfile := options.Path + "/Dockerfile"
 		if !helper.PathExists(dockerfile) {
-			content := []byte(MinimalDockerFile)
+			pkgs := []string{"koma-script", "xetex", "xstring", "float", "fontspec"}
+
+			for _, lang := range config.GetStringList("features.lang") {
+				if lang == "ngerman" {
+					lang = "german"
+				}
+				pkgs = append(pkgs, "hyphen-"+lang, "babel-"+lang)
+			}
+
+			if config.GetBoolean("features.minted", false) {
+				pkgs = append(pkgs, "soul", "listings", "minted", "fvextra", "fancyvrb", "upquote", "lineno", "xcolor", "catchfile", "framed", "etoolbox")
+			}
+			if config.GetBoolean("features.glossary", false) {
+				pkgs = append(pkgs, "glossaries", "mfirstuc", "etoolbox", "textcase", "xfor", "datatool", "tracklang", "xkeyval")
+				for _, lang := range config.GetStringList("features.lang") {
+					if lang == "ngerman" {
+						lang = "german"
+					}
+					pkgs = append(pkgs, "glossaries-"+lang)
+				}
+
+			}
+			if config.GetBoolean("features.bibliography", false) {
+				pkgs = append(pkgs, "csquotes", "biber", "biblatex")
+			}
+			fmt.Println(strings.Join(pkgs, " "))
+			templateEngine := fasttemplate.New(MinimalDockerFile, "{{", "}}")
+			finalContent := templateEngine.ExecuteString(map[string]interface{}{
+				"packages": strings.Join(pkgs, " "),
+			})
+
+			content := []byte(finalContent)
 			err := os.WriteFile(dockerfile, content, 0644)
 			if err != nil {
 				log.Fatal("Couldn't write Dockerfile file.", err)

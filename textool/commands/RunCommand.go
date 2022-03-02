@@ -43,6 +43,7 @@ type RunCommand struct{}
 
 var runCommand RunCommand
 var cli *client.Client
+var c = color.FgLightBlue
 
 func init() {
 	_, err := parser.AddCommand("run",
@@ -171,7 +172,15 @@ func pullImage(imageName string) error {
 		}
 	}(reader)
 	termFd, isTerm := term.GetFdInfo(os.Stderr)
+	_, err = color.Set(c)
+	if err != nil {
+		return err
+	}
 	err = jsonmessage.DisplayJSONMessagesStream(reader, os.Stderr, termFd, isTerm, nil)
+	_, err = color.Reset()
+	if err != nil {
+		return err
+	}
 	if err != nil {
 		return err
 	}
@@ -225,7 +234,7 @@ func printLog(rd io.Reader) error {
 		}
 
 		if msg.Message != "" {
-			blue := color.FgBlue.Render
+			blue := c.Render
 			fmt.Print(blue(msg.Message))
 		}
 	}
@@ -254,7 +263,7 @@ func printSimpleLog(rd io.Reader) error {
 		lastLine = scanner.Text()
 
 		if lastLine != "" {
-			blue := color.FgBlue.Render
+			blue := c.Render
 			fmt.Println(blue(lastLine))
 		}
 	}

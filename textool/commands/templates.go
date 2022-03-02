@@ -2,13 +2,13 @@ package commands
 
 const MinimalLatex = `\documentclass[ <<twocolumn>>, <<lang>> ]{<<documentclass>>}
 \usepackage[utf8]{inputenc}
-\usepackage[T1,EU1]{fontenc}
+\usepackage[T1]{fontenc}
 \usepackage[<<lang>>]{babel}
 <<glossary>>
 <<bibliography>>
 <<minted>>
 \begin{document}
-(Type your content here.)
+<<content>>
 \end{document}
 `
 const latexmkrc = `add_cus_dep('glo', 'gls', 0, 'makeglo2gls');
@@ -45,9 +45,8 @@ const glossariesTex = `%--------------------------------------------------------
 const bibliographyTex = `%----------------------------------------------------------------------------------------------------------------------------
 % --------------------------------------------------- Setup bibliography ----------------------------------------------------
 %----------------------------------------------------------------------------------------------------------------------------
-\usepackage[backend=biber]{biblatex}
+\usepackage[backend=biber,style=numeric]{biblatex}
 \bibliography{main}
-\bibliographystyle{ieeetr}
 % ------------------------------------------------------- END -------------------------------------------------------
 
 `
@@ -56,6 +55,8 @@ const mintedTex = `%------------------------------------------------------------
 % ------------------------------------------------------ Setup Minted -------------------------------------------------------
 % Don't forget: \begin{minted} can't be used in "\newcommand"
 %----------------------------------------------------------------------------------------------------------------------------
+\usepackage{fvextra}
+\usepackage{csquotes}
 \usepackage{listings}
 \usepackage[outputdir=../out]{minted}
 \usepackage{amssymb}
@@ -96,7 +97,11 @@ const mintedTex = `%------------------------------------------------------------
 % ------------------------------------------------------- END -------------------------------------------------------
 
 `
-const exampleContentDefault = ``
+const exampleContentDefault = `
+\cite{Lindner_alindner_s_latex_collection_2019}
+
+\printbibliography
+`
 
 const biberTex = `@software{Lindner_alindner_s_latex_collection_2019,
 author = {Lindner, Alexander},
@@ -111,6 +116,6 @@ year = {2019}
 const MinimalDockerFile = `FROM ghcr.io/alexander-lindner/latex:base
 
 RUN tlmgr update --self
-RUN tlmgr install minted
+RUN tlmgr install {{packages}}
 
 `
