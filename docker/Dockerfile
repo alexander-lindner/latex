@@ -1,6 +1,11 @@
 FROM ubuntu:latest
 MAINTAINER Alexander Lindner <25225552+alexander-lindner@users.noreply.github.com>
 ENV DEBIAN_FRONTEND noninteractive
+LABEL org.opencontainers.image.title="latex compiler"
+LABEL org.opencontainers.image.version="texlive-2021"
+LABEL org.opencontainers.image.licenses="GPL-2.0,LPPL-1.3c"
+LABEL org.opencontainers.image.url="https://github.com/alexander-lindner/latex"
+LABEL org.opencontainers.image.description="A minimal, basic image for compiling .tex documents. You can use `tlmgr` to install packages. If you want all dependencies, use the `:full` image."
 
 RUN apt-get update -q && \
     apt-get upgrade -y && \

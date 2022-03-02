@@ -1,5 +1,7 @@
 FROM ghcr.io/alexander-lindner/latex:base
 MAINTAINER Alexander Lindner <25225552+alexander-lindner@users.noreply.github.com>
+LABEL org.opencontainers.image.title="latex compiler with all deps"
+LABEL org.opencontainers.image.description="A image for compiling .tex documents with minted and all ctan dependencies."
 
 RUN tlmgr install scheme-full && \
     rm -rf /usr/local/texlive/2021/texmf-dist/doc
