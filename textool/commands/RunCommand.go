@@ -92,6 +92,11 @@ func (x *RunCommand) Execute(args []string) error {
 		} else {
 			log.Fatal("Building the image failed. Now fall back to full image")
 		}
+	} else {
+		err = pullImage(baseContainerName + ":full")
+		if err != nil {
+			log.Fatal("Couldn't pull the full docker image.", err)
+		}
 	}
 
 	runImage(options.Path, image, config.GetString("fileName"))
