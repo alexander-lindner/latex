@@ -6,16 +6,6 @@ import (
 	"os"
 )
 
-func Exists(path string, yes func(), no func()) {
-	if _, err := os.Stat(path); err == nil {
-		yes()
-	} else if errors.Is(err, os.ErrNotExist) {
-		no()
-	} else {
-		no()
-	}
-}
-
 func PathExists(path string) bool {
 	if _, err := os.Stat(path); err == nil {
 		return true

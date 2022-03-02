@@ -225,6 +225,7 @@ func (x *AddCommand) Execute(args []string) error {
 			"documentclass": answers.Documentclass,
 			"dockerImage":   dockerImage,
 			"fileName":      answers.FileName,
+			"examples":      strconv.FormatBool(answers.Example),
 		})
 
 		content := []byte(configFileContent)
@@ -253,14 +254,37 @@ func (x *AddCommand) Execute(args []string) error {
 	if !helper.PathExists(mainTex) {
 		log.Println("Creating main tex file main.tex")
 		mapping := map[string]interface{}{}
+		var texContent string
+		var contentEnd string
+		if config.GetBoolean("features.examples", false) {
+			texContent = exampleContentDefault
+			contentEnd = ""
+		} else {
+			texContent = `(Type your content here.)`
+			contentEnd = ""
+		}
+
 		if config.GetBoolean("features.glossary", false) {
 			mapping["glossary"] = glossariesTex
+			if config.GetBoolean("features.examples", false) {
+				texContent += "\n" + glossariesContent
+				contentEnd += "\n" + glossariesContentEnd
+				mapping["glossaryHead"] = glossariesContentHead
+			}
 		}
 		if config.GetBoolean("features.minted", false) {
 			mapping["minted"] = mintedTex
+			if config.GetBoolean("features.examples", false) {
+				texContent += "\n" + mintedContent
+				contentEnd += "\n" + mintedContentEnd
+			}
 		}
 		if config.GetBoolean("features.bibliography", false) {
 			mapping["bibliography"] = bibliographyTex
+			if config.GetBoolean("features.examples", false) {
+				texContent += "\n" + bibliographyContent
+				contentEnd += "\n" + bibliographyContentEnd
+			}
 		}
 
 		mapping["lang"] = strings.Join(config.GetStringList("features.lang"), ",")
@@ -271,7 +295,7 @@ func (x *AddCommand) Execute(args []string) error {
 		} else {
 			mapping["twocolumn"] = "onecolumn"
 		}
-		mapping["content"] = `(Type your content here.)`
+		mapping["content"] = texContent + "\n" + contentEnd
 		templateEngine := fasttemplate.New(MinimalLatex, "<<", ">>")
 		configFileContent := templateEngine.ExecuteString(mapping)
 
@@ -297,7 +321,7 @@ func (x *AddCommand) Execute(args []string) error {
 		log.Println("You've decided to customize the build process. Therefore, a Dockerfile was created.")
 		dockerfile := options.Path + "/Dockerfile"
 		if !helper.PathExists(dockerfile) {
-			pkgs := []string{"koma-script", "xetex", "xstring", "float", "fontspec"}
+			pkgs := []string{"koma-script", "xetex", "xstring", "float", "fontspec", "abstract", "cleveref", "hyperref"}
 
 			for _, lang := range config.GetStringList("features.lang") {
 				if lang == "ngerman" {
