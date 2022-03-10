@@ -1,7 +1,6 @@
 package commands
 
 import (
-	"fmt"
 	"github.com/AlecAivazis/survey/v2"
 	"github.com/alexander-lindner/latex/textool/helper"
 	"github.com/go-akka/configuration"
@@ -346,7 +345,6 @@ func (x *AddCommand) Execute(args []string) error {
 			if config.GetBoolean("features.bibliography", false) {
 				pkgs = append(pkgs, "csquotes", "biber", "biblatex")
 			}
-			fmt.Println(strings.Join(pkgs, " "))
 			templateEngine := fasttemplate.New(MinimalDockerFile, "{{", "}}")
 			finalContent := templateEngine.ExecuteString(map[string]interface{}{
 				"packages": strings.Join(pkgs, " "),

@@ -1,6 +1,7 @@
 package commands
 
 import (
+	"github.com/geomyidia/flagswrap"
 	"github.com/jessevdk/go-flags"
 	log "github.com/sirupsen/logrus"
 	"os"
@@ -20,14 +21,25 @@ var parser = flags.NewParser(&options, flags.Default)
 
 func EvalCli() {
 	if _, err := parser.Parse(); err != nil {
-		switch flagsErr := err.(type) {
-		case flags.ErrorType:
-			if flagsErr == flags.ErrHelp {
-				os.Exit(0)
-			}
-			log.Fatal("During cli propagating an error raised.", err)
+		wrappedErr := flagswrap.WrapError(err)
+		switch {
+		case wrappedErr.IsHelp():
+			os.Exit(0)
+		// Self-documenting go-flags errors:
+		case wrappedErr.IsVerbose():
+			os.Exit(1)
+		// go-flags errors that need more context:
+		case wrappedErr.IsSilent():
+			// TODO: if you see duplicate error messages here, then
+			// you just need to move the error in question from the
+			// goFlagsSilentErrors to the goFlagsVerboseErrors map
+			// in ./errors.go -- and then submit a PR!
+			log.Fatal("During cli propagating an error raised.", wrappedErr)
+			os.Exit(1)
 		default:
-			log.Fatal("During cli propagating an unknown error raised.", err)
+			// TODO: anything here might justify a PR ...
+			log.Fatal("During cli propagating an unknown error raised.", wrappedErr)
+			os.Exit(1)
 		}
 	}
 }

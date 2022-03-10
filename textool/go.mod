@@ -6,6 +6,7 @@ require (
 	github.com/AlecAivazis/survey/v2 v2.3.2
 	github.com/coreos/etcd v3.3.13+incompatible
 	github.com/docker/docker v20.10.12+incompatible
+	github.com/geomyidia/flagswrap v0.1.0
 	github.com/go-akka/configuration v0.0.0-20200606091224-a002c0330665
 	github.com/google/go-github/v43 v43.0.0
 	github.com/gookit/color v1.5.0
@@ -15,6 +16,7 @@ require (
 	github.com/sirupsen/logrus v1.8.1
 	github.com/valyala/fasttemplate v1.2.1
 	golang.org/x/net v0.0.0-20211216030914-fe4d6282115f
+	gopkg.in/yaml.v2 v2.4.0
 )
 
 require (
@@ -52,6 +54,5 @@ require (
 	google.golang.org/genproto v0.0.0-20211208223120-3a66f561d7aa // indirect
 	google.golang.org/grpc v1.43.0 // indirect
 	google.golang.org/protobuf v1.27.1 // indirect
-	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gotest.tools/v3 v3.1.0 // indirect
 )

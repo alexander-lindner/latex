@@ -12,8 +12,8 @@ var watchCommand WatchCommand
 
 func init() {
 	_, err := parser.AddCommand("watch",
-		"Initialise a latex project directory",
-		"Creates a directory and adds a minimal Latex template to this directory",
+		"Build and watches a latex project",
+		"Compiles a latex project and afterwards, watches for changes which triggers a recompilation",
 		&watchCommand)
 	if err != nil {
 		log.Panic("Building the command parameter went wrong.", err)

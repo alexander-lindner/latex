@@ -16,8 +16,8 @@ var cli docker.Client
 
 func init() {
 	_, err := parser.AddCommand("run",
-		"Initialise a latex project directory",
-		"Creates a directory and adds a minimal Latex template to this directory",
+		"Compiles a latex project",
+		"Compiles a given latex project by first building the docker image and then use it to compile the project.",
 		&runCommand)
 	if err != nil {
 		log.Panic("Building the command parameter went wrong.", err)
