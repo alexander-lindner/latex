@@ -2,6 +2,7 @@ package helper
 
 import (
 	"errors"
+	"github.com/go-akka/configuration"
 	log "github.com/sirupsen/logrus"
 	"os"
 )
@@ -15,4 +16,15 @@ func PathExists(path string) bool {
 		log.Panic("Couldn't fetch stats for "+path, err)
 		return false
 	}
+}
+
+func GetConfig(path string) (config *configuration.Config) {
+	mainConfig := path + "/.latex"
+	log.Println("Opening config file for  reading. Path:" + mainConfig)
+	c, err := os.ReadFile(mainConfig)
+	if err != nil {
+		log.Fatal("Couldn't read the main config file", err)
+	}
+	config = configuration.ParseString(string(c))
+	return
 }

@@ -6,25 +6,21 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-const baseContainerName = "ghcr.io/alexander-lindner/latex"
+type WatchCommand struct{}
 
-type RunCommand struct{}
-
-var runCommand RunCommand
-
-var cli docker.Client
+var watchCommand WatchCommand
 
 func init() {
-	_, err := parser.AddCommand("run",
+	_, err := parser.AddCommand("watch",
 		"Initialise a latex project directory",
 		"Creates a directory and adds a minimal Latex template to this directory",
-		&runCommand)
+		&watchCommand)
 	if err != nil {
 		log.Panic("Building the command parameter went wrong.", err)
 	}
 	cli = docker.New()
 }
-func (x *RunCommand) Execute(args []string) error {
+func (x *WatchCommand) Execute(args []string) error {
 	cli.SetBasePath(options.Path)
 	config := helper.GetConfig(options.Path)
 
@@ -43,6 +39,6 @@ func (x *RunCommand) Execute(args []string) error {
 		}
 	}
 
-	cli.RunImage(options.Path, image, config.GetString("fileName"))
+	cli.RunImageWatch(options.Path, image, config.GetString("fileName"))
 	return nil
 }
