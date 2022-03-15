@@ -9,38 +9,39 @@ jobs:
   docker:
     strategy:
       matrix:
-        go-version: [ 1.16.x, 1.17.x ]
         os: [ ubuntu-latest ]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
+
       - name: Install Go
         uses: actions/setup-go@v2
         with:
           go-version: ${{ matrix.go-version }}
+
       - name: Checkout code
         uses: actions/checkout@v2
 
       - name: build
         working-directory: textool
-        run: go build
+        run: |
+          GOOS=linux GOARCH=386 go build -o bin/textool-386-linux app.go
+          GOOS=linux GOARCH=amd64 go build -o bin/textool-amd64-linux app.go
+          GOOS=darwin GOARCH=386 go build -o bin/textool-386-darwin app.go
+          GOOS=darwin GOARCH=amd64 go build -o bin/textool-amd64-darwin app.go
+          GOOS=windows GOARCH=386 go build -o bin/textool-386.exe app.go
+          GOOS=windows GOARCH=amd64 go build -o bin/textool-amd64.exe app.go
 
-      - name: find release
-        uses: cardinalby/git-get-release-action@v1
-        id: create_release
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        with:
-          commitSha: ${{ github.sha }}
 
       - name: Upload Release Asset
-        id: upload-release-asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./textool/textool
-          asset_name: textool-${{ matrix.go-version }}
-          asset_content_type: application/octet-stream
+          files: |
+            ./textool/bin/textool-386-linux
+            ./textool/bin/textool-amd64-linux
+            ./textool/bin/textool-386-darwin
+            ./textool/bin/textool-amd64-darwin
+            ./textool/bin/textool-386.exe 
+            ./textool/bin/textool-amd64.exe
