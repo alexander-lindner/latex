@@ -1,7 +1,7 @@
-# Latex docker image ![GitHub release (latest by SemVer)](https://img.shields.io/github/downloads/alexander-lindner/latex/v2.1.0/total?style=flat-square)
+# Latex docker image ![GitHub release (latest by SemVer)](https://img.shields.io/github/downloads/alexander-lindner/latex/v2.1.1-3/total?style=flat-square)
 
 This repo contains a helper tool `textool` and two [docker images](https://github.com/alexander-lindner/latex/pkgs/container/latex):
-* a basic one with a minimal texlive installtion
+* a basic one with a minimal texlive installation
 * a full one with texlive and all packages
 
 The `:full` image takes care of all necessary features like:
@@ -21,9 +21,9 @@ The `:full` image takes care of all necessary features like:
 Install it:
 
 
-|                       using go                       |                                                                            using precompiled binaries                                                                            |
-|:----------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-| `go  get github.com/alexander-lindner/latex/textool ` | ` wget  https://github.com/alexander-lindner/latex/releases/download/v2.0.0-7/textool-1.17.x -O textool && chmod  +x textool && mv  textool /usr/local/bin/`  |
+|                       using go                       |                                                                 using precompiled binaries                                                                  |
+|:----------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| `go  get github.com/alexander-lindner/latex/textool ` | ` wget  https://github.com/alexander-lindner/latex/releases/download/v2.1.1-3/textool-amd64-linux -O textool && chmod  +x textool && mv  textool /usr/local/bin/` |
 
 There are several commands available:
 ```

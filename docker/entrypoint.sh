@@ -2,7 +2,6 @@
 
 OUT=/data/out
 
-echo $PATH
 if [[ "$1" == "watch" ]]; then
   OPTIONS='-pvc -f  -pdflatex="pdflatex -synctex=1 -interaction=nonstopmode"'
 else
