@@ -32,8 +32,8 @@ jobs:
         run: GOOS=darwin GOARCH=amd64 go build -o bin/textool-amd64-darwin app.go
 
 
-      - name: build Linux
-        working-directory: Windows
+      - name: build Windows
+        working-directory: textool
         run: |
           GOOS=windows GOARCH=386 go build -o bin/textool-386.exe app.go
           GOOS=windows GOARCH=amd64 go build -o bin/textool-amd64.exe app.go
