@@ -9,7 +9,7 @@ LABEL org.opencontainers.image.description="A minimal, basic image for compiling
 
 RUN apt-get update -q && \
     apt-get upgrade -y && \
-    apt-get install -qy build-essential wget libfontconfig1 curl git inotify-tools imagemagick inkscape python3-pip && \
+    apt-get install -qy build-essential wget libfontconfig1 curl git inotify-tools imagemagick inkscape python3-pip ruby-hocon && \
     rm -rf /var/lib/apt/lists/*
 
 # Install TexLive with scheme-basic

@@ -19,7 +19,13 @@ const latexmkrc = `add_cus_dep('glo', 'gls', 0, 'makeglo2gls');
 sub makeglo2gls {
     system("makeindex -s '$_[0]'.ist -t '$_[0]'.glg -o '$_[0]'.gls '$_[0]'.glo");
 }
-$pdflatex=q/xelatex -synctex=1 %O %S/
+
+$ENV{'OUTPUT_PDF_NAME'} //= "main";
+$filename = $ENV{'OUTPUT_PDF_NAME'};
+# Output a pdf
+$pdf_mode = 1;
+
+$pdflatex = "pdflatex -jobname=$filename --shell-escape %O %S";
 `
 
 const configFile = `##############################################

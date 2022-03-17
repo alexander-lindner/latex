@@ -14,6 +14,7 @@ import (
 	"github.com/docker/docker/client"
 	"github.com/docker/docker/pkg/archive"
 	"github.com/docker/docker/pkg/jsonmessage"
+	"github.com/fsnotify/fsnotify"
 	"github.com/gookit/color"
 	"github.com/moby/term"
 	log "github.com/sirupsen/logrus"
@@ -211,6 +212,18 @@ func (this *Client) RunImageWithCommand(basePath string, imageName string, outpu
 	if err != nil {
 		log.Fatal("Couldn't create a container for running the latex commands", err)
 	}
+	originalPath := path + "/" + basePath + "/out/" + outputName
+
+	if command == "watch" {
+		watch(originalPath, func(name string, Op fsnotify.Op) {
+			log.Printf("%s %s\n", name, Op)
+
+			_, err = copy(originalPath, path+"/"+basePath+"/"+outputName)
+			if err != nil {
+				log.Fatal("Couldn't copy the file to the destination path. ", err)
+			}
+		})
+	}
 	log.Print("Starting the docker container")
 	if err := this.cli.ContainerStart(ctx, resp.ID, types.ContainerStartOptions{}); err != nil {
 		log.Fatal("Couldn't start the container for running the latex commands. ID of the container is "+resp.ID, err)
@@ -240,12 +253,52 @@ func (this *Client) RunImageWithCommand(basePath string, imageName string, outpu
 	case status := <-statusC:
 		log.Println("Successfully run latex. Code:", status)
 	}
-
-	_, err = copy(path+"/"+basePath+"/out/main.pdf", path+"/"+basePath+"/"+outputName)
+	_, err = copy(originalPath, path+"/"+basePath+"/"+outputName)
 	if err != nil {
 		log.Fatal("Couldn't copy the file to the destination path. ", err)
 	}
 	return resp.ID
+}
+
+func watch(path string, callback func(name string, Op fsnotify.Op)) {
+	watcher, err := fsnotify.NewWatcher()
+	if err != nil {
+		log.Fatal("NewWatcher failed: ", err)
+	}
+	defer func(watcher *fsnotify.Watcher) {
+		err := watcher.Close()
+		if err != nil {
+			log.Fatal("Couldn't close watcher")
+		}
+	}(watcher)
+
+	done := make(chan bool)
+	go func() {
+		defer close(done)
+
+		for {
+			select {
+			case event, ok := <-watcher.Events:
+				if !ok {
+					return
+				}
+				callback(event.Name, event.Op)
+
+			case err, ok := <-watcher.Errors:
+				if !ok {
+					return
+				}
+				log.Println("error:", err)
+			}
+		}
+
+	}()
+
+	err = watcher.Add(path)
+	if err != nil {
+		log.Fatal("Add failed:", err)
+	}
+
 }
 func copy(src, dst string) (int64, error) {
 	sourceFileStat, err := os.Stat(src)

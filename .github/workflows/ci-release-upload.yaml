@@ -23,13 +23,13 @@ jobs:
       - name: build Linux
         working-directory: textool
         run: |
-          GOOS=linux GOARCH=386 go build -o bin/textool-386-linux app.go
-          GOOS=linux GOARCH=amd64 go build -o bin/textool-amd64-linux app.go
+          GOOS=linux GOARCH=386 go build -o bin/textool-linux-386 app.go
+          GOOS=linux GOARCH=amd64 go build -o bin/textool-linux-amd64 app.go
 
 
       - name: build MacOS
         working-directory: textool
-        run: GOOS=darwin GOARCH=amd64 go build -o bin/textool-amd64-darwin app.go
+        run: GOOS=darwin GOARCH=amd64 go build -o bin/textool-darwin-amd64 app.go
 
 
       - name: build Windows
@@ -44,8 +44,8 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            ./textool/bin/textool-386-linux
-            ./textool/bin/textool-amd64-linux
-            ./textool/bin/textool-amd64-darwin
+            ./textool/bin/textool-linux-386
+            ./textool/bin/textool-linux-amd64
+            ./textool/bin/textool-darwin-amd64
             ./textool/bin/textool-386.exe 
             ./textool/bin/textool-amd64.exe
