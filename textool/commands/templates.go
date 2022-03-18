@@ -35,7 +35,7 @@ const configFile = `##############################################
 
 fileName: "<<fileName>>"
 docker {
-	image: "<<dockerImage>>"
+	file: "<<dockerFile>>"
 }
 features {
 	documentclass: <<documentclass>>,
@@ -252,7 +252,7 @@ year = {2019}
 	note = { [accessed 02-March-2022] }
 }
 `
-const MinimalDockerFile = `FROM ghcr.io/alexander-lindner/latex:base
+const MinimalDockerFile = `FROM {{image}}
 
 RUN tlmgr update --self
 RUN tlmgr install {{packages}}

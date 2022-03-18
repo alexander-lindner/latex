@@ -162,7 +162,7 @@ var qs = []*survey.Question{
 	},
 	{
 		Name:     "Docker",
-		Prompt:   &survey.Confirm{Message: "Extra: use custom docker build image(yes) or use the provided full image(no)?"},
+		Prompt:   &survey.Confirm{Message: "Extra: use the base docker image(yes) [you need to customize it] or use the provided full image(no)?"},
 		Validate: survey.Required,
 	},
 	{
@@ -190,7 +190,8 @@ func (x *AddCommand) Execute(args []string) error {
 			log.Fatal("Couldn't create a directory")
 		}
 	}
-
+	dockerFile := "Dockerfile"
+	useBaseImage := false
 	mainConfig := options.Path + "/.latex"
 	if !helper.PathExists(mainConfig) {
 		log.Println("Creating ./.latex as main config file for this tool.")
@@ -210,11 +211,9 @@ func (x *AddCommand) Execute(args []string) error {
 		if err != nil {
 			log.Fatal("A error occurred during `survey`.", err)
 		}
-		dockerImage := "ghcr.io/alexander-lindner/latex:full"
-		if answers.Docker {
-			dockerImage = "local"
-		}
+
 		templateEngine := fasttemplate.New(configFile, "<<", ">>")
+		useBaseImage = answers.Docker
 		configFileContent := templateEngine.ExecuteString(map[string]interface{}{
 			"minted":        strconv.FormatBool(answers.Minted),
 			"glossary":      strconv.FormatBool(answers.Glossary),
@@ -222,7 +221,7 @@ func (x *AddCommand) Execute(args []string) error {
 			"lang":          strings.Join(answers.Lang[:], ","),
 			"twocolumn":     strconv.FormatBool(answers.Twocolumn),
 			"documentclass": answers.Documentclass,
-			"dockerImage":   dockerImage,
+			"dockerFile":    dockerFile,
 			"fileName":      answers.FileName,
 			"examples":      strconv.FormatBool(answers.Example),
 		})
@@ -316,15 +315,20 @@ func (x *AddCommand) Execute(args []string) error {
 			}
 		}
 	}
-	if config.GetString("docker.image") == "local" {
-		log.Println("You've decided to customize the build process. Therefore, a Dockerfile was created.")
-		dockerfile := options.Path + "/Dockerfile"
-		if !helper.PathExists(dockerfile) {
-			pkgs := []string{"koma-script", "xetex", "xstring", "float", "fontspec", "abstract", "cleveref", "hyperref"}
+
+	log.Println("The Dockerfile was created.")
+	dockerfile := options.Path + "/" + dockerFile
+	if !helper.PathExists(dockerfile) {
+		pkgs := []string{}
+		if useBaseImage {
+			pkgs = append(pkgs, "koma-script", "xetex", "xstring", "float", "fontspec", "abstract", "cleveref", "hyperref")
 
 			for _, lang := range config.GetStringList("features.lang") {
 				if lang == "ngerman" {
 					lang = "german"
+				}
+				if lang == "american" {
+					lang = "english"
 				}
 				pkgs = append(pkgs, "hyphen-"+lang, "babel-"+lang)
 			}
@@ -338,6 +342,9 @@ func (x *AddCommand) Execute(args []string) error {
 					if lang == "ngerman" {
 						lang = "german"
 					}
+					if lang == "american" {
+						lang = "english"
+					}
 					pkgs = append(pkgs, "glossaries-"+lang)
 				}
 
@@ -345,16 +352,23 @@ func (x *AddCommand) Execute(args []string) error {
 			if config.GetBoolean("features.bibliography", false) {
 				pkgs = append(pkgs, "csquotes", "biber", "biblatex")
 			}
-			templateEngine := fasttemplate.New(MinimalDockerFile, "{{", "}}")
-			finalContent := templateEngine.ExecuteString(map[string]interface{}{
-				"packages": strings.Join(pkgs, " "),
-			})
+		} else {
+			pkgs = append(pkgs, "koma-script", "#add packages like so")
+		}
+		dockerImage := "ghcr.io/alexander-lindner/latex:full"
+		if useBaseImage {
+			dockerImage = "ghcr.io/alexander-lindner/latex:base"
+		}
+		templateEngine := fasttemplate.New(MinimalDockerFile, "{{", "}}")
+		finalContent := templateEngine.ExecuteString(map[string]interface{}{
+			"packages": strings.Join(pkgs, " "),
+			"image":    dockerImage,
+		})
 
-			content := []byte(finalContent)
-			err := os.WriteFile(dockerfile, content, 0644)
-			if err != nil {
-				log.Fatal("Couldn't write Dockerfile file.", err)
-			}
+		content := []byte(finalContent)
+		err := os.WriteFile(dockerfile, content, 0644)
+		if err != nil {
+			log.Fatal("Couldn't write Dockerfile file.", err)
 		}
 	}
 	return nil

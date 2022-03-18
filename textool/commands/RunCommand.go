@@ -33,15 +33,8 @@ func (x *RunCommand) Execute(args []string) error {
 	if err != nil {
 		log.Fatal("Couldn't pull the base docker image.", err)
 	}
-	image := config.GetString("docker.image", baseContainerName+":full")
-	if image == "local" {
-		image = cli.BuildLocalImage()
-	} else {
-		err = cli.PullImage(baseContainerName + ":full")
-		if err != nil {
-			log.Fatal("Couldn't pull the full docker image.", err)
-		}
-	}
+	Dockerfile := config.GetString("docker.file", "Dockerfile")
+	image := cli.BuildLocalImage(Dockerfile)
 
 	cli.RunImage(options.Path, image, config.GetString("fileName"))
 	return nil

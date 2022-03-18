@@ -90,7 +90,7 @@ func (this *Client) PullImage(imageName string) error {
 	return nil
 }
 
-func (this *Client) BuildImage(path string, name string) error {
+func (this *Client) BuildImage(path string, Dockerfile string, name string) error {
 	ctx := context.Background()
 
 	tar, err := archive.TarWithOptions(path, &archive.TarOptions{})
@@ -99,7 +99,7 @@ func (this *Client) BuildImage(path string, name string) error {
 	}
 
 	opts := types.ImageBuildOptions{
-		Dockerfile: "Dockerfile",
+		Dockerfile: Dockerfile,
 		Tags:       []string{name},
 		Remove:     true,
 	}
@@ -127,8 +127,8 @@ func (this *Client) SetBasePath(path string) {
 	this.basePath = path
 }
 
-func (this *Client) BuildLocalImage() string {
-	log.Println("It is necessary to build the file before using it which is reasoned by choosing 'local' as the image in the config file")
+func (this *Client) BuildLocalImage(Dockerfile string) string {
+	log.Println("It is necessary to build the file before using it")
 	cwd, _ := os.Getwd()
 	dir := filepath.Base(filepath.Dir(pathutil.CanonicalURLPath(cwd + "/" + this.basePath)))
 
@@ -139,7 +139,7 @@ func (this *Client) BuildLocalImage() string {
 
 	imageName := strings.ToLower("textool-" + dir + "-" + sha + ":latest")
 
-	err := this.BuildImage(this.basePath, imageName)
+	err := this.BuildImage(this.basePath, Dockerfile, imageName)
 	if err == nil {
 		var image = imageName
 		return image
