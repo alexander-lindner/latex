@@ -33,6 +33,6 @@ func (x *WatchCommand) Execute(args []string) error {
 
 	image := cli.BuildLocalImage(Dockerfile)
 
-	cli.RunImageWatch(options.Path, image, config.GetString("fileName"))
+	cli.RunImageWatch(options.Path, image, config.GetString("fileName"), config.GetString("texFile"))
 	return nil
 }

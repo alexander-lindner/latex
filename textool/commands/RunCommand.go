@@ -36,6 +36,6 @@ func (x *RunCommand) Execute(args []string) error {
 	Dockerfile := config.GetString("docker.file", "Dockerfile")
 	image := cli.BuildLocalImage(Dockerfile)
 
-	cli.RunImage(options.Path, image, config.GetString("fileName"))
+	cli.RunImage(options.Path, image, config.GetString("fileName"), config.GetString("texFile"))
 	return nil
 }

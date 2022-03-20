@@ -31,6 +31,8 @@ RUN pip3 install pygments
 RUN tlmgr install latexmk && \
     rm -rf /usr/local/texlive/2021/texmf-dist/doc
 
+RUN echo "#!/bin/bash" > /usr/bin/acroread && chmod +x /usr/bin/acroread
+
 ADD entrypoint.sh /
 RUN chmod +x /entrypoint.sh
 

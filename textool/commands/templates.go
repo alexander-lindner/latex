@@ -25,14 +25,15 @@ $filename = $ENV{'OUTPUT_PDF_NAME'};
 # Output a pdf
 $pdf_mode = 1;
 
-$pdflatex = "pdflatex -jobname=$filename --shell-escape %O %S";
+$pdflatex = "pdflatex --shell-escape %O %S"; # -jobname=$filename  will break the watch command somehow
+# $pdflatex = "pdflatex -jobname=$filename --shell-escape %O %S";
 `
 
 const configFile = `##############################################
 #            textools config file            #
 # https://github.com/alexander-lindner/latex #
 ##############################################
-
+texFile: "main.tex"
 fileName: "<<fileName>>"
 docker {
 	file: "<<dockerFile>>"

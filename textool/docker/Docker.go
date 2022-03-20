@@ -8,21 +8,24 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/alexander-lindner/latex/textool/helper"
 	"github.com/coreos/etcd/pkg/pathutil"
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/api/types/container"
 	"github.com/docker/docker/client"
 	"github.com/docker/docker/pkg/archive"
 	"github.com/docker/docker/pkg/jsonmessage"
-	"github.com/fsnotify/fsnotify"
 	"github.com/gookit/color"
 	"github.com/moby/term"
+	"github.com/radovskyb/watcher"
 	log "github.com/sirupsen/logrus"
 	"io"
 	"os"
+	"os/signal"
 	"os/user"
 	"path/filepath"
 	"strings"
+	"time"
 )
 
 type Client struct {
@@ -49,11 +52,12 @@ func (this *Client) init() {
 	}
 	this.cli = cli
 }
-func (this *Client) RunImage(basePath string, imageName string, outputName string) string {
+func (this *Client) RunImage(basePath string, imageName string, outputName string, texName string) string {
 	return this.RunImageWithCommand(
 		basePath,
 		imageName,
 		outputName,
+		texName,
 		"",
 	)
 }
@@ -150,11 +154,12 @@ func (this *Client) BuildLocalImage(Dockerfile string) string {
 	return baseContainerName + ":full"
 }
 
-func (this *Client) RunImageWatch(basePath string, imageName string, outputName string) string {
+func (this *Client) RunImageWatch(basePath string, imageName string, outputName string, texName string) string {
 	return this.RunImageWithCommand(
 		basePath,
 		imageName,
 		outputName,
+		texName,
 		"watch",
 	)
 }
@@ -171,7 +176,7 @@ func (this *Client) IsImageAvailable(imageName string) bool {
 	}
 	return false
 }
-func (this *Client) RunImageWithCommand(basePath string, imageName string, outputName string, command string) string {
+func (this *Client) RunImageWithCommand(basePath string, imageName string, outputName string, texName string, command string) string {
 	ctx := context.Background()
 
 	u, err := user.Current()
@@ -212,12 +217,35 @@ func (this *Client) RunImageWithCommand(basePath string, imageName string, outpu
 	if err != nil {
 		log.Fatal("Couldn't create a container for running the latex commands", err)
 	}
-	originalPath := path + "/" + basePath + "/out/" + outputName
+
+	sourcePdfName := strings.ReplaceAll(texName, ".tex", ".pdf")
+	originalPath := path + "/" + basePath + "/out/" + sourcePdfName
+
+	done := true
 
 	if command == "watch" {
-		watch(originalPath, func(name string, Op fsnotify.Op) {
-			log.Printf("%s %s\n", name, Op)
+		if !helper.PathExists(originalPath) {
+			log.Info("The final file does not exists. For watching it has to exists. Therefore, a normal build is executed before...")
+			this.RunImage(basePath, imageName, outputName, texName)
+		}
+		c := make(chan os.Signal, 1)
+		signal.Notify(c, os.Interrupt)
+		go func() {
+			for sig := range c {
 
+				log.Println("Caught a [CTRL]+[C], stopping watch process ...")
+				log.Debug(sig)
+
+				d := 30 * time.Second
+				if err := this.cli.ContainerStop(ctx, resp.ID, &d); err != nil {
+					log.Fatal("Couldn't stop the container. Error: ", err)
+				}
+				done = false
+				log.Info("Stopped...")
+			}
+		}()
+
+		go watch(originalPath, &done, func(name string) {
 			_, err = copy(originalPath, path+"/"+basePath+"/"+outputName)
 			if err != nil {
 				log.Fatal("Couldn't copy the file to the destination path. ", err)
@@ -260,44 +288,39 @@ func (this *Client) RunImageWithCommand(basePath string, imageName string, outpu
 	return resp.ID
 }
 
-func watch(path string, callback func(name string, Op fsnotify.Op)) {
-	watcher, err := fsnotify.NewWatcher()
-	if err != nil {
-		log.Fatal("NewWatcher failed: ", err)
-	}
-	defer func(watcher *fsnotify.Watcher) {
-		err := watcher.Close()
-		if err != nil {
-			log.Fatal("Couldn't close watcher")
-		}
-	}(watcher)
+func watch(path string, done *bool, callback func(name string)) {
+	w := watcher.New()
+	w.FilterOps(watcher.Write, watcher.Create)
 
-	done := make(chan bool)
+	log.Info("Adding background watcher for changed files...")
 	go func() {
-		defer close(done)
+		for *done {
 
-		for {
 			select {
-			case event, ok := <-watcher.Events:
-				if !ok {
-					return
-				}
-				callback(event.Name, event.Op)
+			case event := <-w.Event:
+				log.Info("Copy re-rendered file....")
+				callback(event.Name())
 
-			case err, ok := <-watcher.Errors:
-				if !ok {
-					return
+			case err := <-w.Error:
+				if err != nil {
+					log.Println("error:", err)
 				}
-				log.Println("error:", err)
+			case <-w.Closed:
+				return
 			}
 		}
-
 	}()
 
-	err = watcher.Add(path)
-	if err != nil {
+	if err := w.Add(path); err != nil {
 		log.Fatal("Add failed:", err)
 	}
+
+	go func() {
+		// Start the watching process - it'll check for changes every 100ms.
+		if err := w.Start(time.Second * 1); err != nil {
+			log.Fatalln(err)
+		}
+	}()
 
 }
 func copy(src, dst string) (int64, error) {
