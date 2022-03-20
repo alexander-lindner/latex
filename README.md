@@ -1,6 +1,11 @@
 # Latex docker image ![GitHub release (latest by SemVer)](https://img.shields.io/github/downloads/alexander-lindner/latex/v2.1.1-3/total?style=flat-square)
 
-This repo contains a helper tool `textool` and two [docker images](https://github.com/alexander-lindner/latex/pkgs/container/latex):
+This repo contains a cli tool `textool` and two [docker images](https://github.com/alexander-lindner/latex/pkgs/container/latex):
+
+`textool` creates a latex project structure, compiles it, even auto compiles it after changes (aka watches) the project and adds more useful utils.
+
+
+Docker images:
 * a basic one with a minimal texlive installation
 * a full one with texlive and all packages
 
@@ -15,6 +20,7 @@ The `:full` image takes care of all necessary features like:
 
 > You need docker installed.
  
+See [Usage](Usage.ipynb).
 
 ### With `textool`
 
