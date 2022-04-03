@@ -44,15 +44,17 @@ func (x *BibCommand) Execute(args []string) error {
 	}
 	title := "Unknown"
 	abstract := ""
+	author := ""
 
 	if strings.Contains(x.Url, "://github.com") {
 		var re = regexp.MustCompile(`((git@|http(s)?:\/\/)([\w\.@]+)(\/|:))([\w,\-,\_]+)\/([\w,\-,\_]+)(.git){0,1}((\/){0,1})`)
 
 		split := re.FindStringSubmatch(x.Url)
-		t, a := renderGithub(split[6], split[7])
+		t, a, authors := renderGithub(split[6], split[7])
 
 		title = t
 		abstract = a
+		author = strings.Join(authors, " and ")
 	} else {
 		log.Println("Fetching url...")
 		resp, err := http.Get(x.Url)
@@ -76,7 +78,10 @@ func (x *BibCommand) Execute(args []string) error {
 				log.Fatal("Couldn't parse a html string. ", err)
 			}
 		case "application/pdf":
-			readPdf(content)
+			title, abstract, err = renderPdf(content)
+			if len(title) <= 0 {
+				title = x.Url
+			}
 		}
 	}
 	reg, err := regexp.Compile("[^a-zA-Z0-9_]+")
@@ -87,19 +92,23 @@ func (x *BibCommand) Execute(args []string) error {
 	slug = reg.ReplaceAllString(slug, "")
 	slug = strings.ReplaceAll(slug, "__", "_")
 	currentTime := time.Now()
-	fullDate := currentTime.Format("01-January") + "-" + strconv.Itoa(currentTime.Year())
+	fullDate := currentTime.Format("02-January") + "-" + strconv.Itoa(currentTime.Year())
 	bibEntry := `
 @online{ site:` + slug + `,
 	title = { ` + title + ` },
 	date = { ` + currentTime.Format("2006-01-02") + ` },
 	url = { ` + x.Url + ` },
 	abstract = { ` + abstract + ` },
-	note = { [accessed ` + fullDate + `] }
+	note = { [accessed ` + fullDate + `] },
+    author = { ` + author + ` }
 }
 `
-
+	writeToBibFile(bibEntry)
 	log.Info("This bibtex entry was successfully added to your main.bib file.")
-	log.Info(bibEntry)
+	return nil
+}
+
+func writeToBibFile(bibEntry string) {
 	bibliographyFile := options.Path + "/main.bib"
 	f, err := os.OpenFile(bibliographyFile, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
@@ -114,8 +123,6 @@ func (x *BibCommand) Execute(args []string) error {
 	if _, err := f.WriteString(bibEntry); err != nil {
 		log.Fatal("Couldn't write the entry to the file. ", err)
 	}
-
-	return nil
 }
 func parseHtml(content io.ReadCloser) (string, error) {
 
@@ -179,32 +186,67 @@ type T struct {
 	DateReleased string   `yaml:"date-released"`
 }
 
-func renderGithub(owner string, repoName string) (abstract string, slug string) {
+func renderGithub(owner string, repoName string) (title string, abstract string, authors []string) {
 	ctx := context.Background()
 	client := github.NewClient(nil)
 
-	get, _, err := client.Repositories.Get(ctx, owner, repoName)
+	data, _, err := client.Repositories.Get(ctx, owner, repoName)
 	if err != nil {
 		return
 	}
-	abstract = *get.Description
+	abstract = data.GetDescription()
+
 	contents, _, _, err := client.Repositories.GetContents(ctx, owner, repoName, "CITATION.cff", nil)
 	if err != nil {
-		return
+		return data.GetFullName(), abstract, authors
 	}
-	slug = owner + " / " + repoName
+
 	content, _ := contents.GetContent()
-
 	t := T{}
-
 	err = yaml.Unmarshal([]byte(content), &t)
 	if err != nil {
 		log.Fatalf("error: %v", err)
 	}
 
-	return t.Abstract, t.Title
+	for _, a := range t.Authors {
+		authors = append(authors, a.Family+", "+a.Names)
+	}
+	return t.Title, t.Abstract, authors
 }
-func readPdf(content io.ReadCloser) (string, error) {
+func renderPdf(content io.ReadCloser) (title string, abstract string, err error) {
+	path := copyPdfToTmpFile(content)
+	f, r, err := pdf.Open(path)
+	defer func(f *os.File) {
+		err := f.Close()
+		if err != nil {
+			log.Panic("Couldn't close handler. ", err)
+		}
+	}(f)
+	if err != nil {
+		log.Fatal("Couldn't open pdf file. ", err)
+	}
+
+	var buf bytes.Buffer
+	b, err := r.GetPlainText()
+	if err != nil {
+		log.Fatal("Couldn't render pdf file. ", err)
+	}
+	_, err = buf.ReadFrom(b)
+	if err != nil {
+		log.Fatal("Couldn't render pdf file. ", err)
+	}
+	abstract = firstNCharacters(buf.String(), 255)
+
+	return r.Outline().Title, abstract, nil
+}
+func firstNCharacters(s string, n int) string {
+	r := []rune(s)
+	if len(r) > n {
+		return string(r[:n])
+	}
+	return s
+}
+func copyPdfToTmpFile(content io.ReadCloser) string {
 	path := options.Path + "/out/tmp.pdf"
 	outFile, err := os.Create(path)
 	defer func(outFile *os.File) {
@@ -217,16 +259,5 @@ func readPdf(content io.ReadCloser) (string, error) {
 	if err != nil {
 		log.Panic("Couldn't copy file content. ", err)
 	}
-	f, r, err := pdf.Open(path)
-	defer func(f *os.File) {
-		err := f.Close()
-		if err != nil {
-			log.Panic("Couldn't close handler. ", err)
-		}
-	}(f)
-	if err != nil {
-		log.Fatal("Couldn't open pdf file. ", err)
-	}
-	fmt.Println(r.Page(0).V)
-	return r.Outline().Title, nil
+	return path
 }
