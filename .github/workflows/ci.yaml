@@ -2,6 +2,10 @@ name: ci
 
 on:
   push:
+    paths:
+      - 'docker/Dockerfile'
+      - 'docker/Dockerfile.full'
+      - 'docker/entrypoint.sh'
     branches:
       - 'master'
 
