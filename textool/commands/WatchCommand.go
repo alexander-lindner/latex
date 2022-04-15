@@ -22,7 +22,11 @@ func init() {
 }
 func (x *WatchCommand) Execute(args []string) error {
 	cli.SetBasePath(options.Path)
+
 	config := helper.GetConfig(options.Path)
+
+	cli.SetFileName(config.GetString("fileName"))
+	cli.SetTexFile(config.GetString("texFile"))
 
 	log.Println("Now pulling the base image: " + baseContainerName + ":base")
 	err := cli.PullImage(baseContainerName + ":base")
@@ -33,6 +37,6 @@ func (x *WatchCommand) Execute(args []string) error {
 
 	image := cli.BuildLocalImage(Dockerfile)
 
-	cli.RunImageWatch(options.Path, image, config.GetString("fileName"), config.GetString("texFile"))
+	cli.RunImageWatch(image)
 	return nil
 }

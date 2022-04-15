@@ -28,6 +28,9 @@ func (x *RunCommand) Execute(args []string) error {
 	cli.SetBasePath(options.Path)
 	config := helper.GetConfig(options.Path)
 
+	cli.SetFileName(config.GetString("fileName"))
+	cli.SetTexFile(config.GetString("texFile"))
+
 	log.Println("Now pulling the base image: " + baseContainerName + ":base")
 	err := cli.PullImage(baseContainerName + ":base")
 	if err != nil {
@@ -36,6 +39,6 @@ func (x *RunCommand) Execute(args []string) error {
 	Dockerfile := config.GetString("docker.file", "Dockerfile")
 	image := cli.BuildLocalImage(Dockerfile)
 
-	cli.RunImage(options.Path, image, config.GetString("fileName"), config.GetString("texFile"))
+	cli.RunImage(image)
 	return nil
 }

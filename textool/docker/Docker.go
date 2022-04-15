@@ -29,8 +29,10 @@ import (
 )
 
 type Client struct {
-	cli      *client.Client
-	basePath string
+	cli        *client.Client
+	basePath   string
+	outputName string
+	texName    string
 }
 
 const baseContainerName = "ghcr.io/alexander-lindner/latex"
@@ -45,30 +47,27 @@ func New() Client {
 	cli.init()
 	return cli
 }
-func (this *Client) init() {
+func (cl *Client) init() {
 	cli, err := client.NewClientWithOpts(client.FromEnv)
 	if err != nil {
 		log.Panic("Couldn't initialise the docker client.", err)
 	}
-	this.cli = cli
+	cl.cli = cli
 }
-func (this *Client) RunImage(basePath string, imageName string, outputName string, texName string) string {
-	return this.RunImageWithCommand(
-		basePath,
+func (cl *Client) RunImage(imageName string) string {
+	return cl.RunImageWithCommand(
 		imageName,
-		outputName,
-		texName,
 		"",
 	)
 }
 
-func (this *Client) PullImage(imageName string) error {
-	if this.IsImageAvailable(imageName) {
+func (cl *Client) PullImage(imageName string) error {
+	if cl.IsImageAvailable(imageName) {
 		log.Info("Image is already available. Not pulling.")
 		return nil
 	}
 	ctx := context.Background()
-	reader, err := this.cli.ImagePull(ctx, imageName, types.ImagePullOptions{})
+	reader, err := cl.cli.ImagePull(ctx, imageName, types.ImagePullOptions{})
 	if err != nil {
 		return err
 	}
@@ -94,7 +93,7 @@ func (this *Client) PullImage(imageName string) error {
 	return nil
 }
 
-func (this *Client) BuildImage(path string, Dockerfile string, name string) error {
+func (cl *Client) BuildImage(path string, Dockerfile string, name string) error {
 	ctx := context.Background()
 
 	tar, err := archive.TarWithOptions(path, &archive.TarOptions{})
@@ -107,7 +106,7 @@ func (this *Client) BuildImage(path string, Dockerfile string, name string) erro
 		Tags:       []string{name},
 		Remove:     true,
 	}
-	res, err := this.cli.ImageBuild(ctx, tar, opts)
+	res, err := cl.cli.ImageBuild(ctx, tar, opts)
 	if err != nil {
 		return err
 	}
@@ -127,14 +126,14 @@ func (this *Client) BuildImage(path string, Dockerfile string, name string) erro
 	return nil
 }
 
-func (this *Client) SetBasePath(path string) {
-	this.basePath = path
+func (cl *Client) SetBasePath(path string) {
+	cl.basePath = path
 }
 
-func (this *Client) BuildLocalImage(Dockerfile string) string {
+func (cl *Client) BuildLocalImage(Dockerfile string) string {
 	log.Println("It is necessary to build the file before using it")
 	cwd, _ := os.Getwd()
-	dir := filepath.Base(filepath.Dir(pathutil.CanonicalURLPath(cwd + "/" + this.basePath)))
+	dir := filepath.Base(filepath.Dir(pathutil.CanonicalURLPath(cwd + "/" + cl.basePath)))
 
 	hasher := sha1.New()
 	hasher.Write([]byte(dir))
@@ -143,7 +142,7 @@ func (this *Client) BuildLocalImage(Dockerfile string) string {
 
 	imageName := strings.ToLower("textool-" + dir + "-" + sha + ":latest")
 
-	err := this.BuildImage(this.basePath, Dockerfile, imageName)
+	err := cl.BuildImage(cl.basePath, Dockerfile, imageName)
 	if err == nil {
 		var image = imageName
 		return image
@@ -154,18 +153,15 @@ func (this *Client) BuildLocalImage(Dockerfile string) string {
 	return baseContainerName + ":full"
 }
 
-func (this *Client) RunImageWatch(basePath string, imageName string, outputName string, texName string) string {
-	return this.RunImageWithCommand(
-		basePath,
+func (cl *Client) RunImageWatch(imageName string) string {
+	return cl.RunImageWithCommand(
 		imageName,
-		outputName,
-		texName,
 		"watch",
 	)
 }
-func (this *Client) IsImageAvailable(imageName string) bool {
+func (cl *Client) IsImageAvailable(imageName string) bool {
 	ctx := context.Background()
-	images, err := this.cli.ImageList(ctx, types.ImageListOptions{All: true})
+	images, err := cl.cli.ImageList(ctx, types.ImageListOptions{All: true})
 	if err != nil {
 		log.Fatal("Couldn't list docker images. ", err)
 	}
@@ -176,7 +172,7 @@ func (this *Client) IsImageAvailable(imageName string) bool {
 	}
 	return false
 }
-func (this *Client) RunImageWithCommand(basePath string, imageName string, outputName string, texName string, command string) string {
+func (cl *Client) RunImageWithCommand(imageName string, command string) string {
 	ctx := context.Background()
 
 	u, err := user.Current()
@@ -203,11 +199,11 @@ func (this *Client) RunImageWithCommand(basePath string, imageName string, outpu
 		config.Cmd = []string{command}
 	}
 
-	resp, err := this.cli.ContainerCreate(
+	resp, err := cl.cli.ContainerCreate(
 		ctx,
 		config,
 		&container.HostConfig{
-			Binds:      []string{path + "/" + basePath + ":/data"},
+			Binds:      []string{path + "/" + cl.basePath + ":/data"},
 			AutoRemove: true,
 		},
 		nil,
@@ -218,15 +214,15 @@ func (this *Client) RunImageWithCommand(basePath string, imageName string, outpu
 		log.Fatal("Couldn't create a container for running the latex commands", err)
 	}
 
-	sourcePdfName := strings.ReplaceAll(texName, ".tex", ".pdf")
-	originalPath := path + "/" + basePath + "/out/" + sourcePdfName
+	sourcePdfName := strings.ReplaceAll(cl.texName, ".tex", ".pdf")
+	originalPath := path + "/" + cl.basePath + "/out/" + sourcePdfName
 
 	done := true
 
 	if command == "watch" {
 		if !helper.PathExists(originalPath) {
 			log.Info("The final file does not exists. For watching it has to exists. Therefore, a normal build is executed before...")
-			this.RunImage(basePath, imageName, outputName, texName)
+			cl.RunImage(imageName)
 		}
 		c := make(chan os.Signal, 1)
 		signal.Notify(c, os.Interrupt)
@@ -236,8 +232,8 @@ func (this *Client) RunImageWithCommand(basePath string, imageName string, outpu
 				log.Println("Caught a [CTRL]+[C], stopping watch process ...")
 				log.Debug(sig)
 
-				d := 30 * time.Second
-				if err := this.cli.ContainerStop(ctx, resp.ID, &d); err != nil {
+				d := 3 * time.Second
+				if err := cl.cli.ContainerStop(ctx, resp.ID, &d); err != nil {
 					log.Fatal("Couldn't stop the container. Error: ", err)
 				}
 				done = false
@@ -245,18 +241,18 @@ func (this *Client) RunImageWithCommand(basePath string, imageName string, outpu
 			}
 		}()
 
-		go watch(originalPath, &done, func(name string) {
-			_, err = copy(originalPath, path+"/"+basePath+"/"+outputName)
+		go cl.watch(originalPath, &done, func(name string) {
+			_, err = copy(originalPath, path+"/"+cl.basePath+"/"+cl.outputName)
 			if err != nil {
 				log.Fatal("Couldn't copy the file to the destination path. ", err)
 			}
-		})
+		}, imageName)
 	}
 	log.Print("Starting the docker container")
-	if err := this.cli.ContainerStart(ctx, resp.ID, types.ContainerStartOptions{}); err != nil {
+	if err := cl.cli.ContainerStart(ctx, resp.ID, types.ContainerStartOptions{}); err != nil {
 		log.Fatal("Couldn't start the container for running the latex commands. ID of the container is "+resp.ID, err)
 	}
-	reader, err := this.cli.ContainerLogs(ctx, resp.ID, types.ContainerLogsOptions{
+	reader, err := cl.cli.ContainerLogs(ctx, resp.ID, types.ContainerLogsOptions{
 		ShowStderr: true,
 		ShowStdout: true,
 		Timestamps: false,
@@ -272,7 +268,7 @@ func (this *Client) RunImageWithCommand(basePath string, imageName string, outpu
 		return ""
 	}
 
-	statusC, errC := this.cli.ContainerWait(ctx, resp.ID, container.WaitConditionNotRunning)
+	statusC, errC := cl.cli.ContainerWait(ctx, resp.ID, container.WaitConditionNotRunning)
 	select {
 	case err := <-errC:
 		if err != nil {
@@ -281,14 +277,14 @@ func (this *Client) RunImageWithCommand(basePath string, imageName string, outpu
 	case status := <-statusC:
 		log.Println("Successfully run latex. Code:", status)
 	}
-	_, err = copy(originalPath, path+"/"+basePath+"/"+outputName)
+	_, err = copy(originalPath, path+"/"+cl.basePath+"/"+cl.outputName)
 	if err != nil {
 		log.Fatal("Couldn't copy the file to the destination path. ", err)
 	}
 	return resp.ID
 }
 
-func watch(path string, done *bool, callback func(name string)) {
+func (cl *Client) watch(path string, done *bool, callback func(name string), imageName string) {
 	w := watcher.New()
 	w.FilterOps(watcher.Write, watcher.Create)
 
@@ -305,6 +301,12 @@ func watch(path string, done *bool, callback func(name string)) {
 				if err != nil {
 					log.Println("error:", err)
 				}
+				go func() {
+					log.Info("The final file was deleted. For watching it has to exists. Therefore, a normal build is executed before...")
+					cl.RunImage(imageName)
+					cl.watch(path, done, callback, imageName)
+				}()
+				w.Close()
 			case <-w.Closed:
 				return
 			}
@@ -316,12 +318,19 @@ func watch(path string, done *bool, callback func(name string)) {
 	}
 
 	go func() {
-		// Start the watching process - it'll check for changes every 100ms.
 		if err := w.Start(time.Second * 1); err != nil {
 			log.Fatalln(err)
 		}
 	}()
 
+}
+
+func (cl *Client) SetFileName(fileName string) {
+	cl.outputName = fileName
+}
+
+func (cl *Client) SetTexFile(texName string) {
+	cl.texName = texName
 }
 func copy(src, dst string) (int64, error) {
 	sourceFileStat, err := os.Stat(src)
