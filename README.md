@@ -1,35 +1,30 @@
-# Latex docker image ![GitHub release (latest by SemVer)](https://img.shields.io/github/downloads/alexander-lindner/latex/v2.1.1-3/total?style=flat-square)
+![Banner](.github/banner.png)
 
-This repo contains a cli tool `textool` and two [docker images](https://github.com/alexander-lindner/latex/pkgs/container/latex):
+# TeXtool ![GitHub release (latest by SemVer)](https://img.shields.io/github/downloads/alexander-lindner/latex/v2.1.4/total?style=flat-square)
 
-`textool` creates a latex project structure, compiles it, even auto compiles it after changes (aka watches) the project and adds more useful utils.
+TeXtool is a small and powerful cli tool to create and manage latex projects.
+It utilises docker and latexmk.
+It supports all common latex features and tools like *minted*. 
+TeXtools uses a [docker image](https://github.com/alexander-lindner/latex/pkgs/container/latex) as a foundation and lets you customise the whole build, 
+e.g. you can add additional, non latex tools. 
 
 
-Docker images:
-* a basic one with a minimal texlive installation
-* a full one with texlive and all packages
 
-The `:full` image takes care of all necessary features like:
-* biber / biblatex
-* minted
-* pdflatex / xelatex / latexmk
-* glossaries
-* svg support
+## Installation
+
+> You need docker installed and permission to use docker.
+ 
+### Stable
+|                                                                    using curl                                                                    |                                                                          using wget                                                                           |
+|:------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+|        `curl -L -o /usr/local/bin/textool https://github.com/alexander-lindner/latex/releases/download/v2.1.4/textool-linux-amd64 && chmod  +x /usr/local/bin/textool`         | `wget  https://github.com/alexander-lindner/latex/releases/download/v2.1.4/textool-linux-amd64 -O /usr/local/bin/textool && chmod  +x /usr/local/bin/textool` |
+
+### Dev
+
+`go install github.com/alexander-lindner/latex/textool@latest`
+
 
 ## Use it
-
-> You need docker installed.
- 
-See [Usage](Usage.ipynb).
-
-### With `textool`
-
-Install it:
-
-
-|                       using go                       |                                                                 using precompiled binaries                                                                  |
-|:----------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------:|
-| `go  get github.com/alexander-lindner/latex/textool ` | ` wget  https://github.com/alexander-lindner/latex/releases/download/v2.1.1-3/textool-amd64-linux -O textool && chmod  +x textool && mv  textool /usr/local/bin/` |
 
 There are several commands available:
 ```
@@ -50,10 +45,11 @@ Available commands:
   run    Compiles a latex project
   watch  Build and watches a latex project
 ```
-#### Demo
-[![asciicast](https://asciinema.org/a/475592.svg)](https://asciinema.org/a/475592)
 
-### Manual
+See [Usage](Usage.ipynb) for a full example.
+
+
+### use the docker image without `textool`
 
 Setup the latex project files by yourself.
 Then use the image like below:
