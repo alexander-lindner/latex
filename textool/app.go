@@ -17,7 +17,7 @@ func doSelfUpdate() {
 		return
 	}
 	if latest.Version.Equals(v) {
-		log.Println("Current binary is the latest version", version)
+		log.Debug("Current binary is the latest version", version)
 	} else {
 		log.Println("Successfully updated to version", latest.Version)
 		log.Println("Release note:\n", latest.ReleaseNotes)

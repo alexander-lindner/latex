@@ -142,7 +142,7 @@ var qs = []*survey.Question{
 	},
 	{
 		Name:     "FileName",
-		Prompt:   &survey.Input{Message: "Basic: How should the file be named after generation? Default: main.pdf"},
+		Prompt:   &survey.Input{Message: "Basic: How should the file be named after generation? Default: helper.pdf"},
 		Validate: survey.Required,
 	},
 	{
@@ -212,7 +212,7 @@ func (x *AddCommand) Execute(args []string) error {
 			log.Fatal("A error occurred during `survey`.", err)
 		}
 
-		templateEngine := fasttemplate.New(configFile, "<<", ">>")
+		templateEngine := fasttemplate.New(helper.ConfigFile, "<<", ">>")
 		useBaseImage = answers.Docker
 		configFileContent := templateEngine.ExecuteString(map[string]interface{}{
 			"minted":        strconv.FormatBool(answers.Minted),
@@ -236,7 +236,7 @@ func (x *AddCommand) Execute(args []string) error {
 	latexmkrcFile := options.Path + "/latexmkrc"
 	if !helper.PathExists(latexmkrcFile) {
 		log.Println("Creating ./latexmkrc which configures latexmk.")
-		content := []byte(latexmkrc)
+		content := []byte(helper.Latexmkrc)
 		err := os.WriteFile(latexmkrcFile, content, 0644)
 		if err != nil {
 			log.Fatal("Couldn't write latexmkrc file.", err)
@@ -248,14 +248,14 @@ func (x *AddCommand) Execute(args []string) error {
 	}
 	config := configuration.ParseString(string(c))
 
-	mainTex := options.Path + "/main.tex"
+	mainTex := options.Path + "/helper.tex"
 	if !helper.PathExists(mainTex) {
-		log.Println("Creating main tex file main.tex")
+		log.Println("Creating main tex file helper.tex")
 		mapping := map[string]interface{}{}
 		var texContent string
 		var contentEnd string
 		if config.GetBoolean("features.examples", false) {
-			texContent = exampleContentDefault
+			texContent = helper.ExampleContentDefault
 			contentEnd = ""
 		} else {
 			texContent = `(Type your content here.)`
@@ -263,25 +263,25 @@ func (x *AddCommand) Execute(args []string) error {
 		}
 
 		if config.GetBoolean("features.glossary", false) {
-			mapping["glossary"] = glossariesTex
+			mapping["glossary"] = helper.GlossariesTex
 			if config.GetBoolean("features.examples", false) {
-				texContent += "\n" + glossariesContent
-				contentEnd += "\n" + glossariesContentEnd
-				mapping["glossaryHead"] = glossariesContentHead
+				texContent += "\n" + helper.GlossariesContent
+				contentEnd += "\n" + helper.GlossariesContentEnd
+				mapping["glossaryHead"] = helper.GlossariesContentHead
 			}
 		}
 		if config.GetBoolean("features.minted", false) {
-			mapping["minted"] = mintedTex
+			mapping["minted"] = helper.MintedTex
 			if config.GetBoolean("features.examples", false) {
-				texContent += "\n" + mintedContent
-				contentEnd += "\n" + mintedContentEnd
+				texContent += "\n" + helper.MintedContent
+				contentEnd += "\n" + helper.MintedContentEnd
 			}
 		}
 		if config.GetBoolean("features.bibliography", false) {
-			mapping["bibliography"] = bibliographyTex
+			mapping["bibliography"] = helper.BibliographyTex
 			if config.GetBoolean("features.examples", false) {
-				texContent += "\n" + bibliographyContent
-				contentEnd += "\n" + bibliographyContentEnd
+				texContent += "\n" + helper.BibliographyContent
+				contentEnd += "\n" + helper.BibliographyContentEnd
 			}
 		}
 
@@ -294,7 +294,7 @@ func (x *AddCommand) Execute(args []string) error {
 			mapping["twocolumn"] = "onecolumn"
 		}
 		mapping["content"] = texContent + "\n" + contentEnd
-		templateEngine := fasttemplate.New(MinimalLatex, "<<", ">>")
+		templateEngine := fasttemplate.New(helper.MinimalLatex, "<<", ">>")
 		configFileContent := templateEngine.ExecuteString(mapping)
 
 		content := []byte(configFileContent)
@@ -305,10 +305,10 @@ func (x *AddCommand) Execute(args []string) error {
 	}
 
 	if config.GetBoolean("features.bibliography", false) {
-		log.Println("Creating bibliography file main.bib")
-		bibliographyFile := options.Path + "/main.bib"
+		log.Println("Creating bibliography file helper.bib")
+		bibliographyFile := options.Path + "/helper.bib"
 		if !helper.PathExists(bibliographyFile) {
-			content := []byte(biberTex)
+			content := []byte(helper.BiberTex)
 			err := os.WriteFile(bibliographyFile, content, 0644)
 			if err != nil {
 				log.Fatal("Couldn't write main bibliography file.", err)
@@ -359,7 +359,7 @@ func (x *AddCommand) Execute(args []string) error {
 		if useBaseImage {
 			dockerImage = "ghcr.io/alexander-lindner/latex:base"
 		}
-		templateEngine := fasttemplate.New(MinimalDockerFile, "{{", "}}")
+		templateEngine := fasttemplate.New(helper.MinimalDockerFile, "{{", "}}")
 		finalContent := templateEngine.ExecuteString(map[string]interface{}{
 			"packages": strings.Join(pkgs, " "),
 			"image":    dockerImage,

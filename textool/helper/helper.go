@@ -18,6 +18,14 @@ func PathExists(path string) bool {
 	}
 }
 
+func WriteConfig(config *configuration.Config, path string) {
+	path = path + "/.latex"
+	err := os.WriteFile(path, []byte(ConfigHeader+"\n"+config.String()), 0644)
+	if err != nil {
+		log.Panic("Couldn't write config to "+path, err)
+	}
+
+}
 func GetConfig(path string) (config *configuration.Config) {
 	mainConfig := path + "/.latex"
 	log.Println("Opening config file for  reading. Path:" + mainConfig)

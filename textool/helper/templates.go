@@ -1,4 +1,4 @@
-package commands
+package helper
 
 const MinimalLatex = `\documentclass[ <<twocolumn>>, <<lang>> ]{<<documentclass>>}
 \usepackage[utf8]{inputenc}
@@ -15,7 +15,7 @@ const MinimalLatex = `\documentclass[ <<twocolumn>>, <<lang>> ]{<<documentclass>
 <<content>>
 \end{document}
 `
-const latexmkrc = `add_cus_dep('glo', 'gls', 0, 'makeglo2gls');
+const Latexmkrc = `add_cus_dep('glo', 'gls', 0, 'makeglo2gls');
 sub makeglo2gls {
     system("makeindex -s '$_[0]'.ist -t '$_[0]'.glg -o '$_[0]'.gls '$_[0]'.glo");
 }
@@ -28,11 +28,11 @@ $pdf_mode = 1;
 $pdflatex = "pdflatex --shell-escape %O %S"; # -jobname=$filename  will break the watch command somehow
 # $pdflatex = "pdflatex -jobname=$filename --shell-escape %O %S";
 `
-
-const configFile = `##############################################
+const ConfigHeader = `##############################################
 #            textools config file            #
 # https://github.com/alexander-lindner/latex #
-##############################################
+##############################################`
+const ConfigFile = ConfigHeader + `
 texFile: "main.tex"
 fileName: "<<fileName>>"
 docker {
@@ -48,14 +48,14 @@ features {
 	examples: <<examples>>,
 }
 `
-const glossariesTex = `%----------------------------------------------------------------------------------------------------------------------------
+const GlossariesTex = `%----------------------------------------------------------------------------------------------------------------------------
 % ------------------------------------------------------ Setup Glossaries -------------------------------------------------------
 %----------------------------------------------------------------------------------------------------------------------------
 \usepackage[acronyms,toc,nonumberlist,section=section]{glossaries}
 % ------------------------------------------------------- END -------------------------------------------------------
 
 `
-const glossariesContentHead = `
+const GlossariesContentHead = `
 % ------------------------------------------------------- EXAMPLE Glossaries -------------------------------------------------------
 \makeglossaries
 \newglossaryentry{latex}{
@@ -66,7 +66,7 @@ description={LaTeX (/ˈlɑːtɛx/ LAH-tekh or /ˈleɪtɛx/ LAY-tekh, often styli
 % ------------------------------------------------------- END -------------------------------------------------------
 
 `
-const glossariesContent = `
+const GlossariesContent = `
 \section{Glossaries}
 Using glossaries is very simple.
 Define them before and reference it like this:
@@ -81,10 +81,10 @@ You may also add short abbreviations like the same way:
 \end{itemize}
 
 `
-const glossariesContentEnd = `
+const GlossariesContentEnd = `
     \printglossary
 `
-const bibliographyTex = `%----------------------------------------------------------------------------------------------------------------------------
+const BibliographyTex = `%----------------------------------------------------------------------------------------------------------------------------
 % --------------------------------------------------- Setup bibliography ----------------------------------------------------
 %----------------------------------------------------------------------------------------------------------------------------
 \usepackage[backend=biber,style=numeric]{biblatex}
@@ -93,7 +93,7 @@ const bibliographyTex = `%------------------------------------------------------
 
 `
 
-const bibliographyContent = `
+const BibliographyContent = `
 \section{Bibliography}
 
 BibLaTeX is a complete reimplementation of the bibliographic facilities provided by LaTeX~\cite{site:ctan_paket_biblatex}. 
@@ -118,12 +118,12 @@ With biber, BibLaTeX has many features rivalling or surpassing other bibliograph
 \end{itemize}
 
 `
-const bibliographyContentEnd = `
+const BibliographyContentEnd = `
 \printbibliography
 
 `
 
-const mintedTex = `%----------------------------------------------------------------------------------------------------------------------------
+const MintedTex = `%----------------------------------------------------------------------------------------------------------------------------
 % ------------------------------------------------------ Setup Minted -------------------------------------------------------
 % Don't forget: \begin{minted} can't be used in "\newcommand"
 %----------------------------------------------------------------------------------------------------------------------------
@@ -169,7 +169,7 @@ const mintedTex = `%------------------------------------------------------------
 % ------------------------------------------------------- END -------------------------------------------------------
 
 `
-const mintedContent = `
+const MintedContent = `
 \section{Listings (Minted)}
 This is an example of the listing feature:
 
@@ -220,10 +220,10 @@ func PathExists(path string) bool {
 
 \end{listing}
 `
-const mintedContentEnd = `
+const MintedContentEnd = `
 \listoflistings
 `
-const exampleContentDefault = `
+const ExampleContentDefault = `
 	\title{An example file}
     \subtitle{This content shows how to some of the features}
     \author{John Doe}
@@ -237,7 +237,7 @@ const exampleContentDefault = `
     \tableofcontents
 `
 
-const biberTex = `@software{Lindner_alindner_s_latex_collection_2019,
+const BiberTex = `@software{Lindner_alindner_s_latex_collection_2019,
 author = {Lindner, Alexander},
 license = {GPL-3.0-or-later},
 month = {3},
