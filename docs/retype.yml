@@ -1,0 +1,16 @@
+input: .
+output: .retype
+url: # Add your website address here
+branding:
+  title: TeXtool
+  label: Docs
+links:
+- text: view on GitHub
+  link: https://github.com/alexander-lindner/latex/
+  icon: mark-github
+footer:
+  copyright: "&copy; Copyright {{ year }}. All rights reserved."
+
+edit:
+  repo: "https://github.com/alexander-lindner/latex/edit/"
+  base: /docs/
