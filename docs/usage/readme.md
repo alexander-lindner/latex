@@ -19,3 +19,7 @@ Available commands:
   watch   Build and watches a latex project
 ```
 However, this part of the documentation will in detail introduce every command.
+
+## Options
+Use the `-p` parameter to provide a path to your base directory of your project.
+This parameter is also used to specify where the `textool init` command should create your project.

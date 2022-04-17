@@ -1,11 +1,10 @@
 input: .
 output: .retype
-url: # Add your website address here
 branding:
   title: TeXtool
   label: Docs
 links:
-- text: view on GitHub
+- text: view project on GitHub
   link: https://github.com/alexander-lindner/latex/
   icon: mark-github
 footer:
@@ -17,3 +16,4 @@ edit:
   branch: master
 
 cname: textool.alindner.org
+url: textool.alindner.org

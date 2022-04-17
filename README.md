@@ -12,18 +12,7 @@ e.g. you can add additional, non latex tools.
 Using Github actions? Use our action: [latex-action](https://github.com/alexander-lindner/latex-action)
 
 
-## Installation
 
-> You need docker installed and permission to use docker.
- 
-### Stable
-|                                                                    using curl                                                                    |                                                                          using wget                                                                           |
-|:------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-|        `curl -L -o /usr/local/bin/textool https://github.com/alexander-lindner/latex/releases/download/v2.1.4/textool-linux-amd64 && chmod  +x /usr/local/bin/textool`         | `wget  https://github.com/alexander-lindner/latex/releases/download/v2.1.4/textool-linux-amd64 -O /usr/local/bin/textool && chmod  +x /usr/local/bin/textool` |
-
-### Dev
-
-`go install github.com/alexander-lindner/latex/textool@latest`
 
 
 ## Use it
@@ -70,3 +59,4 @@ docker run --rm -ti \
 * customize main.tex file name
 * Retype documentation
 * finish github actions repo
+* docker image name fix
