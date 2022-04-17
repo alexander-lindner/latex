@@ -17,27 +17,7 @@ Using Github actions? Use our action: [latex-action](https://github.com/alexande
 
 ## Use it
 
-There are several commands available:
-```
-Usage:
-  textool [OPTIONS] <command>
-
-Application Options:
-  -v, --verbose  Verbose output
-  -p, --path=    the name of the directory, which should be created
-
-Help Options:
-  -h, --help     Show this help message
-
-Available commands:
-  bib    Adds a url to the .bib file
-  clean  Cleans the working directory
-  init   Initialise a latex project directory
-  run    Compiles a latex project
-  watch  Build and watches a latex project
-```
-
-See [Usage](Usage.ipynb) for a full example.
+See our [documentation](https://textool.alindner.org/)
 
 
 ### use the docker image without `textool`
