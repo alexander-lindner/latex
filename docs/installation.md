@@ -3,7 +3,7 @@ order: -20
 icon: desktop-download
 ---
 
-# Installation
+## Installation
 
 !!!
 You need docker installed and permission to use docker.
@@ -26,7 +26,7 @@ go install github.com/alexander-lindner/latex/textool@latest
 +++
 
 
-# Uninstallation
+## Uninstallation
 
 ```shell
 rm -f /usr/local/bin/textool

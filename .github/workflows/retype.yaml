@@ -5,7 +5,7 @@ on:
     paths:
       - docs/**
     branches:
-      - main
+      - master
 
 jobs:
   publish:
@@ -23,5 +23,5 @@ jobs:
       - uses: retypeapp/action-github-pages@latest
         with:
           update-branch: true
-          config: docs
+          directory: docs
           branch: docs-website
