@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-cache-control" content="no-cache">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 2.2">
+
+    <!-- Primary Meta Tags -->
+    <title>Quick Start</title>
+    <meta name="title" content="Quick Start">
+    <meta name="description" content="Install textool:" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://textool.alindner.org/quick/">
+    <meta property="og:title" content="Quick Start">
+    <meta property="og:description" content="Install textool:">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://textool.alindner.org/quick/">
+    <meta property="twitter:title" content="Quick Start">
+    <meta property="twitter:description" content="Install textool:">
+
+    <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+
+    <link href="/resources/css/retype.css?v=2.2.703509491587" rel="stylesheet" data-turbo-track="reload" />
+
+    <script type="text/javascript" src="/resources/js/config.js?v=2.2.703509491587" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/retype.js?v=2.2" defer data-turbo-track="reload"></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=2.2.703509491587" defer></script>
+</head>
+<body>
+    <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
+        <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+    
+        <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+            <div class="container relative flex items-center justify-between grow pr-6 md:justify-start">
+                <!-- Mobile menu button skeleton -->
+                <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="docs-sidebar-toggle"></div>
+        
+                <!-- Logo -->
+                <div class="flex items-center justify-between h-full py-2 md:w-75">
+                    <div class="flex items-center px-2 md:px-6">
+                        <a id="docs-site-logo" href="/" class="flex items-center leading-snug text-2xl">
+                            <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">TeXtool</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">Docs</span>
+                    </div>
+        
+                    <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+                </div>
+        
+                <div class="flex justify-between md:grow">
+                    <!-- Top Nav -->
+                    <nav class="hidden md:flex">
+                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                            <li class="md:mr-6">
+                                <a class="inline-flex items-center py-2 md:mb-0 text-sm text-gray-400 whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://github.com/alexander-lindner/latex/">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
+                                        <g fill="currentColor">
+                                            <symbol id="mark-github-icon-symbol" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></symbol><use xlink:href="#mark-github-icon-symbol" />
+                                        </g>
+                                    </svg>
+                                    <span>view project on GitHub</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+        
+                    <!-- Header Right Skeleton -->
+                    <div v-cloak class="flex justify-end grow skeleton">
+        
+                        <!-- Search input mock -->
+                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"  style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                            </div>
+        
+                            <input class="w-full h-10 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 placeholder-gray-400 dark:placeholder-dark-400"
+                            style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search" />
+                        </div>
+        
+                        <!-- Mobile search button mock -->
+                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"  style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                        </div>
+        
+                        <!-- Dark mode switch placehokder -->
+                        <div class="w-10 h-10 lg:ml-2"></div>
+        
+                        <!-- History button mock -->
+                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"  style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                        </div>
+                    </div>
+        
+                    <div v-cloak class="flex justify-end grow">
+                        <div id="docs-mobile-search-button"></div>
+                        <doc-search-desktop></doc-search-desktop>
+        
+                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                        <doc-history></doc-history>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+        <div class="container relative flex bg-white">
+            <!-- Sidebar Skeleton -->
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-gray-100 border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+            
+                <!-- Render this div, if config.showSidebarFilter is `true` -->
+                <div class="flex items-center h-16 px-6">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filter" />
+                </div>
+            
+                <div class="pl-6 mb-4 mt-1">
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                </div>
+            
+                <div class="shrink-0 mt-auto bg-transparent dark:border-dark-650">
+                    <a class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
+                        <span class="text-xs whitespace-nowrap">Powered by</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Sidebar component -->
+            <doc-sidebar v-cloak>
+                <template #sidebar-footer>
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650">
+            
+                        <div class="py-3 px-6 md:hidden border-b dark:border-dark-650">
+                            <nav>
+                                <ul class="flex flex-wrap justify-center items-center">
+                                    <li class="mr-6">
+                                        <a class="block py-1 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://github.com/alexander-lindner/latex/">view project on GitHub</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+            
+                        <a class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
+                            <span class="text-xs whitespace-nowrap">Powered by</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+                        </a>
+                    </div>
+                </template>
+            </doc-sidebar>
+    
+            <div class="grow min-w-0 dark:bg-dark-850">
+                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+                <div class="flex">
+                    <div class="grow min-w-0 px-6 md:px-16">
+                        <main class="relative pt-6 pb-16">
+                            <div class="docs-markdown" id="docs-content">
+                                <!-- Rendered if sidebar right is enabled -->
+                                <div id="docs-sidebar-right-toggle"></div>
+                
+                                <!-- Page content  -->
+<doc-anchor-target id="create-a-sample-project-and-compile-it" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#create-a-sample-project-and-compile-it">#</doc-anchor-trigger>
+        <span>Create a sample project and compile it</span>
+    </h1>
+</doc-anchor-target>
+<p>Install <code v-pre>textool</code>:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">curl -L -o /usr/local/bin/textool <a href="https://github.com/alexander-lindner/latex/releases/download/v2.1.4/textool-linux-amd64">https://github.com/alexander-lindner/latex/releases/download/v2.1.4/textool-linux-amd64</a> &amp;&amp; chmod +x /usr/local/bin/textool</div>
+<pre class="language-none"><code v-pre class="language-none">  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   658  100   658    0     0   7152      0 --:--:-- --:--:-- --:--:--  7230
+100 15.5M  100 15.5M    0     0  5908k      0  0:00:02  0:00:02 --:--:-- 6775k</code></pre>
+</doc-codeblock></div>
+<p>Create your first project, this is an interactive command.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">textool -p demo-latex init</div>
+<pre class="language-none"><code v-pre class="language-none">INFO[17:27:05] Current binary is the latest version 2.1.3   
+INFO[17:27:05] Creating ./.latex as main config file for this tool. 
+? Basic: Choose a document class: scrreprt
+? Basic: Choose a document class: ngerman
+? Basic: Use two column layout? Yes
+? Basic: How should the file be named after generation? Default: main.pdf demo.pdf
+? Extra: Add a listing engine? Yes
+? Extra: Use glossary feature? Yes
+? Extra: Use a bibliography engine? Yes
+? Extra: use the base docker image(yes) [you need to customize it] or use the provided full image(no)? Yes
+? Extra: add some demo content? Yes
+INFO[17:27:37] Creating ./latexmkrc which configures latexmk. 
+INFO[17:27:37] Creating main tex file main.tex              
+INFO[17:27:37] Creating bibliography file main.bib          
+INFO[17:27:37] The Dockerfile was created.</code></pre>
+</doc-codeblock></div>
+<p>This creates a directory <code v-pre>demo-latex</code> and a couple of files:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">demo-latex
+├── .latex
+├── Dockerfile
+├── latexmkrc
+├── main.bib
+└── main.tex
+
+0 directories, 5 files</code></pre>
+</doc-codeblock></div>
+<doc-tabs>
+<doc-tab id="latex">
+<template #title>.latex</template>
+<p>Stores options of the <code v-pre>textool</code> executable.
+For example, the final pdf file name is stored inside this file.</p>
+</doc-tab>
+<doc-tab id="dockerfile">
+<template #title>Dockerfile</template>
+<p>Your entrypoint to modify the used image.
+If you have chosen the <code v-pre>:base</code> image, you can install latex packages or even install completly other tools.
+The image is base on <code v-pre>ubuntu:latest</code>, so feel free to use <code v-pre>apt-get</code>.</p>
+</doc-tab>
+<doc-tab id="latexmkrc">
+<template #title>latexmkrc</template>
+<p>Preconfigured config file for <a href="https://ctan.org/pkg/latexmk?lang=en">latexmk</a>.</p>
+</doc-tab>
+<doc-tab id="main-bib">
+<template #title>main.bib</template>
+<p>Bibliography file for bibtex.</p>
+</doc-tab>
+<doc-tab id="main-tex">
+<template #title>main.tex</template>
+<p>the main tex file, where you start the project.</p>
+</doc-tab>
+</doc-tabs>
+<p>After you changed these files, let&#x27;s compile the project.
+TeXtool will download the docker image if not already presented and build a project specific image using the <code v-pre>Dockerfile</code>.
+This image is later-on used to compile the project.</p>
+<doc-panel id="textool-p-demo-latex-run" collapsed>
+    <template #title>textool -p demo-latex run</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">INFO[13:34:10] Current binary is the latest version 2.1.4   
+INFO[13:34:10] Opening config file for  reading. Path:demo-latex/.latex 
+INFO[13:34:10] Now pulling the base image: ghcr.io/alexander-lindner/latex:base 
+INFO[13:34:10] Image is already available. Not pulling.     
+INFO[13:34:10] It is necessary to build the file before using it 
+Step 1/3 : FROM ghcr.io/alexander-lindner/latex:base
+ ---&gt; 4feb1d254540
+Step 2/3 : RUN tlmgr update --self
+ ---&gt; Running in 6596d71e648c
+tlmgr: package repository https://mirrors.rit.edu/CTAN/systems/texlive/tlnet (verified)
+tlmgr: saving backups to /usr/local/texlive/2022/tlpkg/backups
+tlmgr: no self-updates for tlmgr available
+Removing intermediate container 6596d71e648c
+ ---&gt; ebe3b47210f0
+Step 3/3 : RUN tlmgr install koma-script xetex xstring float fontspec abstract cleveref hyperref hyphen-german babel-german soul listings minted fvextra fancyvrb upquote lineno xcolor catchfile framed etoolbox glossaries mfirstuc etoolbox textcase xfor datatool tracklang xkeyval glossaries-german csquotes biber biblatex
+ ---&gt; Running in 69216d9b7360
+tlmgr: package repository https://mirrors.rit.edu/CTAN/systems/texlive/tlnet (verified)
+tlmgr install: package already present: hyperref
+[1/42, ??:??/??:??] install: abstract [154k]
+[2/42, 00:02/17:39] install: babel-german [505k]
+[3/42, 00:04/08:13] install: biber.x86_64-linux [22990k]
+[4/42, 00:10/00:34] install: biber [1202k]
+[5/42, 00:12/00:39] install: biblatex [7375k]
+[6/42, 00:16/00:40] install: catchfile [300k]
+[7/42, 00:18/00:44] install: cleveref [482k]
+[8/42, 00:20/00:49] install: csquotes [328k]
+[9/42, 00:21/00:51] install: datatool [2777k]
+[10/42, 00:25/00:56] install: etoolbox [241k]
+[11/42, 00:26/00:58] install: euenc [153k]
+[12/42, 00:28/01:02] install: fancyvrb [158k]
+[13/42, 00:29/01:04] install: float [125k]
+[14/42, 00:31/01:08] install: fontspec [1300k]
+[15/42, 00:33/01:10] install: footmisc [529k]
+[16/42, 00:35/01:13] install: fp [233k]
+[17/42, 00:37/01:17] install: framed [242k]
+[18/42, 00:38/01:18] install: fvextra [860k]
+[19/42, 00:40/01:21] install: glossaries.x86_64-linux [1k]
+[20/42, 00:41/01:23] install: glossaries [6449k]
+[21/42, 00:45/01:18] install: glossaries-german [126k]
+[22/42, 00:47/01:22] install: hyphen-german [218k]
+[23/42, 00:48/01:23] install: koma-script [12659k]
+[24/42, 00:52/01:11] install: lineno [739k]
+[25/42, 00:54/01:12] install: listings [2517k]
+[26/42, 00:58/01:15] install: logreq [7k]
+[27/42, 00:58/01:15] install: mfirstuc [674k]
+[28/42, 01:01/01:18] install: minted [859k]
+[29/42, 01:03/01:19] install: soul [342k]
+[30/42, 01:05/01:21] install: substr [20k]
+[31/42, 01:06/01:23] install: textcase [196k]
+[32/42, 01:08/01:25] install: tipa [5098k]
+[33/42, 01:11/01:22] install: tracklang [1045k]
+[34/42, 01:14/01:24] install: upquote [164k]
+[35/42, 01:15/01:25] install: xcolor [997k]
+[36/42, 01:18/01:27] install: xetex.x86_64-linux [7289k]
+[37/42, 01:21/01:22] install: xetex [628k]
+[38/42, 01:22/01:23] install: xetexconfig [1k]
+[39/42, 01:23/01:24] install: xfor [107k]
+[40/42, 01:25/01:26] install: xkeyval [439k]
+[41/42, 01:27/01:27] install: xstring [671k]
+[42/42, 01:28/01:28] install: xunicode [26k]
+running mktexlsr ...
+done running mktexlsr.
+running updmap-sys ...
+done running updmap-sys.
+regenerating language.dat
+regenerating language.def
+regenerating language.dat.lua
+regenerating fmtutil.cnf in /usr/local/texlive/2022/texmf-dist
+running fmtutil-sys --byengine xetex --no-error-if-no-format --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/xsmWYZjJNT/neKBHzXJvs ...
+  OK: xetex.fmt/xetex xelatex.fmt/xetex
+running fmtutil-sys --byhyphen &quot;/usr/local/texlive/2022/texmf-var/tex/generic/config/language.dat&quot; --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/xsmWYZjJNT/neKBHzXJvs ...
+  OK: xelatex.fmt/xetex dvilualatex.fmt/luatex latex.fmt/pdftex pdflatex.fmt/pdftex lualatex.fmt/luahbtex
+running fmtutil-sys --byhyphen &quot;/usr/local/texlive/2022/texmf-var/tex/generic/config/language.def&quot; --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/xsmWYZjJNT/neKBHzXJvs ...
+  OK: xetex.fmt/xetex luatex.fmt/luatex luahbtex.fmt/luahbtex pdftex.fmt/pdftex dviluatex.fmt/luatex pdfetex.fmt/pdftex etex.fmt/pdftex
+running fmtutil-sys --byhyphen &quot;/usr/local/texlive/2022/texmf-var/tex/generic/config/language.dat.lua&quot; --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/xsmWYZjJNT/neKBHzXJvs ...
+tlmgr: package log updated: /usr/local/texlive/2022/texmf-var/web2c/tlmgr.log
+tlmgr: command log updated: /usr/local/texlive/2022/texmf-var/web2c/tlmgr-commands.log
+Removing intermediate container 69216d9b7360
+ ---&gt; 6858eab40605
+Successfully built 6858eab40605
+Successfully tagged textool-tmp-xv/bnyoroi8lrb7vrggiiihfam:latest
+INFO[13:36:03] Creating the docker container                
+INFO[13:36:03] Starting the docker container                
+Rc files read:
+  latexmkrc
+Latexmk: Run number 1 of rule 'pdflatex'
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex)
+ \write18 enabled.
+entering extended mode
+/usr/local/bin/pygmentize
+kpathsea: Running mktexpk --mfmode / --bdpi 600 --mag 1+0/600 --dpi 600 tctt1095
+mktexpk: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1+0/600; nonstopmode; input tctt1095
+This is METAFONT, Version 2.71828182 (TeX Live 2022) (preloaded base=mf)
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/tctt1095.mf
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exbase.mf)
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/tctt.mf
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/txsymb.mf
+ Ok (/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exaccess.mf
+ Ok) (/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/txpseudo.mf
+ Ok) (/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/txaccent.mf
+ Ok [0] [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12] [27] [29])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/txgen.mf
+ Ok [100] [109] [98] [99] [108])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/txsymbol.mf
+ Ok [13] [18] [21] [22] [23] [24] [25] [26] [28] [31] [32] [36] [39] [44]
+[45] [46] [42] [47] [60] [61] [62] [77] [79] [87] [110] [91] [93] [94] [95]
+[96] [126] [127] [128] [129] [130] [131] [132] [133] [134] [135] [136] [137]
+[138] [139] [140] [141] [142] [143] [144] [145] [146] [147] [148] [149]
+[150] [151] [152] [153] [154] [155] [156] [157] [158] [159] [160] [161]
+[162] [163] [164] [165] [166] [167] [168] [169] [171] [172] [173] [174]
+[175] [177] [176] [180] [181] [182] [183] [184] [187] [191] [214] [246])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/txromod.mf
+ Ok [48] [49] [50] [51] [52] [53] [54] [55] [56] [57])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/txrsuper.mf
+ Ok [185] [178] [179] [170] [186])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/txrfract.mf
+ Ok [188] [189] [190]) ) ) )
+Font metrics written on tctt1095.tfm.
+Output written on tctt1095.600gf (128 characters, 21204 bytes).
+Transcript written on tctt1095.log.
+mktexpk: /data/.texlive2022/texmf-var/fonts/pk/ljfour/jknappen/ec/tctt1095.600pk: successfully generated.
+kpathsea: Running mktexpk --mfmode / --bdpi 600 --mag 1+0/600 --dpi 600 ecrm0600
+mktexpk: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1+0/600; nonstopmode; input ecrm0600
+This is METAFONT, Version 2.71828182 (TeX Live 2022) (preloaded base=mf)
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/ecrm0600.mf
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exbase.mf)
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/ecrm.mf
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exroman.mf
+ Ok (/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exaccess.mf
+ Ok) (/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/expseudo.mf
+ Ok) (/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exruwest.mf
+ Ok [192] [193] [194] [195] [196] [197] [198] [199] [200] [201] [202] [203]
+[204] [205] [206] [207] [208] [209] [210] [211] [212] [213] [214] [215]
+[216] [217] [218] [219] [220] [221] [222] [223])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrlwest.mf
+ Ok [224] [225] [226] [227] [228] [229] [230] [231] [232] [233] [234] [235]
+[236] [237] [238] [239] [240] [241] [242] [243] [244] [245] [246] [247]
+[248] [249] [250] [251] [252] [253] [254] [255])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrueast.mf
+ Ok [128] [129] [130] [131] [132] [133] [134] [135] [136] [137] [138] [139]
+[140] [141] [142] [143] [144] [145] [146] [147] [148] [149] [150] [151]
+[152] [153] [154] [155] [156] [157])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrleast.mf
+ Ok [158] [160] [161] [162] [163] [164] [165] [166] [167] [168] [169] [170]
+[171] [172] [173] [174] [175] [176] [177] [178] [179] [180] [181] [182]
+[183] [184] [185] [186] [187] [188])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exbraces.mf
+ Ok [94] [126] [23] [40] [41] [60] [124] [62] [91] [93] [92] [123] [125]
+[95] [127] [32])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/expunct.mf
+ Ok [14] [15] [19] [20] [13] [18] [33] [39] [42] [43] [44] [46] [47] [58]
+[59] [61] [96] [189] [17] [45] [16] [21] [22])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exaccent.mf
+ Ok [0] [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exsign.mf
+ Ok [24] [34] [35] [36] [37] [64] [191] [159])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrlig.mf
+ Ok [25] [26] [28] [27] [29] [30] [31])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exromp.mf
+ Ok [38] [63] [190])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrulett.mf
+ Ok [65] [66] [67] [68] [69] [70] [71] [72] [73] [74] [75] [76] [77] [78]
+[79] [80] [81] [82] [83] [84] [85] [86] [87] [88] [89] [90])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrllett.mf
+ Ok [97] [98] [99] [100] [101] [102] [103] [104] [105] [106] [107] [108]
+[109] [110] [111] [112] [113] [114] [115] [116] [117] [118] [119] [120]
+[121] [122])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrdigit.mf
+ Ok [48] [49] [50] [51] [52] [53] [54] [55] [56] [57])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrligtb.mf
+ Ok) ) ) )
+Font metrics written on ecrm0600.tfm.
+Output written on ecrm0600.600gf (256 characters, 32624 bytes).
+Transcript written on ecrm0600.log.
+mktexpk: /data/.texlive2022/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.600pk: successfully generated.
+kpathsea: Running mktexpk --mfmode / --bdpi 600 --mag 1+0/600 --dpi 600 ectt1095
+mktexpk: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1+0/600; nonstopmode; input ectt1095
+This is METAFONT, Version 2.71828182 (TeX Live 2022) (preloaded base=mf)
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/ectt1095.mf
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exbase.mf)
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/ectt.mf
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exroman.mf
+ Ok (/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exaccess.mf
+ Ok) (/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/expseudo.mf
+ Ok) (/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exruwest.mf
+ Ok [192] [193] [194] [195] [196] [197] [198] [199] [200] [201] [202] [203]
+[204] [205] [206] [207] [208] [209] [210] [211] [212] [213] [214] [215]
+[216] [217] [218] [219] [220] [221] [222] [223])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrlwest.mf
+ Ok [224] [225] [226] [227] [228] [229] [230] [231] [232] [233] [234] [235]
+[236] [237] [238] [239] [240] [241] [242] [243] [244] [245] [246] [247]
+[248] [249] [250] [251] [252] [253] [254] [255])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrueast.mf
+ Ok [128] [129] [130] [131] [132] [133] [134] [135] [136] [137] [138] [139]
+[140] [141] [142] [143] [144] [145] [146] [147] [148] [149] [150] [151]
+[152] [153] [154] [155] [156] [157])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrleast.mf
+ Ok [158] [160] [161] [162] [163] [164] [165] [166] [167] [168] [169] [170]
+[171] [172] [173] [174] [175] [176] [177] [178] [179] [180] [181] [182]
+[183] [184] [185] [186] [187] [188])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exbraces.mf
+ Ok [94] [126] [23] [40] [41] [60] [124] [62] [91] [93] [92] [123] [125]
+[95] [127] [32])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/expunct.mf
+ Ok [14] [15] [19] [20] [13] [18] [33] [39] [42] [43] [44] [46] [47] [58]
+[59] [61] [96] [189] [17] [45] [16] [21] [22])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exaccent.mf
+ Ok [0] [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exsign.mf
+ Ok [24] [34] [35] [36] [37] [64] [191] [159])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrlig.mf
+ Ok [25] [26] [28] [27] [29] [30] [31])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exromp.mf
+ Ok [38] [63] [190])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrulett.mf
+ Ok [65] [66] [67] [68] [69] [70] [71] [72] [73] [74] [75] [76] [77] [78]
+[79] [80] [81] [82] [83] [84] [85] [86] [87] [88] [89] [90])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrllett.mf
+ Ok [97] [98] [99] [100] [101] [102] [103] [104] [105] [106] [107] [108]
+[109] [110] [111] [112] [113] [114] [115] [116] [117] [118] [119] [120]
+[121] [122])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrdigit.mf
+ Ok [48] [49] [50] [51] [52] [53] [54] [55] [56] [57])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exmligtb.mf
+ Ok) ) ) )
+Font metrics written on ectt1095.tfm.
+Output written on ectt1095.600gf (256 characters, 47796 bytes).
+Transcript written on ectt1095.log.
+mktexpk: /data/.texlive2022/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk: successfully generated.
+kpathsea: Running mktexpk --mfmode / --bdpi 600 --mag 1+0/600 --dpi 600 tcrm1095
+mktexpk: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1+0/600; nonstopmode; input tcrm1095
+This is METAFONT, Version 2.71828182 (TeX Live 2022) (preloaded base=mf)
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/tcrm1095.mf
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exbase.mf)
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/tcrm.mf
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/txsymb.mf
+ Ok (/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exaccess.mf
+ Ok) (/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/txpseudo.mf
+ Ok) (/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/txaccent.mf
+ Ok [0] [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12] [27] [29])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/txgen.mf
+ Ok [100] [109] [98] [99] [108])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/txsymbol.mf
+ Ok [13] [18] [21] [22] [23] [24] [25] [26] [28] [31] [32] [36] [39] [44]
+[45] [46] [42] [47] [60] [61] [62] [77] [79] [87] [110] [91] [93] [94] [95]
+[96] [126] [127] [128] [129] [130] [131] [132] [133] [134] [135] [136] [137]
+[138] [139] [140] [141] [142] [143] [144] [145] [146] [147] [148] [149]
+[150] [151] [152] [153] [154] [155] [156] [157] [158] [159] [160] [161]
+[162] [163] [164] [165] [166] [167] [168] [169] [171] [172] [173] [174]
+[175] [177] [176] [180] [181] [182] [183] [184] [187] [191] [214] [246])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/txromod.mf
+ Ok [48] [49] [50] [51] [52] [53] [54] [55] [56] [57])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/txrsuper.mf
+ Ok [185] [178] [179] [170] [186])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/txrfract.mf
+ Ok [188] [189] [190]) ) ) )
+(some charht values had to be adjusted by as much as 0.06952pt)
+Font metrics written on tcrm1095.tfm.
+Output written on tcrm1095.600gf (128 characters, 25592 bytes).
+Transcript written on tcrm1095.log.
+mktexpk: /data/.texlive2022/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk: successfully generated.
+kpathsea: Running mktexpk --mfmode / --bdpi 600 --mag 1+0/600 --dpi 600 ecsx1440
+mktexpk: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1+0/600; nonstopmode; input ecsx1440
+This is METAFONT, Version 2.71828182 (TeX Live 2022) (preloaded base=mf)
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/ecsx1440.mf
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exbase.mf)
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/ecsx.mf
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exroman.mf
+ Ok (/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exaccess.mf
+ Ok) (/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/expseudo.mf
+ Ok) (/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exruwest.mf
+ Ok [192] [193] [194] [195] [196] [197] [198] [199] [200] [201] [202] [203]
+[204] [205] [206] [207] [208] [209] [210] [211] [212] [213] [214] [215]
+[216] [217] [218] [219] [220] [221] [222] [223])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrlwest.mf
+ Ok [224] [225] [226] [227] [228] [229] [230] [231] [232] [233] [234] [235]
+[236] [237] [238] [239] [240] [241] [242] [243] [244] [245] [246] [247]
+[248] [249] [250] [251] [252] [253] [254] [255])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrueast.mf
+ Ok [128] [129] [130] [131] [132] [133] [134] [135] [136] [137] [138] [139]
+[140] [141] [142] [143] [144] [145] [146] [147] [148] [149] [150] [151]
+[152] [153] [154] [155] [156] [157])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrleast.mf
+ Ok [158] [160] [161] [162] [163] [164] [165] [166] [167] [168] [169] [170]
+[171] [172] [173] [174] [175] [176] [177] [178] [179] [180] [181] [182]
+[183] [184] [185] [186] [187] [188])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exbraces.mf
+ Ok [94] [126] [23] [40] [41] [60] [124] [62] [91] [93] [92] [123] [125]
+[95] [127] [32])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/expunct.mf
+ Ok [14] [15] [19] [20] [13] [18] [33] [39] [42] [43] [44] [46] [47] [58]
+[59] [61] [96] [189] [17] [45] [16] [21] [22])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exaccent.mf
+ Ok [0] [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exsign.mf
+ Ok [24] [34] [35] [36] [37] [64] [191] [159])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrlig.mf
+ Ok [25] [26] [28] [27] [29] [30] [31])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exromp.mf
+ Ok [38] [63] [190])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrulett.mf
+ Ok [65] [66] [67] [68] [69] [70] [71] [72] [73] [74] [75] [76] [77] [78]
+[79] [80] [81] [82] [83] [84] [85] [86] [87] [88] [89] [90])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrllett.mf
+ Ok [97] [98] [99] [100] [101] [102] [103] [104] [105] [106] [107] [108]
+[109] [110] [111] [112] [113] [114] [115] [116] [117] [118] [119] [120]
+[121] [122])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrdigit.mf
+ Ok [48] [49] [50] [51] [52] [53] [54] [55] [56] [57])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrligtb.mf
+ Ok) ) ) )
+(some charht values had to be adjusted by as much as 0.07274pt)
+Font metrics written on ecsx1440.tfm.
+Output written on ecsx1440.600gf (256 characters, 64452 bytes).
+Transcript written on ecsx1440.log.
+mktexpk: /data/.texlive2022/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1440.600pk: successfully generated.
+kpathsea: Running mktexpk --mfmode / --bdpi 600 --mag 1+0/600 --dpi 600 ecrm1095
+mktexpk: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1+0/600; nonstopmode; input ecrm1095
+This is METAFONT, Version 2.71828182 (TeX Live 2022) (preloaded base=mf)
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/ecrm1095.mf
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exbase.mf)
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/ecrm.mf
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exroman.mf
+ Ok (/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exaccess.mf
+ Ok) (/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/expseudo.mf
+ Ok) (/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exruwest.mf
+ Ok [192] [193] [194] [195] [196] [197] [198] [199] [200] [201] [202] [203]
+[204] [205] [206] [207] [208] [209] [210] [211] [212] [213] [214] [215]
+[216] [217] [218] [219] [220] [221] [222] [223])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrlwest.mf
+ Ok [224] [225] [226] [227] [228] [229] [230] [231] [232] [233] [234] [235]
+[236] [237] [238] [239] [240] [241] [242] [243] [244] [245] [246] [247]
+[248] [249] [250] [251] [252] [253] [254] [255])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrueast.mf
+ Ok [128] [129] [130] [131] [132] [133] [134] [135] [136] [137] [138] [139]
+[140] [141] [142] [143] [144] [145] [146] [147] [148] [149] [150] [151]
+[152] [153] [154] [155] [156] [157])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrleast.mf
+ Ok [158] [160] [161] [162] [163] [164] [165] [166] [167] [168] [169] [170]
+[171] [172] [173] [174] [175] [176] [177] [178] [179] [180] [181] [182]
+[183] [184] [185] [186] [187] [188])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exbraces.mf
+ Ok [94] [126] [23] [40] [41] [60] [124] [62] [91] [93] [92] [123] [125]
+[95] [127] [32])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/expunct.mf
+ Ok [14] [15] [19] [20] [13] [18] [33] [39] [42] [43] [44] [46] [47] [58]
+[59] [61] [96] [189] [17] [45] [16] [21] [22])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exaccent.mf
+ Ok [0] [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exsign.mf
+ Ok [24] [34] [35] [36] [37] [64] [191] [159])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrlig.mf
+ Ok [25] [26] [28] [27] [29] [30] [31])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exromp.mf
+ Ok [38] [63] [190])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrulett.mf
+ Ok [65] [66] [67] [68] [69] [70] [71] [72] [73] [74] [75] [76] [77] [78]
+[79] [80] [81] [82] [83] [84] [85] [86] [87] [88] [89] [90])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrllett.mf
+ Ok [97] [98] [99] [100] [101] [102] [103] [104] [105] [106] [107] [108]
+[109] [110] [111] [112] [113] [114] [115] [116] [117] [118] [119] [120]
+[121] [122])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrdigit.mf
+ Ok [48] [49] [50] [51] [52] [53] [54] [55] [56] [57])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrligtb.mf
+ Ok) ) ) )
+(some charht values had to be adjusted by as much as 0.07599pt)
+Font metrics written on ecrm1095.tfm.
+Output written on ecrm1095.600gf (256 characters, 55424 bytes).
+Transcript written on ecrm1095.log.
+mktexpk: /data/.texlive2022/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk: successfully generated.
+kpathsea: Running mktexpk --mfmode / --bdpi 600 --mag 1+0/600 --dpi 600 ecbx1095
+mktexpk: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1+0/600; nonstopmode; input ecbx1095
+This is METAFONT, Version 2.71828182 (TeX Live 2022) (preloaded base=mf)
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/ecbx1095.mf
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exbase.mf)
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/ecbx.mf
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exroman.mf
+ Ok (/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exaccess.mf
+ Ok) (/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/expseudo.mf
+ Ok) (/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exruwest.mf
+ Ok [192] [193] [194] [195] [196] [197] [198] [199] [200] [201] [202] [203]
+[204] [205] [206] [207] [208] [209] [210] [211] [212] [213] [214] [215]
+[216] [217] [218] [219] [220] [221] [222] [223])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrlwest.mf
+ Ok [224] [225] [226] [227] [228] [229] [230] [231] [232] [233] [234] [235]
+[236] [237] [238] [239] [240] [241] [242] [243] [244] [245] [246] [247]
+[248] [249] [250] [251] [252] [253] [254] [255])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrueast.mf
+ Ok [128] [129] [130] [131] [132] [133] [134] [135] [136] [137] [138] [139]
+[140] [141] [142] [143] [144] [145] [146] [147] [148] [149] [150] [151]
+[152] [153] [154] [155] [156] [157])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrleast.mf
+ Ok [158] [160] [161] [162] [163] [164] [165] [166] [167] [168] [169] [170]
+[171] [172] [173] [174] [175] [176] [177] [178] [179] [180] [181] [182]
+[183] [184] [185] [186] [187] [188])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exbraces.mf
+ Ok [94] [126] [23] [40] [41] [60] [124] [62] [91] [93] [92] [123] [125]
+[95] [127] [32])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/expunct.mf
+ Ok [14] [15] [19] [20] [13] [18] [33] [39] [42] [43] [44] [46] [47] [58]
+[59] [61] [96] [189] [17] [45] [16] [21] [22])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exaccent.mf
+ Ok [0] [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exsign.mf
+ Ok [24] [34] [35] [36] [37] [64] [191] [159])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrlig.mf
+ Ok [25] [26] [28] [27] [29] [30] [31])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exromp.mf
+ Ok [38] [63] [190])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrulett.mf
+ Ok [65] [66] [67] [68] [69] [70] [71] [72] [73] [74] [75] [76] [77] [78]
+[79] [80] [81] [82] [83] [84] [85] [86] [87] [88] [89] [90])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrllett.mf
+ Ok [97] [98] [99] [100] [101] [102] [103] [104] [105] [106] [107] [108]
+[109] [110] [111] [112] [113] [114] [115] [116] [117] [118] [119] [120]
+[121] [122])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrdigit.mf
+ Ok [48] [49] [50] [51] [52] [53] [54] [55] [56] [57])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrligtb.mf
+ Ok) ) ) )
+Font metrics written on ecbx1095.tfm.
+Output written on ecbx1095.600gf (256 characters, 54848 bytes).
+Transcript written on ecbx1095.log.
+mktexpk: /data/.texlive2022/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk: successfully generated.
+kpathsea: Running mktexpk --mfmode / --bdpi 600 --mag 1+0/600 --dpi 600 ecrm1440
+mktexpk: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1+0/600; nonstopmode; input ecrm1440
+This is METAFONT, Version 2.71828182 (TeX Live 2022) (preloaded base=mf)
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/ecrm1440.mf
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exbase.mf)
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/ecrm.mf
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exroman.mf
+ Ok (/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exaccess.mf
+ Ok) (/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/expseudo.mf
+ Ok) (/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exruwest.mf
+ Ok [192] [193] [194] [195] [196] [197] [198] [199] [200] [201] [202] [203]
+[204] [205] [206] [207] [208] [209] [210] [211] [212] [213] [214] [215]
+[216] [217] [218] [219] [220] [221] [222] [223])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrlwest.mf
+ Ok [224] [225] [226] [227] [228] [229] [230] [231] [232] [233] [234] [235]
+[236] [237] [238] [239] [240] [241] [242] [243] [244] [245] [246] [247]
+[248] [249] [250] [251] [252] [253] [254] [255])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrueast.mf
+ Ok [128] [129] [130] [131] [132] [133] [134] [135] [136] [137] [138] [139]
+[140] [141] [142] [143] [144] [145] [146] [147] [148] [149] [150] [151]
+[152] [153] [154] [155] [156] [157])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrleast.mf
+ Ok [158] [160] [161] [162] [163] [164] [165] [166] [167] [168] [169] [170]
+[171] [172] [173] [174] [175] [176] [177] [178] [179] [180] [181] [182]
+[183] [184] [185] [186] [187] [188])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exbraces.mf
+ Ok [94] [126] [23] [40] [41] [60] [124] [62] [91] [93] [92] [123] [125]
+[95] [127] [32])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/expunct.mf
+ Ok [14] [15] [19] [20] [13] [18] [33] [39] [42] [43] [44] [46] [47] [58]
+[59] [61] [96] [189] [17] [45] [16] [21] [22])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exaccent.mf
+ Ok [0] [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exsign.mf
+ Ok [24] [34] [35] [36] [37] [64] [191] [159])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrlig.mf
+ Ok [25] [26] [28] [27] [29] [30] [31])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exromp.mf
+ Ok [38] [63] [190])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrulett.mf
+ Ok [65] [66] [67] [68] [69] [70] [71] [72] [73] [74] [75] [76] [77] [78]
+[79] [80] [81] [82] [83] [84] [85] [86] [87] [88] [89] [90])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrllett.mf
+ Ok [97] [98] [99] [100] [101] [102] [103] [104] [105] [106] [107] [108]
+[109] [110] [111] [112] [113] [114] [115] [116] [117] [118] [119] [120]
+[121] [122])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrdigit.mf
+ Ok [48] [49] [50] [51] [52] [53] [54] [55] [56] [57])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrligtb.mf
+ Ok) ) ) )
+(some charht values had to be adjusted by as much as 0.08084pt)
+Font metrics written on ecrm1440.tfm.
+Output written on ecrm1440.600gf (256 characters, 71064 bytes).
+Transcript written on ecrm1440.log.
+mktexpk: /data/.texlive2022/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1440.600pk: successfully generated.
+kpathsea: Running mktexpk --mfmode / --bdpi 600 --mag 1+0/600 --dpi 600 ecsx1200
+mktexpk: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1+0/600; nonstopmode; input ecsx1200
+This is METAFONT, Version 2.71828182 (TeX Live 2022) (preloaded base=mf)
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/ecsx1200.mf
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exbase.mf)
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/ecsx.mf
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exroman.mf
+ Ok (/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exaccess.mf
+ Ok) (/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/expseudo.mf
+ Ok) (/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exruwest.mf
+ Ok [192] [193] [194] [195] [196] [197] [198] [199] [200] [201] [202] [203]
+[204] [205] [206] [207] [208] [209] [210] [211] [212] [213] [214] [215]
+[216] [217] [218] [219] [220] [221] [222] [223])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrlwest.mf
+ Ok [224] [225] [226] [227] [228] [229] [230] [231] [232] [233] [234] [235]
+[236] [237] [238] [239] [240] [241] [242] [243] [244] [245] [246] [247]
+[248] [249] [250] [251] [252] [253] [254] [255])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrueast.mf
+ Ok [128] [129] [130] [131] [132] [133] [134] [135] [136] [137] [138] [139]
+[140] [141] [142] [143] [144] [145] [146] [147] [148] [149] [150] [151]
+[152] [153] [154] [155] [156] [157])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrleast.mf
+ Ok [158] [160] [161] [162] [163] [164] [165] [166] [167] [168] [169] [170]
+[171] [172] [173] [174] [175] [176] [177] [178] [179] [180] [181] [182]
+[183] [184] [185] [186] [187] [188])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exbraces.mf
+ Ok [94] [126] [23] [40] [41] [60] [124] [62] [91] [93] [92] [123] [125]
+[95] [127] [32])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/expunct.mf
+ Ok [14] [15] [19] [20] [13] [18] [33] [39] [42] [43] [44] [46] [47] [58]
+[59] [61] [96] [189] [17] [45] [16] [21] [22])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exaccent.mf
+ Ok [0] [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exsign.mf
+ Ok [24] [34] [35] [36] [37] [64] [191] [159])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrlig.mf
+ Ok [25] [26] [28] [27] [29] [30] [31])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exromp.mf
+ Ok [38] [63] [190])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrulett.mf
+ Ok [65] [66] [67] [68] [69] [70] [71] [72] [73] [74] [75] [76] [77] [78]
+[79] [80] [81] [82] [83] [84] [85] [86] [87] [88] [89] [90])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrllett.mf
+ Ok [97] [98] [99] [100] [101] [102] [103] [104] [105] [106] [107] [108]
+[109] [110] [111] [112] [113] [114] [115] [116] [117] [118] [119] [120]
+[121] [122])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrdigit.mf
+ Ok [48] [49] [50] [51] [52] [53] [54] [55] [56] [57])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrligtb.mf
+ Ok) ) ) )
+(some charht values had to be adjusted by as much as 0.07016pt)
+Font metrics written on ecsx1200.tfm.
+Output written on ecsx1200.600gf (256 characters, 54960 bytes).
+Transcript written on ecsx1200.log.
+mktexpk: /data/.texlive2022/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1200.600pk: successfully generated.
+kpathsea: Running mktexpk --mfmode / --bdpi 600 --mag 1+0/600 --dpi 600 ecsx2074
+mktexpk: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1+0/600; nonstopmode; input ecsx2074
+This is METAFONT, Version 2.71828182 (TeX Live 2022) (preloaded base=mf)
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/ecsx2074.mf
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exbase.mf)
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/ecsx.mf
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exroman.mf
+ Ok (/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exaccess.mf
+ Ok) (/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/expseudo.mf
+ Ok) (/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exruwest.mf
+ Ok [192] [193] [194] [195] [196] [197] [198] [199] [200] [201] [202] [203]
+[204] [205] [206] [207] [208] [209] [210] [211] [212] [213] [214] [215]
+[216] [217] [218] [219] [220] [221] [222] [223])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrlwest.mf
+ Ok [224] [225] [226] [227] [228] [229] [230] [231] [232] [233] [234] [235]
+[236] [237] [238] [239] [240] [241] [242] [243] [244] [245] [246] [247]
+[248] [249] [250] [251] [252] [253] [254] [255])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrueast.mf
+ Ok [128] [129] [130] [131] [132] [133] [134] [135] [136] [137] [138] [139]
+[140] [141] [142] [143] [144] [145] [146] [147] [148] [149] [150] [151]
+[152] [153] [154] [155] [156] [157])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrleast.mf
+ Ok [158] [160] [161] [162] [163] [164] [165] [166] [167] [168] [169] [170]
+[171] [172] [173] [174] [175] [176] [177] [178] [179] [180] [181] [182]
+[183] [184] [185] [186] [187] [188])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exbraces.mf
+ Ok [94] [126] [23] [40] [41] [60] [124] [62] [91] [93] [92] [123] [125]
+[95] [127] [32])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/expunct.mf
+ Ok [14] [15] [19] [20] [13] [18] [33] [39] [42] [43] [44] [46] [47] [58]
+[59] [61] [96] [189] [17] [45] [16] [21] [22])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exaccent.mf
+ Ok [0] [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exsign.mf
+ Ok [24] [34] [35] [36] [37] [64] [191] [159])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrlig.mf
+ Ok [25] [26] [28] [27] [29] [30] [31])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exromp.mf
+ Ok [38] [63] [190])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrulett.mf
+ Ok [65] [66] [67] [68] [69] [70] [71] [72] [73] [74] [75] [76] [77] [78]
+[79] [80] [81] [82] [83] [84] [85] [86] [87] [88] [89] [90])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrllett.mf
+ Ok [97] [98] [99] [100] [101] [102] [103] [104] [105] [106] [107] [108]
+[109] [110] [111] [112] [113] [114] [115] [116] [117] [118] [119] [120]
+[121] [122])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrdigit.mf
+ Ok [48] [49] [50] [51] [52] [53] [54] [55] [56] [57])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrligtb.mf
+ Ok) ) ) )
+(some charht values had to be adjusted by as much as 0.13551pt)
+Font metrics written on ecsx2074.tfm.
+Output written on ecsx2074.600gf (256 characters, 93548 bytes).
+Transcript written on ecsx2074.log.
+mktexpk: /data/.texlive2022/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx2074.600pk: successfully generated.
+Latexmk: Getting log file 'out/main.log'
+Latexmk: Missing bbl file 'out/main.bbl' in following:
+ No file main.bbl.
+Latexmk: Run number 1 of rule 'cusdep glo gls out/main'
+This is makeindex, version 2.16 [TeX Live 2022] (kpathsea + Thai support).
+Scanning style file ./out/main.ist.............................done (29 attributes redefined, 0 ignored).
+Scanning input file out/main.glo....done (1 entries accepted, 0 rejected).
+Sorting entries...done (0 comparisons).
+Generating output file out/main.gls....done (6 lines written, 0 warnings).
+Output written in out/main.gls.
+Transcript written in out/main.glg.
+Latexmk: Run number 1 of rule 'biber out/main'
+Latexmk: Biber did't find bib file [main.bib]
+Latexmk: Run number 2 of rule 'pdflatex'
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex)
+ \write18 enabled.
+entering extended mode
+/usr/local/bin/pygmentize
+kpathsea: Running mktexpk --mfmode / --bdpi 600 --mag 1+0/600 --dpi 600 eccc1095
+mktexpk: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1+0/600; nonstopmode; input eccc1095
+This is METAFONT, Version 2.71828182 (TeX Live 2022) (preloaded base=mf)
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/eccc1095.mf
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exbase.mf)
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/eccc.mf
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/excsc.mf
+ Ok (/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exaccess.mf
+ Ok) (/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/expseudo.mf
+ Ok) (/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exruwest.mf
+ Ok [192] [193] [194] [195] [196] [197] [198] [199] [200] [201] [202] [203]
+[204] [205] [206] [207] [208] [209] [210] [211] [212] [213] [214] [215]
+[216] [217] [218] [219] [220] [221] [222] [223])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrueast.mf
+ Ok [128] [129] [130] [131] [132] [133] [134] [135] [136] [137] [138] [139]
+[140] [141] [142] [143] [144] [145] [146] [147] [148] [149] [150] [151]
+[152] [153] [154] [155] [156] [157])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrulett.mf
+ Ok [65] [66] [67] [68] [69] [70] [71] [72] [73] [74] [75] [76] [77] [78]
+[79] [80] [81] [82] [83] [84] [85] [86] [87] [88] [89] [90])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exbraces.mf
+ Ok [94] [126] [23] [40] [41] [60] [124] [62] [91] [93] [92] [123] [125]
+[95] [127] [32])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/expunct.mf
+ Ok [14] [15] [19] [20] [13] [18] [33] [39] [42] [43] [44] [46] [47] [58]
+[59] [61] [96] [189] [17] [45] [16] [21] [22])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exsign.mf
+ Ok [24] [34] [35] [36] [37] [64] [191] [159])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exromp.mf
+ Ok [38] [63] [190])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrdigit.mf
+ Ok [48] [49] [50] [51] [52] [53] [54] [55] [56] [57])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/expseudo.mf
+ Ok) (/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/excspl.mf
+ Ok [25] [26] [27] [28] [29] [30] [31] [158])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrulett.mf
+ Ok [97] [98] [99] [100] [101] [102] [103] [104] [105] [106] [107] [108]
+[109] [110] [111] [112] [113] [114] [115] [116] [117] [118] [119] [120]
+[121] [122])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exruwest.mf
+ Ok [224] [225] [226] [227] [228] [229] [230] [231] [232] [233] [234] [235]
+[236] [237] [238] [239] [240] [241] [242] [243] [244] [245] [246] [247]
+[248] [249] [250] [251] [252] [253] [254] [255])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrueast.mf
+ Ok [160] [161] [162] [163] [164] [165] [166] [167] [168] [169] [170] [171]
+[172] [173] [174] [175] [176] [177] [178] [179] [180] [181] [182] [183]
+[184] [185] [186] [187] [188])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/txpseudo.mf
+ Ok) (/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/txaccent.mf
+ Ok [0] [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/excligtb.mf
+ Ok) ) ) )
+(some charht values had to be adjusted by as much as 0.0856pt)
+Font metrics written on eccc1095.tfm.
+Output written on eccc1095.600gf (256 characters, 56408 bytes).
+Transcript written on eccc1095.log.
+mktexpk: /data/.texlive2022/texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1095.600pk: successfully generated.
+kpathsea: Running mktexpk --mfmode / --bdpi 600 --mag 1+0/600 --dpi 600 ecti1095
+mktexpk: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1+0/600; nonstopmode; input ecti1095
+This is METAFONT, Version 2.71828182 (TeX Live 2022) (preloaded base=mf)
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/ecti1095.mf
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exbase.mf)
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/ecti.mf
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/extextit.mf
+ Ok (/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exaccess.mf
+ Ok) (/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/expseudo.mf
+ Ok) (/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exileast.mf
+ Ok [158] [160] [161] [162] [163] [164] [165] [166] [167] [168] [169] [170]
+[171] [172] [173] [174] [175] [176] [177] [178] [179] [180] [181] [182]
+[183] [184] [185] [186] [187] [188])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exilwest.mf
+ Ok [224] [225] [226] [227] [228] [229] [230] [231] [232] [233] [234] [235]
+[236] [237] [238] [239] [240] [241] [242] [243] [244] [245] [246] [247]
+[248] [249] [250] [251] [252] [253] [254] [255])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exruwest.mf
+ Ok [192] [193] [194] [195] [196] [197] [198] [199] [200] [201] [202] [203]
+[204] [205] [206] [207] [208] [209] [210] [211] [212] [213] [214] [215]
+[216] [217] [218] [219] [220] [221] [222] [223])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrueast.mf
+ Ok [128] [129] [130] [131] [132] [133] [134] [135] [136] [137] [138] [139]
+[140] [141] [142] [143] [144] [145] [146] [147] [148] [149] [150] [151]
+[152] [153] [154] [155] [156] [157])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exbraces.mf
+ Ok [94] [126] [23] [40] [41] [60] [124] [62] [91] [93] [92] [123] [125]
+[95] [127] [32])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/expunct.mf
+ Ok [14] [15] [19] [20] [13] [18] [33] [39] [42] [43] [44] [46] [47] [58]
+[59] [61] [96] [189] [17] [45] [16] [21] [22])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exaccent.mf
+ Ok [0] [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exsign.mf
+ Ok [24] [34] [35] [36] [37] [64] [191] [159])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exilig.mf
+ Ok [25] [26] [27] [28] [29] [30] [31])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exitalp.mf
+ Ok [38] [63] [190])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrulett.mf
+ Ok [65] [66] [67] [68] [69] [70] [71] [72] [73] [74] [75] [76] [77] [78]
+[79] [80] [81] [82] [83] [84] [85] [86] [87] [88] [89] [90])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exillett.mf
+ Ok [97] [98] [99] [100] [101] [102] [103] [104] [105] [106] [107] [108]
+[109] [110] [111] [112] [113] [114] [115] [116] [117] [118] [119] [120]
+[121] [122])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exidigit.mf
+ Ok [48] [49] [50] [51] [52] [53] [54] [55] [56] [57])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exiligtb.mf
+ Ok) ) ) )
+(some charht values had to be adjusted by as much as 0.06808pt)
+Font metrics written on ecti1095.tfm.
+Output written on ecti1095.600gf (256 characters, 57920 bytes).
+Transcript written on ecti1095.log.
+mktexpk: /data/.texlive2022/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk: successfully generated.
+kpathsea: Running mktexpk --mfmode / --bdpi 600 --mag 1+0/600 --dpi 600 ecsx1095
+mktexpk: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1+0/600; nonstopmode; input ecsx1095
+This is METAFONT, Version 2.71828182 (TeX Live 2022) (preloaded base=mf)
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/ecsx1095.mf
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exbase.mf)
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/ecsx.mf
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exroman.mf
+ Ok (/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exaccess.mf
+ Ok) (/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/expseudo.mf
+ Ok) (/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exruwest.mf
+ Ok [192] [193] [194] [195] [196] [197] [198] [199] [200] [201] [202] [203]
+[204] [205] [206] [207] [208] [209] [210] [211] [212] [213] [214] [215]
+[216] [217] [218] [219] [220] [221] [222] [223])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrlwest.mf
+ Ok [224] [225] [226] [227] [228] [229] [230] [231] [232] [233] [234] [235]
+[236] [237] [238] [239] [240] [241] [242] [243] [244] [245] [246] [247]
+[248] [249] [250] [251] [252] [253] [254] [255])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrueast.mf
+ Ok [128] [129] [130] [131] [132] [133] [134] [135] [136] [137] [138] [139]
+[140] [141] [142] [143] [144] [145] [146] [147] [148] [149] [150] [151]
+[152] [153] [154] [155] [156] [157])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrleast.mf
+ Ok [158] [160] [161] [162] [163] [164] [165] [166] [167] [168] [169] [170]
+[171] [172] [173] [174] [175] [176] [177] [178] [179] [180] [181] [182]
+[183] [184] [185] [186] [187] [188])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exbraces.mf
+ Ok [94] [126] [23] [40] [41] [60] [124] [62] [91] [93] [92] [123] [125]
+[95] [127] [32])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/expunct.mf
+ Ok [14] [15] [19] [20] [13] [18] [33] [39] [42] [43] [44] [46] [47] [58]
+[59] [61] [96] [189] [17] [45] [16] [21] [22])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exaccent.mf
+ Ok [0] [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exsign.mf
+ Ok [24] [34] [35] [36] [37] [64] [191] [159])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrlig.mf
+ Ok [25] [26] [28] [27] [29] [30] [31])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exromp.mf
+ Ok [38] [63] [190])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrulett.mf
+ Ok [65] [66] [67] [68] [69] [70] [71] [72] [73] [74] [75] [76] [77] [78]
+[79] [80] [81] [82] [83] [84] [85] [86] [87] [88] [89] [90])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrllett.mf
+ Ok [97] [98] [99] [100] [101] [102] [103] [104] [105] [106] [107] [108]
+[109] [110] [111] [112] [113] [114] [115] [116] [117] [118] [119] [120]
+[121] [122])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrdigit.mf
+ Ok [48] [49] [50] [51] [52] [53] [54] [55] [56] [57])
+(/usr/local/texlive/2022/texmf-dist/fonts/source/jknappen/ec/exrligtb.mf
+ Ok) ) ) )
+(some charht values had to be adjusted by as much as 0.06375pt)
+Font metrics written on ecsx1095.tfm.
+Output written on ecsx1095.600gf (256 characters, 50464 bytes).
+Transcript written on ecsx1095.log.
+mktexpk: /data/.texlive2022/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1095.600pk: successfully generated.
+Latexmk: Getting log file 'out/main.log'
+Latexmk: Biber did't find bib file [main.bib]
+Collected warning summary (may duplicate other messages):1
+  NONE
+Collected error summary (may duplicate other messages):
+  pdflatex: Command for 'pdflatex' gave return code 1
+      Refer to 'out/main.log' for details
+Latexmk: If appropriate, the -f option can be used to get latexmk
+  to try to force complete processing.
+INFO[13:36:18] Successfully run latex. Code: {&lt;nil&gt; 12}  </code></pre>
+</doc-codeblock></div>
+</doc-panel>
+<p>For example, the final image looks like below and is used to reduce compiling time because that
+image is only rebuild if the base image changed or you modified the <code v-pre>Dockerfile</code>.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">textool-demo-latex-swpyt1fzzibqm7lxb7rrukqg1i</code></pre>
+</doc-codeblock></div>
+<p>You find the final PDF file next to the <code v-pre>main.tex</code>, in out example it&#x27;s called <code v-pre>demo.pdf</code>:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">demo-latex
+├── .latex
+├── demo.pdf
+├── Dockerfile
+├── latexmkrc
+├── main.bib
+├── main.tex
+└── out
+    ├── main.acn
+    ├── main.aux
+    ├── main.bbl
+    ├── main.bcf
+    ├── main.blg
+    ├── main.fdb_latexmk
+    ├── main.fls
+    ├── main.glg
+    ├── main.glo
+    ├── main.gls
+    ├── main.ist
+    ├── main.log
+    ├── main.lol
+    ├── main.out
+    ├── main.pdf
+    ├── main.run.xml
+    ├── main.toc
+    └── _minted-main
+        ├── 949BF7DF46352D63B16C28DB265BC139BE66D8DAD8160124D3F09E7AA39CC794.pygtex
+        ├── C4B5797D4DFB619B0A1E16736F6A254C09DC1E0ED436C2808BF79F64BB7A146D.pygtex
+        ├── FAD5CDE6E73A9B1FF7D7DC84F651A868813F6471C2D7EF07FEF2B7666DDC3D20.pygtex
+        └── pastie.pygstyle
+
+2 directories, 27 files</code></pre>
+</doc-codeblock></div>
+<p>Use the <code v-pre>clean</code> command to remove all build files.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">textool -p demo-latex clean</div>
+<pre class="language-none"><code v-pre class="language-none">
+
+demo-latex
+├── .latex
+├── demo.pdf
+├── Dockerfile
+├── latexmkrc
+├── main.bib
+└── main.tex
+
+0 directories, 6 files</code></pre>
+</doc-codeblock></div>
+<p>Use the <code v-pre>watch</code> command to recompile the project after any changes to the project
+(so <code v-pre>.tex</code> files as well as images etc).</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">textool -p demo-latex watch</div>
+<pre class="language-none"><code v-pre class="language-none">INFO[13:37:14] Current binary is the latest version 2.1.4   
+INFO[13:37:14] Opening config file for  reading. Path:demo-latex/.latex 
+INFO[13:37:14] Now pulling the base image: ghcr.io/alexander-lindner/latex:base 
+INFO[13:37:14] Image is already available. Not pulling.     
+INFO[13:37:14] It is necessary to build the file before using it 
+Step 1/3 : FROM ghcr.io/alexander-lindner/latex:base
+ ---&gt; 4feb1d254540
+Step 2/3 : RUN tlmgr update --self
+ ---&gt; Using cache
+ ---&gt; ebe3b47210f0
+Step 3/3 : RUN tlmgr install koma-script xetex xstring float fontspec abstract cleveref hyperref hyphen-german babel-german soul listings minted fvextra fancyvrb upquote lineno xcolor catchfile framed etoolbox glossaries mfirstuc etoolbox textcase xfor datatool tracklang xkeyval glossaries-german csquotes biber biblatex
+ ---&gt; Using cache
+ ---&gt; 6858eab40605
+Successfully built 6858eab40605
+Successfully tagged textool-tmp-xv/bnyoroi8lrb7vrggiiihfam:latest
+INFO[13:37:14] Creating the docker container                
+INFO[13:37:14] The final file does not exists. For watching it has to exists. Therefore, a normal build is executed before... 
+INFO[13:37:14] Creating the docker container                
+INFO[13:37:14] Starting the docker container                
+Rc files read:
+  latexmkrc
+Latexmk: Run number 1 of rule 'pdflatex'
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex)
+ \write18 enabled.
+entering extended mode
+/usr/local/bin/pygmentize
+
+...
+
+INFO[13:37:29] Successfully run latex. Code: {&lt;nil&gt; 12}     
+INFO[13:37:29] Starting the docker container                
+INFO[13:37:29] Adding background watcher for changed files... 
+Rc files read:
+  latexmkrc
+======= Need to update make_preview_continuous for target files
+Viewing pdf
+Latexmk: Run number 1 of rule 'biber out/main'
+Latexmk: Biber did't find bib file [main.bib]
+Latexmk: Run number 1 of rule 'pdflatex'
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex)
+ \write18 enabled.
+entering extended mode
+/usr/local/bin/pygmentize
+Latexmk: Getting log file 'out/main.log'
+INFO[13:37:37] Copy re-rendered file....                    
+Latexmk: Biber did't find bib file [main.bib]
+Latexmk: Run number 2 of rule 'pdflatex'
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex)
+ \write18 enabled.
+entering extended mode
+/usr/local/bin/pygmentize
+Latexmk: Getting log file 'out/main.log'
+INFO[13:37:39] Copy re-rendered file....                    
+Latexmk: Biber did't find bib file [main.bib]
+Latexmk: Failure to make the files correctly
+    ==&gt; You will need to change a source file before I do another run &lt;==
+Collected warning summary (may duplicate other messages):1
+  NONE
+Collected error summary (may duplicate other messages):
+  pdflatex: Command for 'pdflatex' gave return code 1
+      Refer to 'out/main.log' for details
+=== Watching for updated files. Use ctrl/C to stop ...</code></pre>
+</doc-codeblock></div>
+<p>Use <code v-pre>[CTRL] + [C]</code> to stop watching.</p>
+<p>Finally, use the <code v-pre>bib</code> command to quickly add an url as bibliography:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">textool -p demo-latex bib -u <a href="https://en.wikipedia.org/wiki/Latex">https://en.wikipedia.org/wiki/Latex</a></div>
+<pre class="language-none"><code v-pre class="language-none">INFO[13:36:53] Current binary is the latest version 2.1.4   
+INFO[13:36:53] Fetching url...                              
+INFO[13:36:53] This bibtex entry was successfully added to your main.bib file. </code></pre>
+</doc-codeblock></div>
+
+                                
+                                <!-- Required only on API pages -->
+                                <doc-toolbar-member-filter-no-results />
+                            </div>
+                            <footer class="clear-both">
+                                <div class="flex flex-wrap items-center justify-between mt-14">
+                                    <a class="my-2.5 inline-flex items-center text-sm whitespace-nowrap text-blue-500 dark:text-blue-400 hover:text-blue-700 hover:underline" href="https://github.com/alexander-lindner/latex/edit/master/docs/quick.md" target="_blank" rel="noopener">
+                                        <svg class="mr-1.5" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M20 12c-.55 0-1 .45-1 1v7c0 .55-.45 1-1 1H4c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h7c.55 0 1-.45 1-1s-.45-1-1-1H4C2.35 3 1 4.35 1 6v14c0 1.65 1.35 3 3 3h14c1.65 0 3-1.35 3-3v-7c0-.55-.45-1-1-1z" /><path d="M22.21 1.79c-1.18-1.18-3.24-1.18-4.41 0l-9.5 9.5c-.13.13-.22.29-.26.46l-1 4c-.08.34.01.7.26.95.18.2.44.3.7.3.08 0 .16-.01.24-.03l4-1c.18-.04.34-.13.46-.26l9.5-9.5c1.22-1.22 1.22-3.2.01-4.42zm-1.42 3l-9.3 9.3-2.11.53.53-2.11 9.3-9.3c.42-.42 1.16-.42 1.59 0 .43.43.43 1.15-.01 1.58z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        <span>Edit this page</span>
+                                    </a>
+                                </div>
+                            
+                                <nav class="flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="/installation/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                                                <span class="block mt-1">Installation</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="/usage/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
+                                                <span class="block mt-1">Usage</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </footer>
+                        </main>
+                
+                        <div class="border-t dark:border-dark-650 pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between">
+                                <div>
+                                    <ul class="flex flex-wrap items-center text-sm">
+                                    </ul>
+                                </div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2022. All rights reserved.</p></div>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <!-- Rendered if sidebar right is enabled -->
+                    <!-- Sidebar right skeleton-->
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
+                        <div class="pl-5">
+                            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                        </div>
+                    </div>
+                
+                    <!-- User should be able to hide sidebar right -->
+                    <doc-sidebar-right v-cloak></doc-sidebar-right>
+                </div>
+
+            </div>
+        </div>
+    
+        <doc-search-mobile></doc-search-mobile>
+        <doc-back-to-top></doc-back-to-top>
+    </div>
+
+
+    <div id="docs-overlay-target"></div>
+
+    <script>window.__DOCS__ = { "title": "Quick Start", icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
+</body>
+</html>
