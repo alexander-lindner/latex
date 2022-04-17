@@ -4,13 +4,13 @@ icon: chevron-right
 order: -30
 ---
 
-The `textool init` command creates a project and let's you interactive interact with the creation process.
+TBD
 
 ```shell
 Usage:
-  textool [OPTIONS] init
+  textool [OPTIONS] watch
 
-Creates a directory and adds a minimal Latex template to this directory
+Compiles a latex project and afterwards, watches for changes which triggers a recompilation
 
 Application Options:
   -v, --verbose   Verbose output
@@ -18,5 +18,4 @@ Application Options:
 
 Help Options:
   -h, --help      Show this help message
-
 ```

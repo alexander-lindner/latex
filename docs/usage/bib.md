@@ -4,13 +4,10 @@ icon: chevron-right
 order: -60
 ---
 
-The `textool init` command creates a project and let's you interactive interact with the creation process.
-
+TBD
 ```shell
 Usage:
-  textool [OPTIONS] init
-
-Creates a directory and adds a minimal Latex template to this directory
+  textool [OPTIONS] bib [bib-OPTIONS]
 
 Application Options:
   -v, --verbose   Verbose output
@@ -19,4 +16,6 @@ Application Options:
 Help Options:
   -h, --help      Show this help message
 
+[bib command options]
+      -u, --url=  The url of the web page you want to cite
 ```

@@ -14,3 +14,6 @@ footer:
 edit:
   repo: "https://github.com/alexander-lindner/latex/edit/"
   base: /docs/
+  branch: master
+
+cname: textool.alindner.org

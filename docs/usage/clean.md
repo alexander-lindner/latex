@@ -4,13 +4,12 @@ icon: chevron-right
 order: -40
 ---
 
-The `textool init` command creates a project and let's you interactive interact with the creation process.
 
 ```shell
 Usage:
-  textool [OPTIONS] init
+  textool [OPTIONS] clean
 
-Creates a directory and adds a minimal Latex template to this directory
+Removes all temporarily created files and directories
 
 Application Options:
   -v, --verbose   Verbose output
@@ -18,5 +17,4 @@ Application Options:
 
 Help Options:
   -h, --help      Show this help message
-
 ```
