@@ -11,28 +11,28 @@
     <!-- Primary Meta Tags -->
     <title>textool config</title>
     <meta name="title" content="textool config">
-    <meta name="description" content="TBD" />
+    <meta name="description" content="A command to interact with the config file, mainly for scripts." />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://textool.alindner.org/usage/config/">
     <meta property="og:title" content="textool config">
-    <meta property="og:description" content="TBD">
+    <meta property="og:description" content="A command to interact with the config file, mainly for scripts.">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://textool.alindner.org/usage/config/">
     <meta property="twitter:title" content="textool config">
-    <meta property="twitter:description" content="TBD">
+    <meta property="twitter:description" content="A command to interact with the config file, mainly for scripts.">
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="/resources/css/retype.css?v=2.2.703509304362" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=2.2.703603538320" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=2.2.703509304362" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=2.2.703603538320" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=2.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=2.2.703509304362" defer></script>
-    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=2.2.703509304362" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=2.2.703603538320" defer></script>
+    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=2.2.703603538320" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -175,10 +175,16 @@
         <span>textool config</span>
     </h1>
 </doc-anchor-target>
-<p>TBD</p>
+<p>A command to interact with the config file, mainly for scripts.</p>
+<doc-anchor-target id="overview">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#overview">#</doc-anchor-trigger>
+        <span>Overview</span>
+    </h2>
+</doc-anchor-target>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-bash"><code v-pre class="language-bash">Usage:
-  textool [OPTIONS] config [config-OPTIONS]
+  textool [OPTIONS] config [config-OPTIONS] [config-PATH] [config-VALUE]
 
 Set and get configuration values from the cli, specially from scripts. The first argument is the path to the configuration value, the second argument is the value to set if it exists. If no argument is provided, the whole
 configuration is printed.
@@ -195,6 +201,131 @@ Help Options:
     Configuration for set command:
       -r, --replace  When working with an array, clear it and add the new values</code></pre>
 </doc-codeblock></div>
+<doc-anchor-target id="options">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#options">#</doc-anchor-trigger>
+        <span>Options</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>PATH: a hocon path to select an element inside the config file.
+Use <code v-pre>.</code> to separate different config keys.</li>
+<li>VALUE: if not set, the command will read and print the config value.
+If set, the given VALUE will be written to the given PATH</li>
+<li>-r, --replace:  When writing an array, clear it before and add the new values instead of appending.
+See <doc-anchor-trigger to="#write-array-with-replace-options">example</doc-anchor-trigger>.</li>
+</ul>
+<doc-anchor-target id="examples">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#examples">#</doc-anchor-trigger>
+        <span>Examples</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="read">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#read">#</doc-anchor-trigger>
+        <span>Read</span>
+    </h3>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">textool -p . config</div>
+<pre class="language-json"><code v-pre class="language-json">{
+  fileName : demo.pdf
+  texFile : main.tex
+  docker : {
+    file : Dockerfile
+  }
+  features : {
+    documentclass : scrreprt
+    glossary : true
+    minted : true
+    bibliography : true
+    twocolumn : true
+    lang : [ngerman]
+    examples : true
+  }
+}</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">textool -p . config fileName</div>
+<pre class="language-json"><code v-pre class="language-json">demo.pdf</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">textool -p . config features</div>
+<pre class="language-json"><code v-pre class="language-json">{
+  documentclass : scrreprt
+  glossary : true
+  minted : true
+  bibliography : true
+  twocolumn : true
+  lang : [ngerman]
+  examples : true
+}</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">textool -p . config features.examples</div>
+<pre class="language-json"><code v-pre class="language-json">true</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">textool -p . config features.lang</div>
+<pre class="language-json"><code v-pre class="language-json">ngerman</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="write">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#write">#</doc-anchor-trigger>
+        <span>Write</span>
+    </h3>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">textool -p . config features.lang english</div>
+<pre class="language-json"><code v-pre class="language-json">{
+  documentclass : scrreprt
+  glossary : true
+  minted : true
+  bibliography : true
+  twocolumn : true
+  lang : [ngerman,english]
+  examples : true
+}</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">textool -p . config features.lang english</div>
+<pre class="language-json"><code v-pre class="language-json">{
+  documentclass : scrreprt
+  glossary : true
+  minted : true
+  bibliography : true
+  twocolumn : true
+  lang : [ngerman,english,english]
+  examples : true
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="write-array-with-replace-options">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#write-array-with-replace-options">#</doc-anchor-trigger>
+        <span>Write array with replace options</span>
+    </h4>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">textool -p . config -r features.lang english</div>
+<pre class="language-json"><code v-pre class="language-json">{
+  documentclass : scrreprt
+  glossary : true
+  minted : true
+  bibliography : true
+  twocolumn : true
+  lang : [english]
+  examples : true
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="additional-informations">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#additional-informations">#</doc-anchor-trigger>
+        <span>Additional information&#x27;s</span>
+    </h2>
+</doc-anchor-target>
+<p>This command will not check for duplicates in an array.
+When using the write feature, comments will be removed.</p>
 
                                 
                                 <!-- Required only on API pages -->

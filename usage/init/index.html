@@ -11,28 +11,28 @@
     <!-- Primary Meta Tags -->
     <title>textool init</title>
     <meta name="title" content="textool init">
-    <meta name="description" content="The textool init command creates a project and let's you interactive interact with the creation process." />
+    <meta name="description" content="The textool init command let you interactive create a latex project." />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://textool.alindner.org/usage/init/">
     <meta property="og:title" content="textool init">
-    <meta property="og:description" content="The textool init command creates a project and let's you interactive interact with the creation process.">
+    <meta property="og:description" content="The textool init command let you interactive create a latex project.">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://textool.alindner.org/usage/init/">
     <meta property="twitter:title" content="textool init">
-    <meta property="twitter:description" content="The textool init command creates a project and let's you interactive interact with the creation process.">
+    <meta property="twitter:description" content="The textool init command let you interactive create a latex project.">
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="/resources/css/retype.css?v=2.2.703509304362" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=2.2.703603538320" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=2.2.703509304362" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=2.2.703603538320" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=2.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=2.2.703509304362" defer></script>
-    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=2.2.703509304362" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=2.2.703603538320" defer></script>
+    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=2.2.703603538320" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -175,7 +175,13 @@
         <span>textool init</span>
     </h1>
 </doc-anchor-target>
-<p>The <code v-pre>textool init</code> command creates a project and let&#x27;s you interactive interact with the creation process.</p>
+<p>The <code v-pre>textool init</code> command let you interactive create a latex project.</p>
+<doc-anchor-target id="overview">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#overview">#</doc-anchor-trigger>
+        <span>Overview</span>
+    </h2>
+</doc-anchor-target>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-bash"><code v-pre class="language-bash">Usage:
   textool [OPTIONS] init
@@ -190,6 +196,16 @@ Help Options:
   -h, --help      Show this help message
 </code></pre>
 </doc-codeblock></div>
+<doc-anchor-target id="additional-informations">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#additional-informations">#</doc-anchor-trigger>
+        <span>Additional information&#x27;s</span>
+    </h2>
+</doc-anchor-target>
+<p>This command creates a <code v-pre>main.tex</code> file with additional demo content if chosen and a matching <code v-pre>main.bib</code>.
+A <code v-pre>latexmkrc</code> file is created to configure <code v-pre>latexmk</code>.
+All options that are chosen in this step are stored inside a <a href="../../config/">config file</a> named <code v-pre>.latex</code>.
+For customization a <code v-pre>Dockerfile</code> is created.</p>
 
                                 
                                 <!-- Required only on API pages -->
