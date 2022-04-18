@@ -11,27 +11,28 @@
     <!-- Primary Meta Tags -->
     <title>Github Actions</title>
     <meta name="title" content="Github Actions">
-    <meta name="description" content="TBD" />
+    <meta name="description" content="We provide a simple github action ( latex-action), which compiles a TeXtool project (aka the run command" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://textool.alindner.org/actions/">
     <meta property="og:title" content="Github Actions">
-    <meta property="og:description" content="TBD">
+    <meta property="og:description" content="We provide a simple github action ( latex-action), which compiles a TeXtool project (aka the run command">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://textool.alindner.org/actions/">
     <meta property="twitter:title" content="Github Actions">
-    <meta property="twitter:description" content="TBD">
+    <meta property="twitter:description" content="We provide a simple github action ( latex-action), which compiles a TeXtool project (aka the run command">
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="/resources/css/retype.css?v=2.2.703603538320" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=2.2.703610345445" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=2.2.703603538320" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=2.2.703610345445" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=2.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=2.2.703603538320" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=2.2.703610345445" defer></script>
+    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=2.2.703610345445" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -174,7 +175,58 @@
         <span>Github Actions</span>
     </h1>
 </doc-anchor-target>
-<p>TBD</p>
+<p>We provide a simple github action (<a href="https://github.com/alexander-lindner/latex-action">latex-action</a>), which compiles a TeXtool
+project (aka the <a href="../usage/run/">run command</a>).</p>
+<p>You need to setup docker before by yourself.</p>
+<doc-anchor-target id="options">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#options">#</doc-anchor-trigger>
+        <span>Options</span>
+    </h2>
+</doc-anchor-target>
+<p>More infos can be found <a href="https://github.com/alexander-lindner/latex-action/blob/master/action.yml">here</a>.</p>
+<doc-anchor-target id="inputs">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#inputs">#</doc-anchor-trigger>
+        <span>Inputs</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>path: path to the project (aka the <code v-pre>-p</code> parameter)</li>
+<li>version: the texlive version to use. Default: &#x27;v2.1.5.1&#x27;</li>
+</ul>
+<doc-anchor-target id="outputs">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#outputs">#</doc-anchor-trigger>
+        <span>Outputs</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>pdf: path to the pdf file</li>
+</ul>
+<doc-anchor-target id="example">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#example">#</doc-anchor-trigger>
+        <span>Example</span>
+    </h2>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-yaml"><code v-pre class="language-yaml">steps:
+  - uses: actions/checkout@v3
+
+  - id: setup-docker
+    name: Set up Docker Buildx
+    uses: docker/setup-buildx-action@v1
+    
+  - id: latex
+    uses: alexander-lindner/latex-action@v1.6
+    with:
+      path: 'thesis'
+
+  - name: pdf path
+    run: echo ${​{ steps.latex.outputs.pdf }}
+    shell: bash</code></pre>
+</doc-codeblock></div>
 
                                 
                                 <!-- Required only on API pages -->
@@ -247,6 +299,6 @@
 
     <div id="docs-overlay-target"></div>
 
-    <script>window.__DOCS__ = { "title": "Github Actions", icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
+    <script>window.__DOCS__ = { "title": "Github Actions", icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
 </body>
 </html>
