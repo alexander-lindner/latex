@@ -1,6 +1,7 @@
 package commands
 
 import (
+	"fmt"
 	"github.com/alexander-lindner/latex/textool/helper"
 	"github.com/go-akka/configuration/hocon"
 	log "github.com/sirupsen/logrus"
@@ -62,18 +63,18 @@ func (x *ConfigCommand) Execute(args []string) error {
 	config := helper.GetConfig(options.Path)
 
 	if len(args) == 0 {
-		print(config.Root().String())
+		fmt.Print(config.Root().String())
 		return nil
 	}
 	configPath := args[0]
 	if len(args) == 1 {
 		if config.IsArray(configPath) {
 			arr := config.GetStringList(configPath)
-			print(strings.Join(arr, ","))
+			fmt.Print(strings.Join(arr, ","))
 		} else if config.IsObject(configPath) {
-			print(config.GetConfig(configPath).String())
+			fmt.Print(config.GetConfig(configPath).String())
 		} else {
-			print(config.GetString(configPath))
+			fmt.Print(config.GetString(configPath))
 		}
 	} else {
 		if config.IsArray(configPath) {
