@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://textool.alindner.org/sitemap.xml.gz
