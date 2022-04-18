@@ -7,7 +7,7 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-const version = "2.1.4"
+const version = "2.1.5"
 
 func doSelfUpdate() {
 	v := semver.MustParse(version)
