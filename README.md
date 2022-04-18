@@ -1,7 +1,7 @@
 ![Banner](.github/banner.png)
-Relaxe while TeXtool take care of your tex mess...
+Relax while TeXtool take care of your tex mess...
 
-# TeXtool ![GitHub release (latest by SemVer)](https://img.shields.io/github/downloads/alexander-lindner/latex/v2.1.4/total?style=flat-square)
+# TeXtool ![GitHub release (latest by SemVer)](https://img.shields.io/github/downloads/alexander-lindner/latex/v2.1.5.1/total?style=flat-square)
 
 TeXtool is a small and powerful cli tool to create and manage latex projects.
 It utilises docker and latexmk.
@@ -34,9 +34,9 @@ docker run --rm -ti \
 
 ## ToDos
 
-* config command
+* ~~config command~~
 * compile without .latex & ./Dockerfile file
 * customize main.tex file name
-* Retype documentation
+* ~~Retype documentation~~
 * finish github actions repo
 * docker image name fix
