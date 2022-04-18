@@ -4,6 +4,9 @@ icon: chevron-right
 order: -40
 ---
 
+Cleans the project structure and removes all build files.
+
+## Overview
 
 ```shell
 Usage:
@@ -18,3 +21,6 @@ Application Options:
 Help Options:
   -h, --help      Show this help message
 ```
+## Additional information's
+
+None.

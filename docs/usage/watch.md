@@ -4,8 +4,9 @@ icon: chevron-right
 order: -30
 ---
 
-TBD
+Watches for changes in the project structure and re-compiles the project if needed.
 
+## Overview
 ```shell
 Usage:
   textool [OPTIONS] watch
@@ -19,3 +20,9 @@ Application Options:
 Help Options:
   -h, --help      Show this help message
 ```
+
+## Additional information's
+
+This command will compile the project first and afterwards, it watches for changes in the project structure levering `latexmks` watch feature.
+
+Use `[CTRL] + [C]` to stop watching.
