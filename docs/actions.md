@@ -14,7 +14,7 @@ More infos can be found [here](https://github.com/alexander-lindner/latex-action
 ### Inputs
 
 * path: path to the project (aka the `-p` parameter)
-* version: the texlive version to use. Default: 'v2.1.5.1'
+* version: the TeXtool version to use. Default: 'v2.1.5.1'
 ### Outputs
 
 * pdf: path to the pdf file
