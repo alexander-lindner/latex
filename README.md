@@ -28,5 +28,5 @@ See our [documentation](https://textool.alindner.org/)
 * compile without .latex & ./Dockerfile file
 * customize main.tex file name
 * ~~Retype documentation~~
-* finish github actions repo
+* ~~finish github actions repo~~
 * docker image name fix

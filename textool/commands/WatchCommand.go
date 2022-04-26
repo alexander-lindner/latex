@@ -23,13 +23,16 @@ func init() {
 func (x *WatchCommand) Execute(args []string) error {
 	cli.SetBasePath(options.Path)
 
-	config := helper.GetConfig(options.Path)
+	config, err := helper.GetConfig(options.Path)
+	if err != nil {
+		return err
+	}
 
 	cli.SetFileName(config.GetString("fileName"))
 	cli.SetTexFile(config.GetString("texFile"))
 
 	log.Println("Now pulling the base image: " + baseContainerName + ":base")
-	err := cli.PullImage(baseContainerName + ":base")
+	err = cli.PullImage(baseContainerName + ":base")
 	if err != nil {
 		log.Fatal("Couldn't pull the base docker image.", err)
 	}

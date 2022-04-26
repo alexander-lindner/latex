@@ -60,8 +60,10 @@ func (x *ConfigCommand) Execute(args []string) error {
 		return nil
 	}
 	log.SetLevel(log.FatalLevel)
-	config := helper.GetConfig(options.Path)
-
+	config, err := helper.GetConfig(options.Path)
+	if err != nil {
+		return err
+	}
 	if len(args) == 0 {
 		fmt.Print(config.Root().String())
 		return nil
