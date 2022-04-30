@@ -11,22 +11,15 @@ e.g. you can add additional, non latex tools.
 
 Using Github actions? Use our action: [latex-action](https://github.com/alexander-lindner/latex-action)
 
-
-
-
-
 ## Use it
 
 See our [documentation](https://textool.alindner.org/)
 
-
-
-
 ## ToDos
 
 * ~~config command~~
-* compile without .latex & ./Dockerfile file
-* customize main.tex file name
+* ~~compile without .latex & ./Dockerfile file~~
+* ~~customize main.tex file name~~
 * ~~Retype documentation~~
 * ~~finish github actions repo~~
 * docker image name fix

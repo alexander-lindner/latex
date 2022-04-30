@@ -9,7 +9,7 @@ LABEL org.opencontainers.image.description="A minimal, basic image for compiling
 
 RUN apt-get update -q && \
     apt-get upgrade -y && \
-    apt-get install -qy build-essential wget libfontconfig1 curl git inotify-tools imagemagick inkscape python3-pip ruby-hocon && \
+    apt-get install -qy build-essential wget libfontconfig1 curl git inotify-tools imagemagick inkscape python3-pip ruby-hocon python3-pygments && \
     rm -rf /var/lib/apt/lists/*
 
 # Install TexLive with scheme-basic
@@ -20,14 +20,14 @@ RUN wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz; \
 	/install-tl-unx/install-tl -profile /install-tl-unx/texlive.profile; \
     rm -r /install-tl-unx; \
 	rm install-tl-unx.tar.gz && \
-    rm -rf /usr/local/texlive/2022/texmf-dist/doc
+    rm -rf /usr/local/texlive/2022/texmf-dist/doc&& \
+    rm -rf /usr/local/texlive/2022/texmf-dist/source
 
 ENV PATH="/usr/local/texlive/2022/bin/x86_64-linux:${PATH}"
 
 ENV HOME /data
 WORKDIR /data
 
-RUN pip3 install pygments
 RUN tlmgr install latexmk && \
     rm -rf /usr/local/texlive/2022/texmf-dist/doc
 
