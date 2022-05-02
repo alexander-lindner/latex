@@ -5,6 +5,8 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"github.com/alexander-lindner/go-cff"
+	"github.com/ledongthuc/pdf"
 	log "github.com/sirupsen/logrus"
 	"golang.org/x/net/html"
 	"io"
@@ -14,9 +16,6 @@ import (
 	"strconv"
 	"strings"
 	"time"
-
-	"github.com/ledongthuc/pdf"
-	"gopkg.in/yaml.v2"
 )
 import "github.com/google/go-github/v43/github"
 
@@ -163,29 +162,6 @@ func renderNode(n *html.Node) string {
 	return buf.String()
 }
 
-type T struct {
-	Title      string `yaml:"title"`
-	CffVersion string `yaml:"cff-version"`
-	CffType    string `yaml:"type"`
-	Authors    []struct {
-		Names  string `yaml:"given-names"`
-		Family string `yaml:"family-names"`
-		Orcid  string `yaml:"orcid"`
-	} `yaml:"authors"`
-	Identifiers []struct {
-		IdentifiersType string `yaml:"type"`
-		Value           string `yaml:"value"`
-		Description     string `yaml:"description"`
-	} `yaml:"identifiers"`
-	Code         string   `yaml:"repository-code"`
-	Url          string   `yaml:"url"`
-	Abstract     string   `yaml:"abstract"`
-	Keywords     []string `yaml:"keywords"`
-	License      string   `yaml:"license"`
-	Version      string   `yaml:"version"`
-	DateReleased string   `yaml:"date-released"`
-}
-
 func renderGithub(owner string, repoName string) (title string, abstract string, authors []string) {
 	ctx := context.Background()
 	client := github.NewClient(nil)
@@ -202,16 +178,17 @@ func renderGithub(owner string, repoName string) (title string, abstract string,
 	}
 
 	content, _ := contents.GetContent()
-	t := T{}
-	err = yaml.Unmarshal([]byte(content), &t)
-	if err != nil {
-		log.Fatalf("error: %v", err)
-	}
 
-	for _, a := range t.Authors {
-		authors = append(authors, a.Family+", "+a.Names)
+	fileContent, err := cff.Parse(content)
+	if err != nil {
+		return
 	}
-	return t.Title, t.Abstract, authors
+	for _, item := range fileContent.Authors {
+		if item.IsPerson {
+			authors = append(authors, item.Person.Family+", "+item.Person.GivenNames)
+		}
+	}
+	return fileContent.Title, fileContent.Abstract, authors
 }
 func renderPdf(content io.ReadCloser) (title string, abstract string, err error) {
 	path := copyPdfToTmpFile(content)

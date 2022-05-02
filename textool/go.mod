@@ -4,10 +4,10 @@ go 1.18
 
 require (
 	github.com/AlecAivazis/survey/v2 v2.3.2
+	github.com/alexander-lindner/go-cff v0.0.0-20220502192729-52c27dd2c00f
 	github.com/blang/semver v3.5.1+incompatible
 	github.com/coreos/etcd v3.3.13+incompatible
 	github.com/docker/docker v20.10.12+incompatible
-	github.com/fsnotify/fsnotify v1.4.9
 	github.com/geomyidia/flagswrap v0.1.0
 	github.com/go-akka/configuration v0.0.0-20200606091224-a002c0330665
 	github.com/google/go-github/v43 v43.0.0
@@ -15,11 +15,11 @@ require (
 	github.com/jessevdk/go-flags v1.5.0
 	github.com/ledongthuc/pdf v0.0.0-20220302134840-0c2507a12d80
 	github.com/moby/term v0.0.0-20210619224110-3f7ff695adc6
+	github.com/radovskyb/watcher v1.0.7
 	github.com/rhysd/go-github-selfupdate v1.2.3
 	github.com/sirupsen/logrus v1.8.1
 	github.com/valyala/fasttemplate v1.2.1
 	golang.org/x/net v0.0.0-20211216030914-fe4d6282115f
-	gopkg.in/yaml.v2 v2.4.0
 )
 
 require (
@@ -49,7 +49,6 @@ require (
 	github.com/opencontainers/image-spec v1.0.2 // indirect
 	github.com/opencontainers/runc v1.1.0 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
-	github.com/radovskyb/watcher v1.0.7 // indirect
 	github.com/tcnksm/go-gitconfig v0.1.2 // indirect
 	github.com/ulikunitz/xz v0.5.9 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
@@ -64,5 +63,6 @@ require (
 	google.golang.org/genproto v0.0.0-20211208223120-3a66f561d7aa // indirect
 	google.golang.org/grpc v1.43.0 // indirect
 	google.golang.org/protobuf v1.27.1 // indirect
+	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect
 	gotest.tools/v3 v3.1.0 // indirect
 )
