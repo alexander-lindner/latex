@@ -144,10 +144,9 @@ func (cl *Client) BuildLocalImage(Dockerfile string) string {
 
 	err := cl.BuildImage(cl.basePath, Dockerfile, imageName)
 	if err == nil {
-		var image = imageName
-		return image
+		return imageName
 	} else {
-		log.Fatal("Building the image failed. Now fall back to full image. ", err)
+		log.Error("Building the image failed. Now fall back to full image. ", err)
 	}
 
 	return baseContainerName + ":full"
