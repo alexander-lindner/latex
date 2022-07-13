@@ -241,6 +241,13 @@ func (cl *Client) RunImageWithCommand(imageName string, command string) string {
 		}()
 
 		go cl.watch(originalPath, &done, func(name string) {
+			absPath, err := filepath.Abs(name)
+			if err != nil {
+				log.Fatal("Couldn't get absolut path for ", name, "... ", err)
+			}
+			if name != absPath {
+				return
+			}
 			_, err = copy(originalPath, path+"/"+cl.basePath+"/"+cl.outputName)
 			if err != nil {
 				log.Fatal("Couldn't copy the file to the destination path. ", err)
@@ -294,7 +301,7 @@ func (cl *Client) watch(path string, done *bool, callback func(name string), ima
 			select {
 			case event := <-w.Event:
 				log.Info("Copy re-rendered file....")
-				callback(event.Name())
+				callback(event.Path)
 
 			case err := <-w.Error:
 				if err != nil {
