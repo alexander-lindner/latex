@@ -17,7 +17,7 @@ Install `textool`:
 Create your first project, this is an interactive command.
 
 ```text  textool -p demo-latex init
-INFO[17:27:05] Current binary is the latest version 2.1.3   
+INFO[17:27:05] Current binary is the latest version 2.1.7   
 INFO[17:27:05] Creating ./.latex as main config file for this tool. 
 ? Basic: Choose a document class: scrreprt
 ? Basic: Choose a document class: ngerman

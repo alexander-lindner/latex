@@ -7,13 +7,13 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-const version = "2.1.5"
+const version = "2.1.7"
 
 func doSelfUpdate() {
 	v := semver.MustParse(version)
 	latest, err := selfupdate.UpdateSelf(v, "alexander-lindner/latex")
 	if err != nil {
-		log.Println("Binary update failed:", err)
+		log.Error("Binary update failed:", err)
 		return
 	}
 	if latest.Version.Equals(v) {
