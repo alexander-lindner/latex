@@ -231,8 +231,7 @@ func (cl *Client) RunImageWithCommand(imageName string, command string) string {
 				log.Println("Caught a [CTRL]+[C], stopping watch process ...")
 				log.Debug(sig)
 
-				d := 3 * time.Second
-				if err := cl.cli.ContainerStop(ctx, resp.ID, &d); err != nil {
+				if err := cl.cli.ContainerStop(ctx, resp.ID, container.StopOptions{}); err != nil {
 					log.Fatal("Couldn't stop the container. Error: ", err)
 				}
 				done = false
