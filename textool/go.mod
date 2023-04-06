@@ -7,7 +7,7 @@ require (
 	github.com/alexander-lindner/go-cff v0.5.1
 	github.com/blang/semver v3.5.1+incompatible
 	github.com/coreos/etcd v3.3.27+incompatible
-	github.com/docker/docker v23.0.1+incompatible
+	github.com/docker/docker v23.0.3+incompatible
 	github.com/geomyidia/flagswrap v0.1.0
 	github.com/go-akka/configuration v0.0.0-20200606091224-a002c0330665
 	github.com/google/go-github/v43 v43.0.0
@@ -47,7 +47,7 @@ require (
 	github.com/onsi/gomega v1.10.3 // indirect
 	github.com/opencontainers/go-digest v1.0.0 // indirect
 	github.com/opencontainers/image-spec v1.1.0-rc2 // indirect
-	github.com/opencontainers/runc v1.1.4 // indirect
+	github.com/opencontainers/runc v1.1.5 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/stretchr/testify v1.8.1 // indirect
 	github.com/tcnksm/go-gitconfig v0.1.2 // indirect
