@@ -2,7 +2,7 @@ FROM ubuntu:latest
 MAINTAINER Alexander Lindner <25225552+alexander-lindner@users.noreply.github.com>
 ENV DEBIAN_FRONTEND noninteractive
 LABEL org.opencontainers.image.title="latex compiler"
-LABEL org.opencontainers.image.version="texlive-2022"
+LABEL org.opencontainers.image.version="texlive-2023"
 LABEL org.opencontainers.image.licenses="GPL-2.0,LPPL-1.3c"
 LABEL org.opencontainers.image.url="https://github.com/alexander-lindner/latex"
 LABEL org.opencontainers.image.description="A minimal, basic image for compiling .tex documents. You can use `tlmgr` to install packages. If you want all dependencies, use the `:full` image."
@@ -20,8 +20,8 @@ RUN wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz; \
 	/install-tl-unx/install-tl -profile /install-tl-unx/texlive.profile; \
     rm -r /install-tl-unx; \
 	rm install-tl-unx.tar.gz && \
-    rm -rf /usr/local/texlive/2022/texmf-dist/doc&& \
-    rm -rf /usr/local/texlive/2022/texmf-dist/source
+    rm -rf /usr/local/texlive/2023/texmf-dist/doc&& \
+    rm -rf /usr/local/texlive/2023/texmf-dist/source
 
 ENV PATH="/usr/local/texlive/2022/bin/x86_64-linux:${PATH}"
 
