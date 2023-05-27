@@ -23,13 +23,13 @@ RUN wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz; \
     rm -rf /usr/local/texlive/2023/texmf-dist/doc&& \
     rm -rf /usr/local/texlive/2023/texmf-dist/source
 
-ENV PATH="/usr/local/texlive/2022/bin/x86_64-linux:${PATH}"
+ENV PATH="/usr/local/texlive/2023/bin/x86_64-linux:${PATH}"
 
 ENV HOME /data
 WORKDIR /data
 
 RUN tlmgr install latexmk && \
-    rm -rf /usr/local/texlive/2022/texmf-dist/doc
+    rm -rf /usr/local/texlive/2023/texmf-dist/doc
 
 RUN echo "#!/bin/bash" > /usr/bin/acroread && chmod +x /usr/bin/acroread
 
