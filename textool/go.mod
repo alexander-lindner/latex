@@ -7,7 +7,7 @@ require (
 	github.com/alexander-lindner/go-cff v0.5.1
 	github.com/blang/semver v3.5.1+incompatible
 	github.com/coreos/etcd v3.3.27+incompatible
-	github.com/docker/docker v23.0.3+incompatible
+	github.com/docker/docker v24.0.7+incompatible
 	github.com/geomyidia/flagswrap v0.1.0
 	github.com/go-akka/configuration v0.0.0-20200606091224-a002c0330665
 	github.com/google/go-github/v43 v43.0.0
